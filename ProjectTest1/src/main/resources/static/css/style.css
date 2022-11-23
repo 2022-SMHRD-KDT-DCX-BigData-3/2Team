@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.meback {
+	width: 1150px;
+	background-color: #ffffff;
+}
+.write {
+	width: 70px;
+	height: 30px;
+	background-color: skyblue;
+	color: #ffffff;
+	border: 0;
+	font-size: 15px;
+}
+.memback {
+	font-size: 12px;
+}
