@@ -7,12 +7,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Insert title here</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Insert title here</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <!-- Favicons -->
 <link href="assets/img/favicon.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -30,134 +29,6 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-  	$(document).ready(function() {
-  		loadList();
-	  	$("#regBtn").click(function(){
-	  		$("#msg").css("display","none");
-	  		$("#formDiv").css("display","block");
-	  	});
-	  	$("#register").click(function(){
-	  		// title, content, writer,,,,
-	  		// var title = $("title").val();
-	  		var fData= $("#frm").serialize(); // serialize --> title=XXX&content=XXX&writer=XXX
-	  		$.ajax({
-	  			url : "${cpath}/api/boards",
-	  			type : "POST",
-	  			data : fData,
-	  			success : loadList,
-	  			error : function(){alert("error");}
-	  		});
-	  		// form 초기화
-	  		// $("#frm")[0].reset();
-	  		
-	  		// reset버튼 강제로 누르게 하기
-	  		$("button[type=reset]").trigger("click");
-	  	});
-  	});
-  	function loadList(){
-  		$.ajax({
-  			url : "${cpath}/api/boards",
-  			type : "GET",
-  			dataType : "json", // text(생략가능),json,xml 등등
-  			success : resultHTML,//function(result){ // {"id":1, ~~~~}=>Object
-  				//$("#msg").html(JSON.stringify(result));
-  			//},
-  			error : function(){alert("error");}
-  		});
-  		$("#msg").css("display","block");
-  		$("#formDiv").css("display","none");
-  	}
-  	function resultHTML(result){
-  		var tbl="<table class='table'>";
-  		tbl+="<tr>";
-  		tbl+="<td>번호</td>";
-  		tbl+="<td>제목</td>";
-  		tbl+="<td>작성자</td>";
-  		tbl+="<td>작성일</td>";
-  		tbl+="<td>조회수</td>";
-  		tbl+="</tr>";
-		
-  		// 반복문 함수
-  		$.each(result,function(index,data){ // 람다식은 function()대신 ()=>{}
-	  		tbl+="<tr>";
-	  		tbl+="<td>"+data.idx+"</td>";
-	  		tbl+="<td id='t"+data.idx+"'><a href='javascript:goView("+data.idx+")'>"+data.title+"</a></td>";
-	  		tbl+="<td>"+data.writer+"</td>";
-	  		tbl+="<td>"+data.indate.split(' ')[0]+"</td>";
-	  		tbl+="<td id='cnt"+data.idx+"'>"+data.count+"</td>";
-	  		tbl+="</tr>";
-	  		
-	  		tbl+="<tr id='c"+data.idx+"' style='display:none;'>";
-	  		tbl+="<td>내용</td>";
-	  		tbl+="<td colspan='2'>";
-	  		tbl+="<textarea id='ta"+data.idx+"' rows='7' readonly='readonly' class='form-control'>"+data.content+"</textarea>"
-	  		tbl+="</td>";
-	  		tbl+="<td colspan='2'>";
-	        tbl+="<span id='b"+data.idx+"'><button class='btn btn-sm btn-info' onclick='goUpdate("+data.idx+")'>수정</button></span>";
-	  		tbl+="&nbsp;&nbsp;";
-	  		tbl+="<button class='btn btn-sm btn-warning' onclick='goDel("+data.idx+")'>삭제</button>";
-	  		tbl+="</td>";
-	  		tbl+="</tr>";
-		});
-  		
-  		tbl+="</table>";
-  		$("#msg").html(tbl);
-  	}
-  	function goUpdate(idx) {
-  		// 1. 제목부분 수정
-  		var title = $("#t"+idx).text();
-  		var newTitle = "<input type='text' class='form-control' id='nt"+idx+"' value='"+title+"'/>";
-  		$("#t"+idx).html(newTitle);
-  		// 2. textarea 속성 수정
-        $("#ta"+idx).attr("readonly",false);
-        // 3. 수정 -> 수정하기 변경
-        var newBtn="<button class='btn btn-sm btn-success' onclick='update("+idx+")'>수정하기</button>";
-        $("#b"+idx).html(newBtn);
-  	}
-  	function update(idx) {
-  		var title = $("#nt"+idx).val();
-  		var content = $("#ta"+idx).val();
-  		//var reqData = "{'idx': idx,'title':title,'content':content}";
-  		$.ajax({
-  			url : "${cpath}/api/boards",
-  			type : "PUT",
-  			contentType : "application/json;charset=utf-8",
-  			//data : reqData,
-  			data : JSON.stringify({"idx":idx,"title":title,"content":content}),
-  			success : loadList,
-  			error : function(){alert("error");}
-  		});
-  	}
-  	function goDel(idx) {
-  		// ${cpath}/api/boards/idx  --> @PathVariable("idx")
-  		$.ajax({
-  			url : "${cpath}/api/boards/"+idx,
-  			type : "DELETE",
-  			success : loadList,
-  			error : function(){alert("error");}
-  		});
-  	}
-  	function goView(idx){
-  		if($("#c"+idx).css("display")=="none"){
-  		$("#c"+idx).css("display","table-row");
-  		}else{
-  		$("#c"+idx).css("display","none");
-  		// 조회수 누적
-  		$.ajax({
-  			url : "${cpath}/api/boards/"+idx,
-  			type : "GET",
-  			dataType : "json",
-  			success : function(obj){ // Board : {			,"count":3}
-  				$("#cnt"+idx).text(obj.count);
-  			},
-  			error : function(){alert("error");}
-  			});
-  		}
-  	}
-  </script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -165,8 +36,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <img src="assets/img/smh.png" alt="">
+        <span class="d-none d-lg-block">Smart Groupware</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -382,6 +253,16 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+            
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="calender">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+				  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+				</svg>&nbsp;&nbsp;
+                <span>캘린더</span>
+              </a>
+            </li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="boardmain">
@@ -437,6 +318,16 @@
           <span>메일</span>
         </a>
       </li><!-- End mail Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="calender">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+			  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+			  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+			</svg>&nbsp;&nbsp;
+          <span>캘린더</span>
+        </a>
+      </li><!-- End calender Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="boardmain">
@@ -450,15 +341,27 @@
 	  
 	  
       <li class="nav-item">
-        <a class="nav-link collapsed" href="boardmain">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
 			  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 			</svg>&nbsp;&nbsp;
-			<span>전자결제</span>
+			<span>전자결재</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Forms Nav -->
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>일반결재</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvalp">
+              <i class="bi bi-circle"></i><span>지출결재</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
 
       <li class="nav-heading">정보</li>
 
@@ -519,36 +422,16 @@
 		    </div><!-- End Page Title -->
 		
 		    <section class="section profile">
-		      <div class="memback">
-		    	<div class="panel panel-default">
-					<div class="panel-body" id="msg"></div>
-					<div class="panel-body" id="formDiv" style="display: none;">
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="title">제목:</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="title" placeholder="Enter title">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="content">내용:</label>
-							<div class="col-sm-10">
-								<textarea rows="10" class="form-control" name="content"></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="writer">작성자:</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="writer">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button id="register" type="button" class="btn btn-primary">등록</button>
-								<button type="reset" class="btn btn-warning">취소</button>
-							</div>
-						</div>
-					</div>
-		  		</div>
+		      <div class="meback" style="text-align: center;">
+		    	<table class="boardtable">
+		    		<tr>
+		    			<td class="board1">말머리</td>
+		    			<td class="title">제목</td>
+		    			<td class="board2">작성자</td>
+		    			<td class="board2">작성일</td>
+		    			<td class="board3">조회수</td>
+		    		</tr>
+		    	</table>
 			</form>
       </div>
     </section>

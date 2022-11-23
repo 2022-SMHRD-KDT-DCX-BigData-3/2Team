@@ -255,7 +255,7 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-            
+
             <li>
               <a class="dropdown-item d-flex align-items-center" href="calender">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
@@ -265,6 +265,7 @@
                 <span>캘린더</span>
               </a>
             </li>
+            
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -323,8 +324,8 @@
           <span>메일</span>
         </a>
       </li><!-- End mail Nav -->
-      
-      <li class="nav-item">
+
+	  <li class="nav-item">
         <a class="nav-link collapsed" href="calender">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 			  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -406,12 +407,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Mail</h1>
+      <h1>Calender</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="http://localhost:9999/boot/">Home</a></li>
           <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Mail</li>
+          <li class="breadcrumb-item active">Calender</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -419,49 +420,9 @@
 	<!-- Start mail -->
     <section class="section profile">
       <div class="meback">
-      	<div class="panel-body">
-			<table class="table table-bordered table-hover">
-				<tr>
-					<td>제목</td>
-					<td>부서</td>
-					<td>직급</td>
-					<td>Email</td>
-					<td>작성자</td>
-					<td>작성일</td>
-				</tr>
-				
-			</table>
-			
-			<!-- 페이징 처리 -->
-			<div style="text-align: center;">
-			<!-- 페이지 번호 출력 -->
-				<ul class="pagination">
-			<!-- 이전버튼 -->
-				<c:if test="${pageMaker.prev}">
-					<li class="paginate_button previous"><a href="${pageMaker.startPage-1}"><i class="bi bi-arrow-left-circle-fill"></i></a></li>
-				</c:if>
-			<!-- 이전버튼 -->
-				<c:forEach var="pageNum" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-					<li class="paginate_button ${pageMaker.cri.page==pageNum ? 'active' : ''}"><a href="${pageNum}">${pageNum}</a></li>
-				</c:forEach>
-			<!-- 다음버튼 -->
-				<c:if test="${pageMaker.next}">
-					<li class="paginate_button next"><a href="${pageMaker.endPage+1}"><i class="bi bi-arrow-right-circle-fill"></i></a></li>
-				</c:if>
-			<!-- 다음버튼 -->
-				</ul>
-			<!-- 페이지 번호 출력 -->
-			</div>
-			<form id="pageForm" action="${cpath}/member/member" method="get">
-				<input type="hidden" name="type" value="${pageMaker.cri.type}"/>
-				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"/>
-				<input type="hidden" id="page" name="page" value="${pageMaker.cri.page}"/>
-				<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}"/>
-			</form>
-			<!-- 페이징 처리 -->
-      	</div>
+      	
       </div>
-      <!-- End mail -->
+      <!-- End calender -->
     </section>
 
   </main><!-- End #main -->
