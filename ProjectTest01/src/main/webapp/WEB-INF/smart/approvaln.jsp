@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -22,15 +26,9 @@
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
-<!-- =======================================================
-* Template Name: NiceAdmin - v2.4.1
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-======================================================== -->
+<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -265,12 +263,9 @@
                 <span>캘린더</span>
               </a>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq">
+              <a class="dropdown-item d-flex align-items-center" href="boardmain">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
 				  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
 				  <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
@@ -414,83 +409,38 @@
     </ul>
 
   </aside><!-- End Sidebar-->
-
+  
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Mail</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="http://localhost:9999/boot/">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Mail</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-	<!-- Start mail -->
-    <section class="section profile">
-      <div class="meback">
-      	<div class="panel-body">
-			<table class="table table-bordered table-hover">
-				<tr>
-					<td>제목</td>
-					<td>부서</td>
-					<td>직급</td>
-					<td>Email</td>
-					<td>작성자</td>
-					<td>작성일</td>
-				</tr>
-				
+	<div class="pagetitle">
+		<form id="frm" class="form-horizontal" method="post">
+			<table style="width: 100%">
+			   <tr>
+			     <td colspan="2"><h1>게시판</h1></td>
+			     <td style="text-align: right;"><button class="write">글쓰기</button></td>
+			   </tr>
+			    <tr>
+			     <td>
+			     <nav>
+		        <ol class="breadcrumb">
+		          <li class="breadcrumb-item"><a href="main">Home</a></li>
+		          <li class="breadcrumb-item">Users</li>
+		          <li class="breadcrumb-item active">Board</li>
+		        </ol>
+		      </nav>
+			     </td>
+			   </tr>
 			</table>
-			
-			<!-- 페이징 처리 -->
-			<div style="text-align: center;">
-			<!-- 페이지 번호 출력 -->
-				<ul class="pagination">
-			<!-- 이전버튼 -->
-				<c:if test="${pageMaker.prev}">
-					<li class="paginate_button previous"><a href="${pageMaker.startPage-1}"><i class="bi bi-arrow-left-circle-fill"></i></a></li>
-				</c:if>
-			<!-- 이전버튼 -->
-				<c:forEach var="pageNum" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-					<li class="paginate_button ${pageMaker.cri.page==pageNum ? 'active' : ''}"><a href="${pageNum}">${pageNum}</a></li>
-				</c:forEach>
-			<!-- 다음버튼 -->
-				<c:if test="${pageMaker.next}">
-					<li class="paginate_button next"><a href="${pageMaker.endPage+1}"><i class="bi bi-arrow-right-circle-fill"></i></a></li>
-				</c:if>
-			<!-- 다음버튼 -->
-				</ul>
-			<!-- 페이지 번호 출력 -->
-			</div>
-			<form id="pageForm" action="${cpath}/member/member" method="get">
-				<input type="hidden" name="type" value="${pageMaker.cri.type}"/>
-				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"/>
-				<input type="hidden" id="page" name="page" value="${pageMaker.cri.page}"/>
-				<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}"/>
-			</form>
-			<!-- 페이징 처리 -->
+		</form>
+	</div><!-- End Page Title -->
+		
+    <section class="section profile">
+    	<div class="meback" style="text-align: center;">
+    	
       	</div>
-      </div>
-      <!-- End mail -->
-    </section>
+	</section>
 
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -506,6 +456,5 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
 </body>
 </html>

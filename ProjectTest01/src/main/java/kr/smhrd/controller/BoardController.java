@@ -100,4 +100,16 @@ public class BoardController {
 	public String boardmain() {
 		return "board/boardmain";
 	}
+	@RequestMapping("/calender")
+	public String calender() {
+		return "smart/calender";
+	}
+	@RequestMapping("/approvaln")
+	public String approvaln() {
+		return "smart/approvaln";
+	}
+	@RequestMapping("/approvalp")
+	public String approvalp() {
+		return "smart/approvalp";
+	}
 }

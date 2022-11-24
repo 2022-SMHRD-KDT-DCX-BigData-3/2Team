@@ -11,6 +11,96 @@
 	border: 0;
 	font-size: 15px;
 }
-.memback {
-	font-size: 12px;
+.boardtable {
+	border-top: 1px solid;
+}
+.board1 {
+	padding-left: 30px;
+	padding-right: 60px;
+	width: 140px;
+}
+.board2 {
+	padding-right: 60px;
+	width: 150px;
+}
+.board3 {
+	width: 120px;
+}
+.title {
+	padding-right: 60px;
+	width: 600px;
+}
+@media (max-width: 1200px){
+	
+	.meback {
+		width: 100%;
+	}
+	.board1 {
+		padding-left: 20px;
+		padding-right: 50px;
+		width: 120px;
+		font-size: 16px;
+	}
+	.board2 {
+		padding-right: 50px;
+		width: 230px;
+		font-size: 16px;
+	}
+	.board3 {
+		width: 100px;
+		font-size: 15px;
+	}
+	.title {
+		padding-right: 50px;
+		width: 500px;
+	}
+}
+@media (max-width: 1000px){
+	
+	.meback {
+		width: 100%;
+	}
+	.board1 {
+		padding-left: 20px;
+		padding-right: 50px;
+		width: 120px;
+		font-size: 14px;
+	}
+	.board2 {
+		padding-right: 50px;
+		width: 150px;
+		font-size: 14px;
+	}
+	.board3 {
+		width: 70px;
+		font-size: 14px;
+	}
+	.title {
+		padding-right: 50px;
+		width: 460px;
+	}
+}
+@media (max-width: 950px){
+	.meback {
+		width: 100%;
+	}
+	.board1 {
+		padding-left: 20px;
+		padding-right: 40px;
+		width: 110px;
+		font-size: 12px;
+	}
+	.board2 {
+		padding-right: 40px;
+		width: 120px;
+		font-size: 12px;
+	}
+	.board3 {
+		width: 80px;
+		font-size: 12px;
+	}
+	.title {
+		padding-right: 40px;
+		width: 500px;
+	}
 }
