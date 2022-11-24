@@ -29,6 +29,220 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				$("#okbutton").click(function() {
+
+					$("#frm").submit();
+				});
+
+				$(".apv_sq_rd").on("click", function() {
+					var apv = $(this).attr("data-value"); //attr도 map과 같은 구조인데 키값만 넣으면 그 값을 갖고 오라는 뜻
+
+					$("#apv").val(apv);
+					approvalRead(apv);
+				});
+
+				//결재 조회
+				function approvalRead(apv) {
+
+					var params = {
+						apv_sq : apv
+					};
+
+					$.ajax({
+						url : "/approval/approvalRead",
+						type : "POST",
+						dataType : "json",
+						data : JSON.stringify(params),
+						contentType : "application/json; charset=UTF-8",
+						beforeSend : function() {
+							$("#apv_pl_nm1").empty();
+							$("#apv_nm1").empty();
+							$("#div_apv_nm").empty();
+							$("#stf_nm").empty();
+							$("#mid_nm").empty();
+							$("#apv_ok").empty();
+						},
+						success : function(data) {
+							console.log(data);
+
+							var apv_pl_nm = data.apv_pl_nm;
+							console.log(apv_pl_nm);
+							var apv_nm = data.apv_nm;
+							console.log(apv_nm);
+							var apv_ok = data.apv_ok;
+							console.log(apv_ok);
+							var div_apv_nm = data.div_apv_nm;
+							console.log(div_apv_nm);
+							var stf_nm = data.stf_nm;
+							console.log(stf_nm);
+							var mid_nm = data.mid_nm;
+							console.log(mid_nm);
+							var stf_admn_sq = data.stf_admn_sq;
+							console.log(stf_admn_sq);
+							var apv_pl_rt = data.apv_pl_rt;
+							console.log(apv_pl_rt);
+
+							$("#apv_pl_nm1").text(apv_pl_nm);
+							$("#apv_nm1").text(apv_nm);
+							$("#div_apv_nm").text(div_apv_nm);
+							$("#stf_nm").text(stf_nm);
+							$("#mid_nm").text(mid_nm);
+							$("#apv_ok").text(apv_ok);
+					  	    $("#apv_pl_rt1").html('<iframe style="float: right;" src = "/resources/ViewerJS/#../file/'+ apv_pl_rt + '" width="530" height="300" allowfullscreen webkitallowfullscreen></iframe>')
+
+							if (stf_admn_sq == '1') {
+								$("#apv_ok_sq1").hide();
+							} else if (stf_admn_sq == '2') {
+								$("#fnl_admn").remove();
+							}
+							 else if(stf_admn_sq == '4'){
+								 console.log(stf_admn_sq);
+								$("#mid_admn").remove();
+							}
+
+						},
+						error : function(request, status, error) {
+							alert("list search fail :: error code: "
+									+ request.status + "\n" + "error message: "
+									+ error + "\n");
+						}
+					});
+				}
+
+				//중간승인자의 승인부분 
+				$("#apv_sq_md").on("click", function() {
+
+					var apv_sq = $("#apv").val();
+
+					approvalOk(apv_sq);
+				});
+
+				function approvalOk(apv_sq) {
+
+					var params = {
+						apv_sq : apv_sq,
+						apv_ok_sq : $("#apv_ok_sq1").val()
+					};
+
+					$.ajax({
+						url : "/approval/approvalOk",
+						type : "POST",
+						dataType : "text",
+						data : JSON.stringify(params),
+						contentType : "application/json; charset=UTF-8",
+						success : function(result) {
+							if (result == 'SUCCESS') {
+								alert("처리되었습니다");
+								window.location.reload();
+
+							}
+						}
+					});
+				}
+				// Ajax 페이징 처리
+				$(document).on("click", "#pageIndexListAjax > li > a",
+						function() {
+							var params = {
+								cate : $("#cate").val(),
+								keyword : $("#keyword").val(),
+								page : $(this).attr("data-page"),
+								div_apv_sq : $("#div_apv_sq").val()
+							};
+
+							apvListSearch(params);
+						});
+				/* 게시물 검색 */
+				$("#search").on("click", function() {
+					if ($("#keyword").val() == "") {
+						alert("검색어를 최소 1글자 이상 입력해주세요.");
+					} else if ($("#keyword").val() != "")
+						var params = {
+							cate : $("#cate").val(),
+							keyword : $("#keyword").val(),
+							div_apv_sq : $("#div_apv_sq").val()
+						};
+					apvListSearch(params);
+				});
+			});
+
+	/* 결재 검색 */
+	function apvListSearch(params) {
+		$
+				.ajax({
+					url : "/approval/apvListSearch",
+					type : "POST",
+					dataType : "json",
+					data : JSON.stringify(params),
+					contentType : "application/json; charset=UTF-8",
+					beforeSend : function() {
+						$("#list > tbody").empty();
+						$("#pageIndexList").empty();
+					},
+
+					success : function(data) {
+
+						console.log(params);
+						var apvList = data.apvList;
+						var pageIndexListAjax = data.pageIndexListAjax;
+
+						var tbody = $("#list > tbody");
+
+						$
+								.each(
+										apvList,
+										function(idx, val) {
+											tbody
+													.append($('<tr>')
+															.append(
+																	$(
+																			'<td>',
+																			{
+																				text : val.apv_sq
+																			}))
+															.append(
+																	$(
+																			'<td>',
+																			{
+																				html : "<a href='#' class='apv_sq_rd' data-value="+val.apv_sq+"' data-toggle='modal' data-target='#readModal' >"
+																						+ val.apv_nm
+																						+ "</a>"
+																			}))
+															.append(
+																	$(
+																			'<td>',
+																			{
+																				text : val.stf_nm
+																			}))
+															.append(
+																	$(
+																			'<td>',
+																			{
+																				text : val.div_apv_nm
+																			}))
+															.append(
+																	$(
+																			'<td>',
+																			{
+																				text : val.apv_ok
+																			})));
+										});
+						$("#pageIndexList").html(pageIndexListAjax);
+					},
+					error : function(request, status, error) {
+						alert("list search fail :: error code: "
+								+ request.status + "\n" + "error message: "
+								+ error + "\n");
+					}
+				});
+	}
+</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -341,27 +555,27 @@
 	  
 	  
       <li class="nav-item">
-        <a class="nav-link collapsed" href="boardmain">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
 			  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 			</svg>&nbsp;&nbsp;
-			<span>전자결재</span>
+			<span>전자결재</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>일반결재</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
+            <a href="approvalp">
+              <i class="bi bi-circle"></i><span>지출결재</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Forms Nav -->
+      </li><!-- End Components Nav -->
 
       <li class="nav-heading">정보</li>
 
@@ -376,13 +590,25 @@
       </li><!-- End Profile Page Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="member">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
 			  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
 			</svg>&nbsp;&nbsp;
-          <span>직원관리</span>
+			<span>직원관리</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Member Page Nav -->
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원 정보수정</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End member Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-logout">
@@ -402,47 +628,262 @@
 
 	<div class="pagetitle">
 		<form id="frm" class="form-horizontal" method="post">
-			<table style="width: 100%">
-			   <tr>
-			     <td colspan="2"><h1>게시판</h1></td>
-			     <td style="text-align: right;"><button class="write">글쓰기</button></td>
-			   </tr>
-			    <tr>
-			     <td>
+			     <h1>지출결재</h1></td>
 			     <nav>
 		        <ol class="breadcrumb">
 		          <li class="breadcrumb-item"><a href="main">Home</a></li>
 		          <li class="breadcrumb-item">Users</li>
-		          <li class="breadcrumb-item active">Board</li>
+		          <li class="breadcrumb-item active">Approval</li>
 		        </ol>
 		      </nav>
-			     </td>
-			   </tr>
-			</table>
 		</form>
 	</div><!-- End Page Title -->
 		
     <section class="section profile">
-    	<div class="meback" style="text-align: center;">
-    	
-      	</div>
+    	<div id="wrap">
+		<!--결재 모달창 시작 -->
+		<div class="modal fade" id="insertModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">결재등록창</h4>
+					</div>
+
+					<div class="modal-body">
+
+						<form role="form" id="frm" method="post" enctype="multipart/form-data"
+							action="/approval/register">
+							<table class="table table-striped table-bordered">
+
+								<colgroup>
+									<col width="30%" />
+									<col width="70%" />
+								</colgroup>
+
+								<tbody>
+									<tr>
+										<th>제목(*)</th>
+										<td><input type="text" id="apv_nm" name="apv_nm"
+											class="form-control" placeholder="제목"></td>
+									</tr>
+									<tr>
+										<th>결재구분(*)</th>
+										<td><select id="div_apv_sq" class="form-control"
+											name="div_apv_sq">
+												<option value="1">업무</option>
+												<option value="2">파견</option>
+												<option value="3">경비지출</option>
+												<option value="4">초과근무</option>
+												<option value="5">휴가</option>
+										</select></td>
+									</tr>
+									<tr>
+										<th>중간승인자(*)</th>
+										<td><input type="text" id="stf_mid_sq" name="stf_mid_sq"
+											class="form-control" placeholder="중간승인자 사원번호입력"></td>
+									</tr>
+								<!-- 	<tr>
+										<th>결재파일 이름</th>
+										<td><input type="text" id="apv_pl_nm" name="apv_pl_nm"
+											class="form-control"></td>
+									</tr>  -->
+									<tr>
+										<th>결재파일 업로드</th>
+										<td><input type="file" id="apv_pl_rt" name="file"
+											class="form-control"></td>
+									</tr>
+								</tbody>
+
+							</table>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" id="okbutton" class="btn btn-primary"
+							data-dismiss="modal">입력</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--결재모달창 끝  -->
+
+		<!--결재리스트 목록 시작-->
+
+		<div id="content">
+			<div class="col-md-13">
+				<div class="box">
+					<!-- <form id="rightTop" class="form-inline"> -->
+					<div id="searchBox" class="col-sm-11 col-md-11 text-center">
+						<form id="rightTop" class="form-inline" onsubmit="return false;">
+							<select id="cate" class="control">
+								<option value="1">작성자</option>
+								<option value="2">제목</option>
+
+								<div class="input-group">
+									<input type="text" id="keyword" class="form-control" placeholder="Search">
+									<button type="button" class="btn btn-default" id="search">
+										<i class="glyphicon glyphicon-search"></i>
+									</button>
+								</div>
+							</select>
+						</form>
+					</div>
+
+					<button type="button" id="officerInsert" class="btn btn-success"
+						data-toggle="modal" data-target="#insertModal">결재등록</button>
+					<!-- </form> -->
+					<div class="box-body">
+						<div>
+							<table id="list" class="table table-hover">
+								<colgroup>
+									<col width="40px" />
+									<col width="150px" />
+									<col width="60px" />
+									<col width="60px" />
+									<col width="40px" />
+
+								</colgroup>
+								<thead>
+									<tr class="active">
+										<th>번호</th>
+										<th>제목</th>
+										<th>제출자</th>
+										<th>결재구분</th>
+										<th>진행상황</th>
+									</tr>
+								</thead>
+
+								<tbody>
+
+									<c:forEach items="" var="approvalVO">
+										<input type='hidden' name='div_apv_sq' id="div_apv_sq"
+											value="">
+										<tr>
+											<td></td>
+											<td class="apv_sq_rd" data-value=""><a
+												href='#' data-toggle="modal" data-target="#readModal"></a></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div id="pageIndexList" class="text-center">
+					</div>
+				</div>
+				<!-- /.box-footer-->
+			</div>
+		</div>
+		<!--결재리스트 목록 종료-->
+
+		<!-- 조회모달 시작 -->
+
+		<div class="modal fade" id="readModal" role="dialog">
+			<div class="modal-dialog modal-lg" style="width: 560px">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">결재조회창</h4>
+					</div>
+					<div class="modal-body">
+						<div>
+							<input type="hidden" id="apv" name="apv"
+								value="">
+
+						</div>
+
+						<table class="table table-striped table-bordered">
+							<colgroup>
+								<col width="30%" />
+								<col width="70%" />
+							</colgroup>
+
+							<tbody>
+						<%-- 		<tr>
+									<th>파일이름</th>
+									<td id="apv_pl_nm1">${approvalVO.apv_pl_nm}</td>
+								</tr> --%>
+								<tr>
+									<th>제목</th>
+									<td id="apv_nm1"></td>
+								</tr>
+								<tr>
+									<th>결재구분</th>
+									<td id="div_apv_nm"></td>
+								</tr>
+								<tr>
+									<th>제출자</th>
+									<td id="stf_nm"></td>
+								</tr>
+								<tr>
+									<th>중간승인자</th>
+									<td id="mid_nm"></td>
+								</tr>
+								<tr>
+									<th>결재현황</th>
+									<td id="apv_ok"></td>
+								</tr>
+							</tbody>
+							
+						</table>
+					<div id ="apv_pl_rt1">
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<select id="apv_ok_sq1" class="form-control" name="apv_ok_sq1"
+							data-value="apv_ok_sq1">
+							<option value="">선택</option>
+							<option value="1">거절</option>
+							<option id="mid_admn" value="2">승인(중간)</option>
+							<option id="fnl_admn" value="4">승인(최종)</option>
+						</select>
+
+						<button type="button" id="apv_sq_md" class="btn btn-primary"
+							data-dismiss="modal" style="margin-top: 15px">확인</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal"
+							style="margin-top: 15px">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 조회모달 종료 -->
+	</div>
 	</section>
 
   </main><!-- End #main -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<script>
+	var result = '${msg}';
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.min.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+	if (result == 'SUCCESS') {
+		alert("처리가 완료되었습니다.");
+	}
+</script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.min.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 </body>
 </html>

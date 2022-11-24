@@ -104,3 +104,18 @@
 		width: 500px;
 	}
 }
+.control {
+	width: 80px;
+	height: 25px;
+	margin-right: 10px;
+	border-radius: 4px;
+	color: #555;
+}
+.box {
+	width: 1300px;
+	margin: auto; /* 화면 중앙에 배치*/
+}
+
+#searchBox {
+	margin-bottom: 10px;
+}

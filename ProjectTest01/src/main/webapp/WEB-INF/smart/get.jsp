@@ -29,9 +29,6 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -414,104 +411,8 @@
   </aside><!-- End Sidebar-->
   
   <main id="main" class="main">
-
-	<div class="pagetitle">
-		<form id="frm" class="form-horizontal" method="post">
-			     <h1>일반결재</h1></td>
-			     <nav>
-		        <ol class="breadcrumb">
-		          <li class="breadcrumb-item"><a href="main">Home</a></li>
-		          <li class="breadcrumb-item">Users</li>
-		          <li class="breadcrumb-item active">Approval</li>
-		        </ol>
-		      </nav>
-		</form>
-	</div><!-- End Page Title -->
-		
-    <section class="section profile">
-    	<div id="wrap">
-
-		<!--결재리스트 목록 시작-->
-
-		<div id="content">
-			<div class="col-md-13">
-				<div class="box">
-					<!-- <form id="rightTop" class="form-inline"> -->
-					<div id="searchBox" class="col-sm-11 col-md-11 text-center">
-						<form id="rightTop" class="form-inline" onsubmit="return false;">
-							<select id="cate" class="control">
-								<option value="1">작성자</option>
-								<option value="2">제목</option>
-
-								<div class="input-group">
-									<input type="text" id="keyword" class="form-control" placeholder="Search">
-									<button type="button" class="btn btn-default" id="search">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
-							</select>
-						</form>
-					</div>
-
-					<button type="button" id="officerInsert" class="btn btn-success" data-toggle="modal" data-target="#insertModal">결재등록</button>
-					<!-- </form> -->
-					<div class="box-body">
-						<div>
-							<table id="list" class="table table-hover">
-								<colgroup>
-									<col width="40px" />
-									<col width="150px" />
-									<col width="60px" />
-									<col width="60px" />
-									<col width="40px" />
-
-								</colgroup>
-								<thead>
-									<tr class="active">
-										<th>번호</th>
-										<th>제목</th>
-										<th>제출자</th>
-										<th>결재종류</th>
-										<th>진행상황</th>
-									</tr>
-								</thead>
-
-								<tbody>
-									<c:forEach var="vo" items="${list}">
-										<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
-										<tr>
-											<td>${vo.appro_id}</td>
-											<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
-											<td><a href="get">${vo.appro_title}</a></td>
-											<td>${vo.appro_member_id}</td>
-											<td>${vo.appro_sort}</td>
-											<td>${vo.apro_status}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div id="pageIndexList" class="text-center">
-					</div>
-				</div>
-				<!-- /.box-footer-->
-			</div>
-		</div>
-		<!--결재리스트 목록 종료-->
-
-	</div>
-	</section>
-
+  	
   </main><!-- End #main -->
-
-<script>
-	var result = '${msg}';
-
-	if (result == 'SUCCESS') {
-		alert("처리가 완료되었습니다.");
-	}
-</script>
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
