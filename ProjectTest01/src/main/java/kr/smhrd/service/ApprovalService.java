@@ -22,8 +22,8 @@ public class ApprovalService {
 	}
 	
 	// 결재 게시물 조회
-	public Approval get(Long appro_id) {
-		Approval app = approvalMapper.read(appro_id);
-		return app;
+	public Approval select(Long appro_id) {
+		Approval get = approvalMapper.read(appro_id);
+		return get;
 	}
 }

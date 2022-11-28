@@ -6,4 +6,8 @@
 		select * from APPROVAL
 	</select>
 
+	<select id="read" resultType="kr.smhrd.entity.Approval">
+		select * from APPROVAL where appro_id = #{appro_id}
+	</select>
+
 </mapper>

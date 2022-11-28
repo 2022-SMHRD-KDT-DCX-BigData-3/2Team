@@ -436,60 +436,143 @@
 		<div id="content">
 			<div class="col-md-13">
 				<div class="box">
-					<!-- <form id="rightTop" class="form-inline"> -->
-					<div id="searchBox" class="col-sm-11 col-md-11 text-center">
-						<form id="rightTop" class="form-inline" onsubmit="return false;">
-							<select id="cate" class="control">
-								<option value="1">작성자</option>
-								<option value="2">제목</option>
 
-								<div class="input-group">
-									<input type="text" id="keyword" class="form-control" placeholder="Search">
-									<button type="button" class="btn btn-default" id="search">
-										<i class="glyphicon glyphicon-search"></i>
-									</button>
-								</div>
-							</select>
-						</form>
-					</div>
-
-					<button type="button" id="officerInsert" class="btn btn-success" data-toggle="modal" data-target="#insertModal">결재등록</button>
-					<!-- </form> -->
 					<div class="box-body">
 						<div>
-							<table id="list" class="table table-hover">
-								<colgroup>
-									<col width="40px" />
-									<col width="150px" />
-									<col width="60px" />
-									<col width="60px" />
-									<col width="40px" />
-
-								</colgroup>
-								<thead>
-									<tr class="active">
-										<th>번호</th>
-										<th>제목</th>
-										<th>제출자</th>
-										<th>결재종류</th>
-										<th>진행상황</th>
-									</tr>
-								</thead>
-
-								<tbody>
-									<c:forEach var="vo" items="${list}">
-										<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
-										<tr>
-											<td>${vo.appro_id}</td>
-											<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
-											<td><a href="get">${vo.appro_title}</a></td>
-											<td>${vo.appro_member_id}</td>
-											<td>${vo.appro_sort}</td>
-											<td>${vo.apro_status}</td>
+							<h4>결재대기</h4>
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
 										</tr>
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '0'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<td><a href="${cpath}/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
 									</c:forEach>
-								</tbody>
-							</table>
+								</table>
+								
+							<h4>결재진행중</h4>
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
+										</tr>
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '0'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
+													<td><a href="get">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
+									</c:forEach>
+								</table>
+								
+							<h4>결재완료</h4>
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
+										</tr>
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '0'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
+													<td><a href="get">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
+									</c:forEach>
+								</table>
+								
 						</div>
 					</div>
 					<div id="pageIndexList" class="text-center">

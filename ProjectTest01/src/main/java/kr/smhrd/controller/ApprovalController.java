@@ -25,18 +25,14 @@ public class ApprovalController {
 		model.addAttribute("list", list);
 		return "smart/approvaln";
 	}
-//	@GetMapping("/get")
-//	public String get(@RequestParam("appro_id") Long appro_id, Model model) {
-//		Approval vo = approvalService.get(appro_id);
-//		model.addAttribute("vo", vo);
-//		return "smart/get";
-//	}
+	@GetMapping("/get")
+	public String get(@RequestParam("appro_id") Long appro_id, Model model) {
+		Approval vo = approvalService.select(appro_id);
+		model.addAttribute("vo", vo);
+		return "smart/get";
+	}
 	@RequestMapping("/approvalp")
 	public String approvalp() {
 		return "smart/approvalp";
-	}
-	@RequestMapping("/get")
-	public String get() {
-		return "smart/get";
 	}
 }

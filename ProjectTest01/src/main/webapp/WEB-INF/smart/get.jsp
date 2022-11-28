@@ -411,7 +411,140 @@
   </aside><!-- End Sidebar-->
   
   <main id="main" class="main">
-  	
+  	<div class="sect">
+  		
+  		<div style="text-align: right;" class="mbudiv">
+	  		<button class="mbu">인쇄</button>
+	  		<button class="mbu">목록</button>
+  		</div>
+  		
+  		<div style="text-align: center;">
+  			<h2>
+					일반결재
+  			</h2>
+  		</div>
+  		
+  			<table class="gettable">
+  				<tr class="gra">
+  					<td rowspan='2' class="gratd1">결재</td>
+  					<td class="gratd2">1차 결재자</td>
+  					<td class="gratd2">2차 결재자</td>
+  					<td class="gratd3">3차 결재자</td>
+  				</tr>
+  				<tr class="gar">
+  					<td class="votd1">
+  					1
+  					</td>
+  					<td class="votd1">
+  					2
+  					</td>
+  					<td class="votd2">
+  					3
+  					</td>
+  				</tr>
+  			</table>
+  		
+  		<div>
+  			<table class="gettable2">
+  				<tr class="gettr">
+  					<td class="tdnum">문서번호</td>
+  					<td class="tdnum1">처리번호</td>
+  					<td class="tdnum">기안일자</td>
+  					<td class="tdnum1">날짜</td>
+  				</tr>
+  				<tr class="gettr">
+  					<td class="tdnum">기안자</td>
+  					<td class="tdnum1">이름</td>
+  					<td class="tdnum">기안부서</td>
+  					<td class="tdnum1">부서</td>
+  				</tr>
+  				<tr class="gettr">
+  					<td class="tdnum2">문서제목</td>
+  					<td colspan='3' class="tdfile">제목</td>
+  				</tr>
+  				<tr class="gettr">
+  					<td class="tdnum2">첨부파일</td>
+  					<td colspan='3' class="tdfile">파일</td>
+  				</tr>
+  				<tr class="gettr1">
+  					<td class="tdnum2">제출사유</td>
+  					<td colspan='4' class="tdnum3">사유</td>
+  				</tr>
+  			</table>
+  			
+  			<h5 class="dih">1차 결재자 결재의견</h5>
+  			<div>
+  				<table class="dihta">
+  					<tr class="dihtr">
+  						<td class="dihtd1">결재</td>
+  						<td class="dihtd1">결재자</td>
+  						<td class="dihtd1">부서</td>
+  						<td class="dihtd1">결재일시</td>
+  						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd2">승인반려사유</td>
+  					</tr>
+
+  					<tr class="dihtr1">
+  						<td class="dihtd3">결재</td>
+  						<td class="dihtd3">결재자</td>
+  						<td class="dihtd3">부서</td>
+  						<td class="dihtd3">일시</td>
+  						<td class="dihtd3">제목</td>
+  						<td class="dihtd4">사유</td>
+  					</tr>
+  				</table>
+  			</div>
+
+  			<h5 class="dih">2차 결재자 결재의견</h5>
+  			<div>
+  				<table class="dihta">
+  					<tr class="dihtr">
+  						<td class="dihtd1">결재</td>
+  						<td class="dihtd1">결재자</td>
+  						<td class="dihtd1">부서</td>
+  						<td class="dihtd1">결재일시</td>
+  						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd2">승인반려사유</td>
+  					</tr>
+
+  					<tr class="dihtr1">
+  						<td class="dihtd3">결재</td>
+  						<td class="dihtd3">결재자</td>
+  						<td class="dihtd3">부서</td>
+  						<td class="dihtd3">일시</td>
+  						<td class="dihtd3">제목</td>
+  						<td class="dihtd4">사유</td>
+  					</tr>
+  				</table>
+  			</div>
+ 
+  			<h5 class="dih">3차 결재자 결재의견</h5>
+  			<div>
+  				<table class="dihta">
+  					<tr class="dihtr">
+  						<td class="dihtd1">결재</td>
+  						<td class="dihtd1">결재자</td>
+  						<td class="dihtd1">부서</td>
+  						<td class="dihtd1">결재일시</td>
+  						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd2">승인반려사유</td>
+  					</tr>
+
+  					<tr class="dihtr1">
+  						<td class="dihtd3">결재</td>
+  						<td class="dihtd3">결재자</td>
+  						<td class="dihtd3">부서</td>
+  						<td class="dihtd3">일시</td>
+  						<td class="dihtd3">제목</td>
+  						<td class="dihtd4">사유</td>
+  					</tr>
+  				</table>
+  			</div>
+
+  			
+  		</div>
+  		
+  	</div>
   </main><!-- End #main -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
