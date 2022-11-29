@@ -3,10 +3,9 @@ package kr.smhrd.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
+import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
 
 @Repository
@@ -17,5 +16,5 @@ public interface ApprovalMapper {
 	public List<Approval> getList();
 	
 	// 결재 게시물 가져오기 메서드
-	public Approval read(Long appro_id);
+	public AllApproval read(int appro_id);
 }

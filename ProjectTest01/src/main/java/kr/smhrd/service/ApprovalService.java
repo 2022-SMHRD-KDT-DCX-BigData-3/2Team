@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
-import kr.smhrd.entity.Board;
 import kr.smhrd.mapper.ApprovalMapper;
 
 @Service
@@ -22,8 +22,9 @@ public class ApprovalService {
 	}
 	
 	// 결재 게시물 조회
-	public Approval select(Long appro_id) {
-		Approval get = approvalMapper.read(appro_id);
+	public AllApproval select(int appro_id) {
+		AllApproval get = approvalMapper.read(appro_id);
+		System.out.println(get);
 		return get;
 	}
 }
