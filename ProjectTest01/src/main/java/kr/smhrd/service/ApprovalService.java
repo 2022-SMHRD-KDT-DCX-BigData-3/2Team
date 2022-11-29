@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.smhrd.entity.Approval;
-import kr.smhrd.entity.Board;
+
 import kr.smhrd.mapper.ApprovalMapper;
 
 @Service
