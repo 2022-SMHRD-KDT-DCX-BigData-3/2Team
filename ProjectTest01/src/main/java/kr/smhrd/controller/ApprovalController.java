@@ -19,6 +19,11 @@ public class ApprovalController {
 	@Autowired
 	ApprovalService approvalService;
 	
+	@RequestMapping("/")
+	public String main() {
+		return "smart/main";
+	}
+	
 	@RequestMapping("/approvaln")
 	public String approvaln(Model model) {
 		List<Approval> list = approvalService.getList();
@@ -37,5 +42,33 @@ public class ApprovalController {
 	@RequestMapping("/approvalp")
 	public String approvalp() {
 		return "smart/approvalp";
+	}
+	@RequestMapping("/get")
+	public String get() {
+		return "smart/get";
+	}
+	@RequestMapping("/profile")
+	public String profile() {
+		return "smart/profile";
+	}
+	@RequestMapping("/mail")
+	public String mail() {
+		return "smart/mail";
+	}
+	@RequestMapping("/member")
+	public String member() {
+		return "member/member";
+	}
+	@RequestMapping("/boardmain")
+	public String boardmain() {
+		return "board/boardmain";
+	}
+	@RequestMapping("/calender")
+	public String calender() {
+		return "smart/calender";
+	}
+	@RequestMapping("/login")
+	public String login() {
+		return "smart/login";
 	}
 }
