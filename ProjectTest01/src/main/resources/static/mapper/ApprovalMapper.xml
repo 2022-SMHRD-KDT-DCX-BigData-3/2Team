@@ -7,16 +7,38 @@
 	</select>
 
 	<select id="read" resultType="kr.smhrd.entity.AllApproval" parameterType="int">
-		select DISTINCT a.*, b.apv_auth_id, b.apv_auth_name, b.apv_time, b.apv_num, c.member_name,
-		d1.depart_name as depart_name1, d2.depart_name as depart_name2, d3.depart_name as depart_name3, d4.depart_name as depart_name4
-		from APPROVAL a, APPROVAL_AUTH b, member c, department d1, department d2, department d3, department d4
-		where a.appro_id = 1 and a.appro_id = b.appro_id 
-		and c.member_id = (select h.member_id from member h, approval j, approval_auth k where j.appro_id = 1 and j.appro_id = k.appro_id and j.appro_mem1 = h.member_name)
-		and d1.depart_code = (select depart_code from member where MEMBER_NAME = (select j.appro_mem1 from approval j, approval_auth k where j.appro_id = 1 and j.appro_id = k.appro_id))
-		and d2.depart_code = (select depart_code from member where MEMBER_NAME = (select j.appro_mem2 from approval j, approval_auth k where j.appro_id = 1 and j.appro_id = k.appro_id))
-		and d3.depart_code = (select depart_code from member where MEMBER_NAME = (select j.appro_mem3 from approval j, approval_auth k where j.appro_id = 1 and j.appro_id = k.appro_id))
-		and d4.depart_code = (select d.depart_code from approval a, approval_auth b, member c, department d where a.appro_id = b.appro_id  
-		and b.member_id = c.member_id and c.depart_code = d.depart_code and a.appro_id = 1)
+		select DISTINCT a.*, q.apv_auth_id, q.apv_auth_name, q.apv_time, q.apv_num,
+		md.depart_name as depart_name1, d1.depart_name as depart_name2, d2.depart_name as depart_name3, d3.depart_name as depart_name4
+		from approval a, approval_auth q, member m, department md, department d1, department d2, department d3
+		where a.appro_id = #{appro_id}
+		and a.appro_id = q.appro_id
+		and md.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_member_id = m.member_name and m.depart_code = d.depart_code)
+		and d1.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem1 = m.member_name and m.depart_code = d.depart_code)
+		and d2.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem2 = m.member_name and m.depart_code = d.depart_code)
+		and d3.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem3 = m.member_name and m.depart_code = d.depart_code)
 	</select>
+	
+	<select id="view" resultType="kr.smhrd.entity.ViewApproval">
+		select DISTINCT my.member_name as my_member_name, md.depart_name,
+		m1.member_name as m1_member_name, r1.rank_name as rank_name_r1,
+		m2.member_name as m2_member_name, r2.rank_name as rank_name_r2,
+		m3.member_name as m3_member_name, r3.rank_name as rank_name_r3, appro_id
+		from member my, department md, member m1, member m2, member m3, rank r1, rank r2, rank r3, (select * from approval ORDER BY appro_id DESC)
+		where my.member_name = 'bb'
+		and my.depart_code = md.depart_code
+		and m1.rank_code = 1
+		and m2.rank_code = 2
+		and m3.depart_code = (select depart_code from member where member_name = 'bb')
+		and m3.rank_code = (select rank_code from member where depart_code = (select depart_code from member where member_name = 'bb') and rank_code = 3)
+		and r1.rank_code = 1
+		and r2.rank_code = 2
+		and r3.rank_code = (select rank_code from member where depart_code = (select depart_code from member where member_name = 'bb') and rank_code = 3)
+		and ROWNUM = 1
+	</select>
+	
+	<insert id="inser" parameterType="kr.smhrd.entity.Approval">
+		insert into approval (appro_id, appro_sort, appro_member_id, appro_mem1, appro_mem2, appro_mem3, appro_title, appro_content, appro_filename, appro_indate) 
+		values ((select NVL(MAX(appro_id),0)+1 from approval), #{appro_sort}, #{appro_member_id}, #{appro_mem1}, #{appro_mem2}, #{appro_mem3}, #{appro_title}, #{appro_content}, #{appro_filename}, sysdate)
+	</insert>
 
 </mapper>

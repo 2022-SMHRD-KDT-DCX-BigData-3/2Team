@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
+import kr.smhrd.entity.ViewApproval;
 import kr.smhrd.service.ApprovalService;
 
 @Controller
@@ -39,13 +41,17 @@ public class ApprovalController {
 		System.out.println(vo.getDepart_name1());
 		return "smart/get";
 	}
-	@RequestMapping("/approvalp")
-	public String approvalp() {
+	@GetMapping("/approvalp")
+	public String approvalp(Model model) {
+		ViewApproval view = approvalService.view();
+		model.addAttribute("view", view);
+		System.out.println(view);
 		return "smart/approvalp";
 	}
-	@RequestMapping("/get")
-	public String get() {
-		return "smart/get";
+	@PostMapping("/approvalp")
+	public String inser(Approval app) {
+		approvalService.inser(app);
+		return "redirect:/approvaln";
 	}
 	@RequestMapping("/profile")
 	public String profile() {

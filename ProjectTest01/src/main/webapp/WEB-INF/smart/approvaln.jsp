@@ -504,13 +504,13 @@
 									</thead>
 	
 									<c:forEach var="vo" items="${list}">
-										<c:if test="${vo.apro_status == '0'}">
+										<c:if test="${vo.apro_status == '1'}">
 											<tbody>
 												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
 												<tr>
 													<td>${vo.appro_id}</td>
 													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
-													<td><a href="get">${vo.appro_title}</a></td>
+													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
 													<td>${vo.appro_member_id}</td>
 													<c:if test="${vo.appro_sort == '0'}">
 														<td>일반결재</td>
@@ -549,13 +549,13 @@
 									</thead>
 	
 									<c:forEach var="vo" items="${list}">
-										<c:if test="${vo.apro_status == '0'}">
+										<c:if test="${vo.apro_status == '2'}">
 											<tbody>
 												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
 												<tr>
 													<td>${vo.appro_id}</td>
 													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
-													<td><a href="get">${vo.appro_title}</a></td>
+													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
 													<td>${vo.appro_member_id}</td>
 													<c:if test="${vo.appro_sort == '0'}">
 														<td>일반결재</td>

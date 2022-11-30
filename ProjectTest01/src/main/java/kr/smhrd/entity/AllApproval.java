@@ -35,13 +35,10 @@ public class AllApproval {
 	private String apro_status;
 	
 	// 승인반려여부
-	private int apv_num;
 	private String apv_auth_id;
 	private String apv_auth_name;
 	private Date apv_time;
-	
-	// 사원이름
-	private String member_name;
+	private int apv_num;
 	
 	// 부서이름
 	private String depart_name1;
