@@ -19,7 +19,7 @@
 	</select>
 	
 	<select id="view" resultType="kr.smhrd.entity.ViewApproval">
-		select DISTINCT my.member_name as my_member_name, md.depart_name,
+		select DISTINCT md.depart_name,
 		m1.member_name as m1_member_name, r1.rank_name as rank_name_r1,
 		m2.member_name as m2_member_name, r2.rank_name as rank_name_r2,
 		m3.member_name as m3_member_name, r3.rank_name as rank_name_r3, appro_id

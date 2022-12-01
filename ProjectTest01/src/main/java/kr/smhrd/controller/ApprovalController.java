@@ -21,7 +21,7 @@ public class ApprovalController {
 	@Autowired
 	ApprovalService approvalService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/main")
 	public String main() {
 		return "smart/main";
 	}
@@ -72,9 +72,5 @@ public class ApprovalController {
 	@RequestMapping("/calender")
 	public String calender() {
 		return "smart/calender";
-	}
-	@RequestMapping("/login")
-	public String login() {
-		return "smart/login";
 	}
 }

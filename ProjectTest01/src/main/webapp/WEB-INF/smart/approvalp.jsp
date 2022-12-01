@@ -505,8 +505,8 @@
   				</tr>
   				<tr class="gettr">
   					<td class="tdnum">기안자</td>
-  					<input type="hidden" name="appro_member_id" value="${view.my_member_name}">
-  					<td class="tdnum1">${view.my_member_name}</td>
+  					<input type="hidden" name="appro_member_id" value="${user.MEMBER_NAME}">
+  					<td class="tdnum1">${user.MEMBER_NAME}</td>
   					<td class="tdnum">기안부서</td>
   					<td class="tdnum1">${view.depart_name}</td>
   				</tr>
