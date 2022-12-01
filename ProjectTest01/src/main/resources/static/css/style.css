@@ -236,11 +236,22 @@
 .tdfilen {
 	border-right: 1px solid;
 }
+.pa {
+	border-right: 1px solid;
+}
+.cl {
+	border-right: 1px solid;
+}
 .tdin {
 	margin-left: 10px;
 	border: 0px solid;
 	resize: none;
-	width: 1100px;
+	width: 1000px;
+}
+.tdin0 {
+	margin-left: 10px;
+	border: 0px solid;
+	resize: none;
 }
 .tdin1 {
 	border: 0px solid;

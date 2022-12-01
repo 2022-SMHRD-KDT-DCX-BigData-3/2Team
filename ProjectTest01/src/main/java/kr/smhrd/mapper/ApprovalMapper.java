@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
+import kr.smhrd.entity.Approval_auth;
+import kr.smhrd.entity.UpApproval;
 import kr.smhrd.entity.ViewApproval;
 
 @Repository
@@ -18,10 +20,22 @@ public interface ApprovalMapper {
 	
 	// 결재 게시물 가져오기 메서드
 	public AllApproval read(int appro_id);
+	
+	// 승인반려 등록
+	public void inget(UpApproval app);
 
 	// 결재 등록창 데이터 가져오기 메서드
-	public ViewApproval view();
+	public ViewApproval view(String member_name);
 	
-	// 결재 등록
-	public void inser(Approval app);
+	// 일반결재 등록
+	public void appro(Approval_auth app);
+
+	// 결재 등록시 승인반려여부
+	public void approv(Approval_auth app);
+
+	// 지출결재 등록
+	public void pay(Approval_auth app);
+	
+	// 휴가결재 등록
+	public void vacation(Approval_auth app);
 }

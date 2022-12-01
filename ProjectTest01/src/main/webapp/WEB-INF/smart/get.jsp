@@ -29,6 +29,15 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("input[type='button']").click(function(e){
+			var data=$(this).val();
+			$()
+		});
+		
+	});
+</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -203,14 +212,60 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">이름</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">${user.MEMBER_NAME}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>이름</h6>
-              <span>부서</span>
-              <span>직급</span>
+              <h6>${user.MEMBER_NAME}</h6>
+              <c:if test="${user.DEPART_CODE eq '1'}">
+              	<span>비서실</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '2'}">
+              	<span>인사부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '3'}">
+              	<span>총무부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '4'}">
+              	<span>생산부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '5'}">
+              	<span>홍보부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '6'}">
+              	<span>관리부</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '1'}">
+              	<span>사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '2'}">
+              	<span>부사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '3'}">
+              	<span>전무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '4'}">
+              	<span>상무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '5'}">
+              	<span>이사</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '6'}">
+              	<span>부장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '7'}">
+              	<span>차장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '8'}">
+              	<span>과장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '9'}">
+              	<span>대리</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '10'}">
+              	<span>사원</span>
+              </c:if>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -412,8 +467,62 @@
   
   <main id="main" class="main">
   	<div class="sect">
-  		
   		<div style="text-align: right;" class="mbudiv">
+  			<c:if test="${vo.appro_auth2 == '1'}">
+	  			<c:if test="${vo.appro_auth3 == '0'}">
+		  			<c:if test="${user.RANK_CODE == 1}">
+				  		<form action="${capth}/get" method="post">
+				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="1"/>
+				  			<input type="hidden" name="appro_auth3" value="1"/>
+			  				<input type="submit" class="mbu" value="승인"/>
+		  				</form>
+		  				<form action="${capth}/get" method="post">
+		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="1"/>
+			  				<input type="submit" name="appro_auth3" class="mbu" value="2"/>
+		  				</form>
+		  			</c:if>
+	  			</c:if>
+  			</c:if>
+  			<c:if test="${vo.appro_auth1 == '1'}">
+	  			<c:if test="${vo.appro_auth2 == '0'}">
+		  			<c:if test="${user.RANK_CODE == 2}">
+				  		<form action="${capth}/get" method="post">
+				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+			  				<input type="submit" name="appro_auth2" class="mbu" value="1"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+		  				</form>
+		  				<form action="${capth}/get" method="post">
+		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+			  				<input type="submit" name="appro_auth2" class="mbu" value="2"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+		  				</form>
+		  			</c:if>
+	  			</c:if>
+  			</c:if>
+  			<c:if test="${vo.appro_auth1 == '0'}">
+  				<c:if test="${vo.depart_code eq user.DEPART_CODE}">
+		  			<c:if test="${user.RANK_CODE == 3}">
+				  		<form action="${capth}/get" method="post">
+				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+			  				<input type="submit" name="appro_auth1" class="mbu" value="1"/>
+			  				<input type="hidden" name="appro_auth2" value="0"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+		  				</form>
+		  				<form action="${capth}/get" method="post">
+		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+			  				<input type="submit" name="appro_auth1" class="mbu" value="2"/>
+			  				<input type="hidden" name="appro_auth2" value="0"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+		  				</form>
+		  			</c:if>
+	  			</c:if>
+  			</c:if>
 	  		<input type="button" value="인쇄하기" id="print" class="mbu" onclick="window.print()"/>
 	  		<button class="mbu">목록</button>
   		</div>
@@ -442,17 +551,44 @@
   				<tr class="gar">
   					<td class="votd1">
   					${vo.appro_mem1}<br>
-  					${vo.apv_auth_id}<br>
+  					<c:if test="${vo.appro_auth1 == '0'}">
+  						진행중
+  					</c:if>
+  					<c:if test="${vo.appro_auth1 == '1'}">
+  						승인
+  					</c:if>
+  					<c:if test="${vo.appro_auth1 == '2'}">
+  						반려
+  					</c:if>
+  					<br>
   					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date1}"/>
   					</td>
   					<td class="votd1">
   					${vo.appro_mem2}<br>
-  					${vo.apv_auth_id}<br>
+  					<c:if test="${vo.appro_auth2 == '0'}">
+  						진행중
+  					</c:if>
+  					<c:if test="${vo.appro_auth2 == '1'}">
+  						승인
+  					</c:if>
+  					<c:if test="${vo.appro_auth2 == '2'}">
+  						반려
+  					</c:if>
+  					<br>
   					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date2}"/>
   					</td>
   					<td class="votd2">
   					${vo.appro_mem3}<br>
-  					${vo.apv_auth_id}<br>
+  					<c:if test="${vo.appro_auth3 == '0'}">
+  						진행중
+  					</c:if>
+  					<c:if test="${vo.appro_auth3 == '1'}">
+  						승인
+  					</c:if>
+  					<c:if test="${vo.appro_auth3 == '2'}">
+  						반려
+  					</c:if>
+  					<br>
   					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date3}"/>
   					</td>
   				</tr>

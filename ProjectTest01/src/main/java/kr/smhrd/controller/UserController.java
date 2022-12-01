@@ -38,4 +38,9 @@ public class UserController {
 		session.invalidate(); //세션 무효화(로그아웃)
 		return "redirect:/login";
 	}
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "smart/main";
+	}
 }
