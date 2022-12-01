@@ -68,10 +68,6 @@ public class ApprovalController {
 	public String member() {
 		return "member/member";
 	}
-	@RequestMapping("/boardmain")
-	public String boardmain() {
-		return "board/boardmain";
-	}
 	@RequestMapping("/calender")
 	public String calender() {
 		return "smart/calender";

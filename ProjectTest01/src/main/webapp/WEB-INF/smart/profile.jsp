@@ -376,7 +376,6 @@
 			</svg>&nbsp;&nbsp;
 			<span>전자결제</span>
         </a>
-<<<<<<< HEAD
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
@@ -390,12 +389,8 @@
           </li>
         </ul>
       </li><!-- End Components Nav -->
-=======
       </li><!-- End Forms Nav -->
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
-
       <li class="nav-heading">정보</li>
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">

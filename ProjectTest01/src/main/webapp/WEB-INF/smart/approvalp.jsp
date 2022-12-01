@@ -582,7 +582,7 @@
             </a>
           </li>
           <li>
-           	<a href="approvalp">
+            <a href="approvalp">
               <i class="bi bi-circle"></i><span>결재신청</span>
             </a>
           </li>
