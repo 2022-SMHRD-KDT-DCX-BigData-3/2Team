@@ -29,6 +29,26 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("input[type='radio']").click(function(e){
+			var data=$(this).val();
+			if(data=="0"){
+				$("h2").html("일반결재");
+			}
+			else if(data=="1"){
+				$("h2").html("지출결재");
+			}
+			else{
+				$("h2").html("휴가결재");
+			}
+		});
+		
+	});
+</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -341,27 +361,32 @@
 	  
 	  
       <li class="nav-item">
-        <a class="nav-link collapsed" href="boardmain">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
 			  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 			</svg>&nbsp;&nbsp;
-			<span>전자결재</span>
+			<span>전자결재</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Alerts</span>
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>결재조회</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Accordion</span>
+           	<a href="approvalp">
+              <i class="bi bi-circle"></i><span>결재신청</span>
+            </a>
+          </li>
+          <li>
+           	<a href="approvalc">
+              <i class="bi bi-circle"></i><span>승인반려</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Forms Nav -->
+      </li><!-- End Components Nav -->
 
       <li class="nav-heading">정보</li>
 
@@ -376,13 +401,25 @@
       </li><!-- End Profile Page Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="member">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
 			  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
 			</svg>&nbsp;&nbsp;
-          <span>직원관리</span>
+			<span>직원관리</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Member Page Nav -->
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원 정보수정</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End member Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-logout">
@@ -402,47 +439,114 @@
 
 	<div class="pagetitle">
 		<form id="frm" class="form-horizontal" method="post">
-			<table style="width: 100%">
-			   <tr>
-			     <td colspan="2"><h1>게시판</h1></td>
-			     <td style="text-align: right;"><button class="write">글쓰기</button></td>
-			   </tr>
-			    <tr>
-			     <td>
+			     <h1>결재신청</h1></td>
 			     <nav>
 		        <ol class="breadcrumb">
 		          <li class="breadcrumb-item"><a href="main">Home</a></li>
 		          <li class="breadcrumb-item">Users</li>
-		          <li class="breadcrumb-item active">Board</li>
+		          <li class="breadcrumb-item active">Approval</li>
 		        </ol>
 		      </nav>
-			     </td>
-			   </tr>
-			</table>
 		</form>
 	</div><!-- End Page Title -->
 		
     <section class="section profile">
-    	<div class="meback" style="text-align: center;">
-    	
-      	</div>
+    	<div class="sect">
+  		<form action="${capth}/approvalp" method="post">
+  		<div style="text-align: right;" class="mbudiv">
+	  		<button class="mbu" type="submit">신청</button>
+	  		<button class="mbu" type="reset">취소</button>
+	  		<button class="mbu" type="button" onclick="location.href='${capth}/approvaln'">목록</button>
+  		</div>
+  		
+  		<div style="text-align: center;">
+	  			<h2>
+	  			</h2>
+  		</div>
+  		
+  			<table class="gettable">
+  				<tr class="gra">
+  					<td rowspan='2' class="gratd1">결재</td>
+  					<td class="gratd2">1차 결재자</td>
+  					<td class="gratd2">2차 결재자</td>
+  					<td class="gratd3">3차 결재자</td>
+  				</tr>
+  				<tr class="gar">
+  					<td class="votd1">
+  					<input type="hidden" name="appro_mem1" value="${view.m3_member_name}">
+  					${view.m3_member_name}<br>
+  					${view.rank_name_r3}<br>
+  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
+  					</td>
+  					<td class="votd1">
+  					<input type="hidden" >
+  					<input type="hidden" name="appro_mem2" value="${view.m2_member_name}">
+  					${view.m2_member_name}<br>
+  					${view.rank_name_r2}<br>
+  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
+  					</td>
+  					<td class="votd2">
+  					<input type="hidden" >
+  					<input type="hidden" name="appro_mem3" value="${view.m1_member_name}">
+  					${view.m1_member_name}<br>
+  					${view.rank_name_r1}<br>
+  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
+  					</td>
+  				</tr>
+  			</table>
+  		
+  		<div class="getdiv">
+  			<table class="gettable2">
+  				<tr class="gettr">
+  					<td class="tdnum">문서번호</td>
+  					<td class="tdnum1">${view.appro_id+1}</td>
+  					<td class="tdnum">기안일자</td>
+  					<td class="tdnum1"><input type="text" class="tdin1" placeholder="YYYY-MM-DD"></td>
+  				</tr>
+  				<tr class="gettr">
+  					<td class="tdnum">기안자</td>
+  					<input type="hidden" name="appro_member_id" value="${user.MEMBER_NAME}">
+  					<td class="tdnum1">${user.MEMBER_NAME}</td>
+  					<td class="tdnum">기안부서</td>
+  					<td class="tdnum1">${view.depart_name}</td>
+  				</tr>
+  				<tr class="gettr">
+  					<td class="tdnum2">문서제목</td>
+  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="appro_title"/></td>
+  				</tr>
+  				<tr class="gettr">
+  					<td class="tdnum2">첨부파일</td>
+  					<td colspan='3' class="tdfile"><input type="text" name="appro_filename"/></td>
+  				</tr>
+  				<tr class="gettr1">
+  					<td class="tdnum2">제출사유</td>
+  					<td colspan='3' class="tdfilen"><textarea rows="6" cols="120" class="tdin" name="appro_content"></textarea></td>
+  				</tr>
+  			</table>
+  			<div class="radi">
+  				<input type="radio"  name="appro_sort" class="radi1" value="0"/>일반결재
+  				<input type="radio"  name="appro_sort" class="radi1" value="1"/>지출결재
+  				<input type="radio"  name="appro_sort" class="radi1" value="2"/>휴가결재
+  			</div>
+  		</div>
+  		</form>
+  	</div>
 	</section>
-
   </main><!-- End #main -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.min.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+<!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.min.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 </body>
 </html>

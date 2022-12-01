@@ -29,6 +29,9 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -352,12 +355,12 @@
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
-              <i class="bi bi-circle"></i><span>일반결재</span>
+              <i class="bi bi-circle"></i><span>결재조회</span>
             </a>
           </li>
           <li>
             <a href="approvalp">
-              <i class="bi bi-circle"></i><span>지출결재</span>
+              <i class="bi bi-circle"></i><span>결재신청</span>
             </a>
           </li>
         </ul>
@@ -414,47 +417,198 @@
 
 	<div class="pagetitle">
 		<form id="frm" class="form-horizontal" method="post">
-			<table style="width: 100%">
-			   <tr>
-			     <td colspan="2"><h1>게시판</h1></td>
-			     <td style="text-align: right;"><button class="write">글쓰기</button></td>
-			   </tr>
-			    <tr>
-			     <td>
+			     <h1>일반결재</h1></td>
 			     <nav>
 		        <ol class="breadcrumb">
 		          <li class="breadcrumb-item"><a href="main">Home</a></li>
 		          <li class="breadcrumb-item">Users</li>
-		          <li class="breadcrumb-item active">Board</li>
+		          <li class="breadcrumb-item active">Approval</li>
 		        </ol>
 		      </nav>
-			     </td>
-			   </tr>
-			</table>
 		</form>
 	</div><!-- End Page Title -->
 		
     <section class="section profile">
-    	<div class="meback" style="text-align: center;">
-    	
-      	</div>
+    	<div id="wrap">
+
+		<!--결재리스트 목록 시작-->
+
+		<div id="content">
+			<div class="col-md-13">
+				<div class="box">
+
+					<div class="box-body">
+						<div>
+							<h4>결재대기</h4>
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
+										</tr>
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '0'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<td><a href="${cpath}/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
+									</c:forEach>
+								</table>
+								
+							<h4>결재진행중</h4>
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
+										</tr>
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '1'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
+													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
+									</c:forEach>
+								</table>
+								
+							<h4>결재완료</h4>
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
+										</tr>
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '2'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
+													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
+									</c:forEach>
+								</table>
+								
+						</div>
+					</div>
+					<div id="pageIndexList" class="text-center">
+					</div>
+				</div>
+				<!-- /.box-footer-->
+			</div>
+		</div>
+		<!--결재리스트 목록 종료-->
+
+	</div>
 	</section>
 
   </main><!-- End #main -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<script>
+	var result = '${msg}';
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.min.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+	if (result == 'SUCCESS') {
+		alert("처리가 완료되었습니다.");
+	}
+</script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.min.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 </body>
 </html>
