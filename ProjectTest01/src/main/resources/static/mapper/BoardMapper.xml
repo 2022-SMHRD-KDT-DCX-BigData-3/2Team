@@ -6,7 +6,7 @@
 		select * from tblBoard order by idx desc
 	</select>
 
-	<insert id="insert">
+	<insert id="insert" parameterType="kr.smhrd.entity.Board">
 		insert into tblBoard(memId, title, content, writer) values(#{memId},#{title},#{content},#{writer})
 	</insert>
 	
