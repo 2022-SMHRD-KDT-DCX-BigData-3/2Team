@@ -16,3 +16,24 @@
 	  <button type="submit" class="btn btn-primary">로그인</button>
 	</form>
 	</div>
+	
+		<div class="login-box">
+  <h2>Login</h2>
+  <form action="/login" method="post">
+    <div class="user-box">
+      <input type="text" name="MEMBER_id" placeholder="Enter id" required="required">
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="MEMBER_PW" placeholder="Enter password" required="required">
+      <label>Password</label>
+    </div>
+    <a href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
+</div>

@@ -32,8 +32,8 @@ public class UserController {
 		}
 		System.out.println("로그인 실패");
 		return "redirect:/login";
-	}
-	@PostMapping("/logout")
+	} 
+	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 무효화(로그아웃)
 		return "redirect:/login";
