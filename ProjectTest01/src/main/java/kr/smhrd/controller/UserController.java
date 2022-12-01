@@ -17,7 +17,7 @@ public class UserController {
 	@Autowired
 	MemberService memberService;
 	
-	@GetMapping("/login")
+	@GetMapping("/")
 	public String loginForm() {	
 		return "/member/loginForm";
 	}	
@@ -28,7 +28,7 @@ public class UserController {
 		if(user !=null) { //성공 여부결과를 객체바인딩(HttpSession) 
 			session.setAttribute("user", user); 
 			System.out.println("로그인 성공");
-			return "redirect:/";
+			return "redirect:/main";
 		}
 		System.out.println("로그인 실패");
 		return "redirect:/login";

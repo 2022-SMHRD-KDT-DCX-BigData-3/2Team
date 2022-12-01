@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
+import kr.smhrd.entity.ViewApproval;
 
 @Repository
 @Mapper
@@ -17,4 +18,10 @@ public interface ApprovalMapper {
 	
 	// 결재 게시물 가져오기 메서드
 	public AllApproval read(int appro_id);
+
+	// 결재 등록창 데이터 가져오기 메서드
+	public ViewApproval view();
+	
+	// 결재 등록
+	public void inser(Approval app);
 }

@@ -32,6 +32,23 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("input[type='radio']").click(function(e){
+			var data=$(this).val();
+			if(data=="0"){
+				$("h2").html("일반결재");
+			}
+			else if(data=="1"){
+				$("h2").html("지출결재");
+			}
+			else{
+				$("h2").html("휴가결재");
+			}
+		});
+		
+	});
+</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -359,8 +376,13 @@
             </a>
           </li>
           <li>
-            <a href="approvalp">
+           	<a href="approvalp">
               <i class="bi bi-circle"></i><span>결재신청</span>
+            </a>
+          </li>
+          <li>
+           	<a href="approvalc">
+              <i class="bi bi-circle"></i><span>승인반려</span>
             </a>
           </li>
         </ul>
@@ -417,7 +439,7 @@
 
 	<div class="pagetitle">
 		<form id="frm" class="form-horizontal" method="post">
-			     <h1>지출결재</h1></td>
+			     <h1>결재신청</h1></td>
 			     <nav>
 		        <ol class="breadcrumb">
 		          <li class="breadcrumb-item"><a href="main">Home</a></li>
@@ -430,23 +452,16 @@
 		
     <section class="section profile">
     	<div class="sect">
-  		
+  		<form action="${capth}/approvalp" method="post">
   		<div style="text-align: right;" class="mbudiv">
-	  		<button class="mbu">목록</button>
+	  		<button class="mbu" type="submit">신청</button>
+	  		<button class="mbu" type="reset">취소</button>
+	  		<button class="mbu" type="button" onclick="location.href='${capth}/approvaln'">목록</button>
   		</div>
   		
   		<div style="text-align: center;">
-  			<h2>
-				<c:if test="${vo.appro_sort == '0'}">
-					일반결재
-				</c:if>
-				<c:if test="${vo.appro_sort == '1'}">
-					지출결재
-				</c:if>
-				<c:if test="${vo.appro_sort == '2'}">
-					휴가결재
-				</c:if>
-  			</h2>
+	  			<h2>
+	  			</h2>
   		</div>
   		
   			<table class="gettable">
@@ -458,19 +473,24 @@
   				</tr>
   				<tr class="gar">
   					<td class="votd1">
-  					${vo.appro_mem1}<br>
-  					${vo.apv_auth_id}<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date1}"/>
+  					<input type="hidden" name="appro_mem1" value="${view.m3_member_name}">
+  					${view.m3_member_name}<br>
+  					${view.rank_name_r3}<br>
+  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
   					</td>
   					<td class="votd1">
-  					${vo.appro_mem2}<br>
-  					${vo.apv_auth_id}<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date2}"/>
+  					<input type="hidden" >
+  					<input type="hidden" name="appro_mem2" value="${view.m2_member_name}">
+  					${view.m2_member_name}<br>
+  					${view.rank_name_r2}<br>
+  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
   					</td>
   					<td class="votd2">
-  					${vo.appro_mem3}<br>
-  					${vo.apv_auth_id}<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date3}"/>
+  					<input type="hidden" >
+  					<input type="hidden" name="appro_mem3" value="${view.m1_member_name}">
+  					${view.m1_member_name}<br>
+  					${view.rank_name_r1}<br>
+  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
   					</td>
   				</tr>
   			</table>
@@ -479,31 +499,37 @@
   			<table class="gettable2">
   				<tr class="gettr">
   					<td class="tdnum">문서번호</td>
-  					<td class="tdnum1">${vo.apv_num}</td>
+  					<td class="tdnum1">${view.appro_id+1}</td>
   					<td class="tdnum">기안일자</td>
-  					<td class="tdnum1"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_indate}"/></td>
+  					<td class="tdnum1"><input type="text" class="tdin1" placeholder="YYYY-MM-DD"></td>
   				</tr>
   				<tr class="gettr">
   					<td class="tdnum">기안자</td>
-  					<td class="tdnum1">${vo.appro_member_id}</td>
+  					<input type="hidden" name="appro_member_id" value="${user.MEMBER_NAME}">
+  					<td class="tdnum1">${user.MEMBER_NAME}</td>
   					<td class="tdnum">기안부서</td>
-  					<td class="tdnum1">${vo.depart_name1}</td>
+  					<td class="tdnum1">${view.depart_name}</td>
   				</tr>
   				<tr class="gettr">
   					<td class="tdnum2">문서제목</td>
-  					<td colspan='3' class="tdfilen"><textarea rows="4" cols="155" class="tdin"></textarea></td>
+  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="appro_title"/></td>
   				</tr>
   				<tr class="gettr">
   					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile">${vo.appro_filename}</td>
+  					<td colspan='3' class="tdfile"><input type="text" name="appro_filename"/></td>
   				</tr>
   				<tr class="gettr1">
   					<td class="tdnum2">제출사유</td>
-  					<td colspan='3' class="tdfilen"><textarea rows="4" cols="155" class="tdin" name=""></textarea></td>
+  					<td colspan='3' class="tdfilen"><textarea rows="6" cols="120" class="tdin" name="appro_content"></textarea></td>
   				</tr>
   			</table>
+  			<div class="radi">
+  				<input type="radio"  name="appro_sort" class="radi1" value="0"/>일반결재
+  				<input type="radio"  name="appro_sort" class="radi1" value="1"/>지출결재
+  				<input type="radio"  name="appro_sort" class="radi1" value="2"/>휴가결재
+  			</div>
   		</div>
-  		
+  		</form>
   	</div>
 	</section>
   </main><!-- End #main -->

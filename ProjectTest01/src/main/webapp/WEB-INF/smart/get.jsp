@@ -414,7 +414,7 @@
   	<div class="sect">
   		
   		<div style="text-align: right;" class="mbudiv">
-	  		<button class="mbu">인쇄</button>
+	  		<input type="button" value="인쇄하기" id="print" class="mbu" onclick="window.print()"/>
 	  		<button class="mbu">목록</button>
   		</div>
   		

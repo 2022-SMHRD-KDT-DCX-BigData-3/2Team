@@ -237,6 +237,17 @@
 	border-right: 1px solid;
 }
 .tdin {
+	margin-left: 10px;
 	border: 0px solid;
 	resize: none;
+	width: 1100px;
+}
+.tdin1 {
+	border: 0px solid;
+	width: 450px;
+}
+.radi {
+	margin-top: 20px;
+	font-size: 17px;
+	text-align: center;
 }

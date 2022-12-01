@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
-
+import kr.smhrd.entity.ViewApproval;
 import kr.smhrd.mapper.ApprovalMapper;
 
 @Service
@@ -27,5 +27,16 @@ public class ApprovalService {
 		AllApproval get = approvalMapper.read(appro_id);
 		System.out.println(get);
 		return get;
+	}
+
+	// 결재 게시물 등록창
+	public ViewApproval view() {
+		ViewApproval view = approvalMapper.view();
+		return view;
+	}
+	
+	// 결재 등록
+	public void inser(Approval app) {
+		approvalMapper.inser(app);
 	}
 }
