@@ -47,6 +47,13 @@ private int MEMBER_STATUS;
 private int MEMBER_VACATION;
 // 최종 수정일 최종 수정일
 private Date MEMBER_MODIDATE;
-
+// 직원 휴가 개수
+private int MEMBER_VACATION_NUM;
+// 직원 휴가 시작일
+private String MEMBER_STRATDATE;
+// 직원 휴가 종료일
+private String MEMBER_ENDDATE;
+// 직원 휴가일
+private int MEMBER_NUM;
 }
 

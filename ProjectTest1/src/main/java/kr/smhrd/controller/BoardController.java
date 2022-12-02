@@ -100,4 +100,8 @@ public class BoardController {
 	public String boardmain() {
 		return "board/boardmain";
 	}
+	@RequestMapping("/register2")
+	public String register2() {
+		return "board/register2";
+	}
 }

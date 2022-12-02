@@ -20,7 +20,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">BOARD</div>
 			<div class="panel-body">
-				<form class="form-horizontal" action="${cpath}/register" method="post">
+				<form class="form-horizontal" action="${cpath}/board/register" method="post">
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="title">제목:</label>
 						<div class="col-sm-10">

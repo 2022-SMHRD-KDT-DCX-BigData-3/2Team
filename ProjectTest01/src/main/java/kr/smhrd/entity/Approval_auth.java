@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-public class AllApproval {
+public class Approval_auth {
 	
 	// 전자결재
 	private int appro_id;
@@ -34,16 +34,31 @@ public class AllApproval {
 	private String appro_cmt;
 	private String apro_status;
 	
-	// 승인반려여부
+	// 승인반려
+	private int apv_num;
 	private String apv_auth_id;
 	private String apv_auth_name;
 	private Date apv_time;
-	private int apv_num;
+
+	// 회원
+	private String member_id;
+	// 사원 연차여부 사원 연차여부
+	private int member_vacation;
+	// 직원 휴가 개수
+	private int member_vacation_num;
+	// 직원 휴가 시작일
+	private String member_stratdate;
+	// 직원 휴가 종료일
+	private String member_enddate;
+	// 직원 휴가 일
+	private int member_num;
 	
-	// 부서이름
-	private String depart_name1;
-	private String depart_name2;
-	private String depart_name3;
-	private String depart_name4;
-	private String depart_code;
+	// 지출 번호
+	private int pay_id;
+	// 지출일
+	private String pay_date;
+	// 지출명
+	private String pay_title;
+	// 지출금액
+	private String pay_cash;
 }

@@ -2,6 +2,8 @@ package kr.smhrd.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
+import kr.smhrd.entity.Approval_auth;
+import kr.smhrd.entity.Member;
+import kr.smhrd.entity.UpApproval;
 import kr.smhrd.entity.ViewApproval;
 import kr.smhrd.service.ApprovalService;
 
@@ -21,11 +26,6 @@ public class ApprovalController {
 	@Autowired
 	ApprovalService approvalService;
 	
-	@RequestMapping("/main")
-	public String main() {
-		return "smart/main";
-	}
-	
 	@RequestMapping("/approvaln")
 	public String approvaln(Model model) {
 		List<Approval> list = approvalService.getList();
@@ -34,22 +34,25 @@ public class ApprovalController {
 	}
 	@GetMapping("/get")
 	public String get(@RequestParam("appro_id") int appro_id, Model model) {
-		System.out.println(appro_id);
 		AllApproval vo = approvalService.select(appro_id);
 		model.addAttribute("vo", vo);
-		System.out.println(vo);
-		System.out.println(vo.getDepart_name1());
 		return "smart/get";
 	}
+	@PostMapping("/get")
+	public String inget(UpApproval app) {
+		approvalService.inget(app);
+		return "redirect:/get?appro_id="+app.getAppro_id();
+	}
 	@GetMapping("/approvalp")
-	public String approvalp(Model model) {
-		ViewApproval view = approvalService.view();
+	public String approvalp(HttpSession session ,Model model) {
+		Member member = (Member) session.getAttribute("user");
+		String member_name = member.getMEMBER_NAME();
+		ViewApproval view = approvalService.view(member_name);
 		model.addAttribute("view", view);
-		System.out.println(view);
 		return "smart/approvalp";
 	}
 	@PostMapping("/approvalp")
-	public String inser(Approval app) {
+	public String inser(Approval_auth app) {
 		approvalService.inser(app);
 		return "redirect:/approvaln";
 	}
@@ -64,10 +67,6 @@ public class ApprovalController {
 	@RequestMapping("/member")
 	public String member() {
 		return "member/member";
-	}
-	@RequestMapping("/boardmain")
-	public String boardmain() {
-		return "board/boardmain";
 	}
 	@RequestMapping("/calender")
 	public String calender() {

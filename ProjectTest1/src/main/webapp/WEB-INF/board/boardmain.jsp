@@ -84,7 +84,7 @@
   		$.each(result,function(index,data){ // 람다식은 function()대신 ()=>{}
 	  		tbl+="<tr>";
 	  		tbl+="<td>"+data.idx+"</td>";
-	  		tbl+="<td id='t"+data.idx+"'><a href='javascript:goView("+data.idx+")'>"+data.title+"</a></td>";
+	  		tbl+="<td id='t"+data.idx+"'><a href='${cpath}/get?idx="+data.idx+"'>"+data.title+"</a></td>";
 	  		tbl+="<td>"+data.writer+"</td>";
 	  		tbl+="<td>"+data.indate.split(' ')[0]+"</td>";
 	  		tbl+="<td id='cnt"+data.idx+"'>"+data.count+"</td>";
@@ -502,7 +502,8 @@
 			<table style="width: 100%">
 			   <tr>
 			     <td colspan="2"><h1>게시판</h1></td>
-			     <td style="text-align: right;"><button class="write">글쓰기</button></td>
+			     <td style="text-align: right;"><button type="button" class="btn btn-sm btn-primary"
+						onclick="location.href='${cpath}/register2'">글쓰기</button></td>
 			   </tr>
 			    <tr>
 			     <td>

@@ -35,8 +35,8 @@ public class UserController {
 		}
 		System.out.println("로그인 실패");
 		return "redirect:/login";
-	} 
-	@GetMapping("/logout")
+	}
+	@PostMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 무효화(로그아웃)
 		return "redirect:/login";
@@ -48,4 +48,9 @@ public class UserController {
 		return "redirect:/smart/profile";
 	}
 	
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "smart/main";
+	}
 }
