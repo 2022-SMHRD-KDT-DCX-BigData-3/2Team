@@ -209,9 +209,55 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>이름</h6>
-              <span>부서</span>
-              <span>직급</span>
+              <h6>${user.MEMBER_NAME}</h6>
+              <c:if test="${user.DEPART_CODE eq '1'}">
+              	<span>비서실</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '2'}">
+              	<span>인사부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '3'}">
+              	<span>총무부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '4'}">
+              	<span>생산부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '5'}">
+              	<span>홍보부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '6'}">
+              	<span>관리부</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '1'}">
+              	<span>사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '2'}">
+              	<span>부사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '3'}">
+              	<span>전무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '4'}">
+              	<span>상무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '5'}">
+              	<span>이사</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '6'}">
+              	<span>부장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '7'}">
+              	<span>차장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '8'}">
+              	<span>과장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '9'}">
+              	<span>대리</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '10'}">
+              	<span>사원</span>
+              </c:if>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -330,7 +376,7 @@
 			</svg>&nbsp;&nbsp;
 			<span>전자결제</span>
         </a>
-<<<<<<< HEAD
+
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
@@ -344,12 +390,13 @@
           </li>
         </ul>
       </li><!-- End Components Nav -->
-=======
+
+
       </li><!-- End Forms Nav -->
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
+
 
       <li class="nav-heading">정보</li>
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
@@ -479,7 +526,8 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
+                  <form action="/update" method="post">
+                  <input type="hidden" name="MEMBER_id" value="${user}"/>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 사진</label>
                       <div class="col-md-8 col-lg-9">
@@ -494,35 +542,35 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">이름</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="이름">
+                        <input name="fullName" type="text" class="form-control" name="MEMBER_NAME" value="${user.MEMBER_NAME}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">부서</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="부서">
+                        <input name="job" type="text" class="form-control" name="DEPART_CODE" value="${user.DEPART_CODE}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">직급</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="직급">
+                        <input name="company" type="text" class="form-control" name="RANK_CODE" value="${user.RANK_CODE}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">주소</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="주소">
+                        <input name="address" type="text" class="form-control" name="MEMBER_ADDRESS" value="${user.MEMBER_ADDRESS}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">핸드폰</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="핸드폰">
+                        <input name="phone" type="text" class="form-control" name="MEMBER_PHONE" value="${user.MEMBER_PHONE}">
                       </div>
                     </div>
 

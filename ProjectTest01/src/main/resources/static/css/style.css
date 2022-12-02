@@ -236,11 +236,22 @@
 .tdfilen {
 	border-right: 1px solid;
 }
+.pa {
+	border-right: 1px solid;
+}
+.cl {
+	border-right: 1px solid;
+}
 .tdin {
 	margin-left: 10px;
 	border: 0px solid;
 	resize: none;
-	width: 1100px;
+	width: 1000px;
+}
+.tdin0 {
+	margin-left: 10px;
+	border: 0px solid;
+	resize: none;
 }
 .tdin1 {
 	border: 0px solid;
@@ -250,4 +261,17 @@
 	margin-top: 20px;
 	font-size: 17px;
 	text-align: center;
+}
+.gettr2 {
+	border-bottom: 1px solid;
+	border-right: 1px solid;
+	border-left: 1px solid;
+}
+.payz {
+	text-align: center;
+	background-color: #D9D9D9;
+	height: 20px;
+}
+.payc {
+	height: 600px;
 }

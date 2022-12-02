@@ -6,10 +6,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 	<title>Chating</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 	<style>
+	
 		*{
 			margin:0;
 			padding:0;
+			font-family: 'Hi Melody', cursive;
 		}
 		.container{
 			width: 500px;
@@ -19,8 +24,8 @@
 		.container h1{
 			text-align: left;
 			padding: 5px 5px 5px 15px;
-			color: #FFBB00;
-			border-left: 3px solid #FFBB00;
+			color: #87cefa;
+			border-left: 3px solid #87cefa;
 			margin-bottom: 20px;
 		}
 		.chating{
@@ -38,7 +43,7 @@
 			text-align: left;
 		}
 		input{
-			width: 330px;
+			width: 400px;
 			height: 25px;
 		}
 		#yourMsg{
@@ -49,17 +54,16 @@
 
 <script type="text/javascript">
 	var ws;
-
+	//wsOpen();
 	function wsOpen(){
-		ws = new WebSocket("ws://" + location.host + "/chating");
+		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
+		ws = new WebSocket("ws://" + location.host + "/chating/"+$("#roomNumber").val());
 		wsEvt();
 	}
-		
 	function wsEvt() {
 		ws.onopen = function(data){
 			//소켓이 열리면 동작
 		}
-		
 		ws.onmessage = function(data) {
 			//메시지를 받으면 동작
 			var msg = data.data;
@@ -90,7 +94,7 @@
 		});
 	}
 
-	function chatName(){
+	 function chatName(){
 		var userName = $("#userName").val();
 		if(userName == null || userName.trim() == ""){
 			alert("사용자 이름을 입력해주세요.");
@@ -100,35 +104,37 @@
 			$("#yourName").hide();
 			$("#yourMsg").show();
 		}
-	}
+	} 
 
-	function send() {
+	function send() {		
 		var option ={
 			type: "message",
+			roomNumber: $("#roomNumber").val(),
 			sessionId : $("#sessionId").val(),
 			userName : $("#userName").val(),
 			msg : $("#chatting").val()
 		}
-		ws.send(JSON.stringify(option))
+		ws.send(JSON.stringify(option));
 		$('#chatting').val("");
 	}
 </script>
 <body>
 	<div id="container" class="container">
-		<h1>채팅</h1>
+		<h1>${roomName}의 채팅방</h1>
 		<input type="hidden" id="sessionId" value="">
+		<input type="hidden" id="roomNumber" value="${roomNumber}">
 		
 		<div id="chating" class="chating">
 		</div>
 		
 		<div id="yourName">
-			<table class="inputTable">
+			 <table class="inputTable">
 				<tr>
-					<th>사용자명</th>
-					<th><input type="text" name="userName" id="userName"></th>
-					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+					<th>유저</th>
+					<th><input type="text" name="userName" id="userName" value="${user.MEMBER_NAME}" readonly="readonly"></th>
+					<th><button onclick="chatName()" id="startBtn">시작하기</button></th>
 				</tr>
-			</table>
+			</table> 
 		</div>
 		<div id="yourMsg">
 			<table class="inputTable">

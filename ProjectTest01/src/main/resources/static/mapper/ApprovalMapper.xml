@@ -7,38 +7,62 @@
 	</select>
 
 	<select id="read" resultType="kr.smhrd.entity.AllApproval" parameterType="int">
-		select DISTINCT a.*, q.apv_auth_id, q.apv_auth_name, q.apv_time, q.apv_num,
+		select DISTINCT a.*, q.apv_auth_id, q.apv_auth_name, q.apv_time, q.apv_num, md.depart_code,
 		md.depart_name as depart_name1, d1.depart_name as depart_name2, d2.depart_name as depart_name3, d3.depart_name as depart_name4
 		from approval a, approval_auth q, member m, department md, department d1, department d2, department d3
 		where a.appro_id = #{appro_id}
-		and a.appro_id = q.appro_id
+		and  q.member_id = (select m.member_id from approval a, member m where a.appro_id = #{appro_id} and a.appro_mem1 = m.member_name)
 		and md.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_member_id = m.member_name and m.depart_code = d.depart_code)
 		and d1.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem1 = m.member_name and m.depart_code = d.depart_code)
 		and d2.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem2 = m.member_name and m.depart_code = d.depart_code)
 		and d3.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem3 = m.member_name and m.depart_code = d.depart_code)
-	</select>
-	
-	<select id="view" resultType="kr.smhrd.entity.ViewApproval">
-		select DISTINCT md.depart_name,
-		m1.member_name as m1_member_name, r1.rank_name as rank_name_r1,
-		m2.member_name as m2_member_name, r2.rank_name as rank_name_r2,
-		m3.member_name as m3_member_name, r3.rank_name as rank_name_r3, appro_id
-		from member my, department md, member m1, member m2, member m3, rank r1, rank r2, rank r3, (select * from approval ORDER BY appro_id DESC)
-		where my.member_name = 'bb'
-		and my.depart_code = md.depart_code
-		and m1.rank_code = 1
-		and m2.rank_code = 2
-		and m3.depart_code = (select depart_code from member where member_name = 'bb')
-		and m3.rank_code = (select rank_code from member where depart_code = (select depart_code from member where member_name = 'bb') and rank_code = 3)
-		and r1.rank_code = 1
-		and r2.rank_code = 2
-		and r3.rank_code = (select rank_code from member where depart_code = (select depart_code from member where member_name = 'bb') and rank_code = 3)
 		and ROWNUM = 1
 	</select>
 	
-	<insert id="inser" parameterType="kr.smhrd.entity.Approval">
+	<update id="inget" parameterType="kr.smhrd.entity.UpApproval">
+		update approval set appro_auth1=#{appro_auth1},appro_auth2=#{appro_auth2}, appro_auth3=#{appro_auth3}, appro_auth_date1 = sysdate, appro_auth_date2 = sysdate, appro_auth_date3 = sysdate where appro_id = #{appro_id}
+	</update>
+
+	<update id="upget" parameterType="kr.smhrd.entity.UpApproval">
+		update approval_auth set apv_auth_name = #{apv_auth_name} where appro_id = #{appro_id}
+	</update>
+	
+	<select id="view" parameterType="String" resultType="kr.smhrd.entity.ViewApproval">
+		select DISTINCT md.depart_name,
+		m1.member_name as m1_member_name, r1.rank_name as rank_name_r1,
+		m2.member_name as m2_member_name, r2.rank_name as rank_name_r2,
+		m3.member_name as m3_member_name, r3.rank_name as rank_name_r3, my.member_id, appro_id, md.depart_code 
+		from member my, department md, member m1, member m2, member m3, rank r1, rank r2, rank r3,
+		(select * from approval ORDER BY appro_id DESC)
+		where my.member_name = #{member_name}
+		and my.depart_code = md.depart_code
+		and m1.rank_code = 1
+		and m2.rank_code = 2
+		and m3.depart_code = (select depart_code from member where member_name = #{member_name})
+		and m3.rank_code = (select rank_code from member where depart_code = (select depart_code from member where member_name = #{member_name}) and rank_code = 3)
+		and r1.rank_code = 1
+		and r2.rank_code = 2
+		and r3.rank_code = (select rank_code from member where depart_code = (select depart_code from member where member_name = #{member_name}) and rank_code = 3)
+		and ROWNUM = 1
+	</select>
+	
+	<insert id="appro" parameterType="kr.smhrd.entity.Approval_auth">
 		insert into approval (appro_id, appro_sort, appro_member_id, appro_mem1, appro_mem2, appro_mem3, appro_title, appro_content, appro_filename, appro_indate) 
 		values ((select NVL(MAX(appro_id),0)+1 from approval), #{appro_sort}, #{appro_member_id}, #{appro_mem1}, #{appro_mem2}, #{appro_mem3}, #{appro_title}, #{appro_content}, #{appro_filename}, sysdate)
 	</insert>
+	
+	<insert id="approv" parameterType="kr.smhrd.entity.Approval_auth">
+		insert into approval_auth (apv_num, appro_id, apv_auth_id, apv_auth_name, apv_time, member_id)
+		values ((select NVL(MAX(apv_num), 0) + 1 from approval_auth), (select NVL(MAX(appro_id),0)+1 from approval_auth), 0, #{apv_auth_name}, sysdate, (select member_id from member where member_name = #{appro_mem1}))
+	</insert>
+
+	<insert id="pay" parameterType="kr.smhrd.entity.Approval_auth">
+		insert into apv_payment (pay_id, pay_date, pay_title, pay_cash)
+		values ((select NVL(MAX(pay_id), 0) + 1 from apv_payment), #{pay_date}, #{appro_title}, #{pay_cash})
+	</insert>
+
+	<update id="vacation" parameterType="kr.smhrd.entity.Approval_auth">
+		update member set member_vacation = 1, member_vacation_num = (select member_num-#{member_num} from member where member_id = #{member_id}), member_stratdate = #{member_stratdate}, member_enddate = #{member_enddate}, member_num = #{member_num} where member_id = #{member_id}
+	</update>
 
 </mapper>
