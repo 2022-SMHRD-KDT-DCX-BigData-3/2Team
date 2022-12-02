@@ -52,8 +52,8 @@
 	</insert>
 	
 	<insert id="approv" parameterType="kr.smhrd.entity.Approval_auth">
-		insert into approval_auth (apv_num, appro_id, apv_auth_id, apv_auth_name, apv_time, member_id)
-		values ((select NVL(MAX(apv_num), 0) + 1 from approval_auth), (select NVL(MAX(appro_id),0)+1 from approval_auth), 0, #{apv_auth_name}, sysdate, (select member_id from member where member_name = #{appro_mem1}))
+		insert into approval_auth (apv_num, appro_id, apv_auth_id, apv_time, member_id)
+		values ((select NVL(MAX(apv_num), 0) + 1 from approval_auth), (select NVL(MAX(appro_id),0)+1 from approval_auth), 0, sysdate, (select member_id from member where member_name = #{appro_mem1}))
 	</insert>
 
 	<insert id="pay" parameterType="kr.smhrd.entity.Approval_auth">

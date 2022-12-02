@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,15 +26,38 @@
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <!-- =======================================================
 * Template Name: NiceAdmin - v2.4.1
 * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 ======================================================== -->
+<script type="text/javascript">
+     // 페이지 번호 클릭시 이동
+     var pageForm=$("#pageForm");
+     $(".paginate_button a").on("click", function(e) {
+  	   e.preventDefault();
+  	   var page = $(this).attr("href"); // page=? , perPageNum=10
+  	   pageForm.find("#page").val(page);
+  	   pageForm.submit();
+  	   // form - hidden
+  	   // location.href="${cpath}/board/list?page="+page+"&type=title&keyword=";
+     });
+     // 페이지 이동
+     $(".move").on("click", function(e) {
+	   e.preventDefault();
+	   var idx=$(this).attr("href");
+	   var tag="<input type='hidden' name='idx' value='"+idx+"'>";
+	   pageForm.append(tag);
+	   pageForm.attr("action", "${cpath}/member/get");
+	   pageForm.submit();
+   			});
+    	}); 
+    }
+</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -205,7 +232,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">${user.MEMBER_NAME}</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">이름</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -291,18 +318,6 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  					<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-				</svg>&nbsp;&nbsp;
-                <span>메일</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            
-            <li>
               <a class="dropdown-item d-flex align-items-center" href="calender">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -361,14 +376,15 @@
         </a>
       </li><!-- End chat Nav -->
 
-	  <li class="nav-item">
-        <a class="nav-link collapsed" href="mail">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="boardmain">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+			  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+			  <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
 			</svg>&nbsp;&nbsp;
-          <span>메일</span>
+          <span>게시판</span>
         </a>
-      </li><!-- End mail Nav -->
+      </li><!-- End board Nav -->
       
       <li class="nav-item">
         <a class="nav-link collapsed" href="calender">
@@ -379,16 +395,6 @@
           <span>캘린더</span>
         </a>
       </li><!-- End calender Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="boardmain">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-			  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-			  <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-			</svg>&nbsp;&nbsp;
-          <span>게시판</span>
-        </a>
-      </li><!-- End board Nav -->
 	  
 	  
       <li class="nav-item">
@@ -403,18 +409,28 @@
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
-              <i class="bi bi-circle"></i><span>결재조회</span>
+              <i class="bi bi-circle"></i><span>일반결재</span>
             </a>
           </li>
           <li>
             <a href="approvalp">
-              <i class="bi bi-circle"></i><span>결재신청</span>
+              <i class="bi bi-circle"></i><span>지출결재</span>
             </a>
           </li>
         </ul>
       </li><!-- End Components Nav -->
 
       <li class="nav-heading">정보</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="commuting">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+			  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+			</svg>&nbsp;&nbsp;
+          <span>근태관리</span>
+        </a>
+      </li><!-- End Commuting Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
@@ -460,67 +476,154 @@
     </ul>
 
   </aside><!-- End Sidebar-->
-
+  
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Mail</h1>
+      <h1>근태관리</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="http://localhost:9999/boot/">Home</a></li>
+          <li class="breadcrumb-item"><a href="http://localhost:9999/">Home</a></li>
           <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Mail</li>
+          <li class="breadcrumb-item active">Commuting</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-	<!-- Start mail -->
+	<!-- Strat member -->
     <section class="section profile">
-      <div class="meback">
-      	<div class="panel-body">
-			<table class="table table-bordered table-hover">
-				<tr>
-					<td>제목</td>
-					<td>부서</td>
-					<td>직급</td>
-					<td>Email</td>
-					<td>작성자</td>
-					<td>작성일</td>
-				</tr>
-				
-			</table>
-			
-			<!-- 페이징 처리 -->
-			<div style="text-align: center;">
-			<!-- 페이지 번호 출력 -->
-				<ul class="pagination">
-			<!-- 이전버튼 -->
-				<c:if test="${pageMaker.prev}">
-					<li class="paginate_button previous"><a href="${pageMaker.startPage-1}"><i class="bi bi-arrow-left-circle-fill"></i></a></li>
-				</c:if>
-			<!-- 이전버튼 -->
-				<c:forEach var="pageNum" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-					<li class="paginate_button ${pageMaker.cri.page==pageNum ? 'active' : ''}"><a href="${pageNum}">${pageNum}</a></li>
-				</c:forEach>
-			<!-- 다음버튼 -->
-				<c:if test="${pageMaker.next}">
-					<li class="paginate_button next"><a href="${pageMaker.endPage+1}"><i class="bi bi-arrow-right-circle-fill"></i></a></li>
-				</c:if>
-			<!-- 다음버튼 -->
-				</ul>
-			<!-- 페이지 번호 출력 -->
-			</div>
-			<form id="pageForm" action="${cpath}/member/member" method="get">
-				<input type="hidden" name="type" value="${pageMaker.cri.type}"/>
-				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"/>
-				<input type="hidden" id="page" name="page" value="${pageMaker.cri.page}"/>
-				<input type="hidden" name="perPageNum" value="${pageMaker.cri.perPageNum}"/>
-			</form>
-			<!-- 페이징 처리 -->
-      	</div>
-      </div>
-      <!-- End mail -->
+    	<div>
+    		<div class="fl">
+	    		<form action="ecommuting" method="post" class="flo">
+	    			<input type="hidden" name="member_id" value="${user.MEMBER_id}">
+	    			<input type="submit" value="퇴근">
+	    		</form>
+	    		<form action="scommuting" method="post" class="flo">
+	    			<input type="hidden" name="member_id" value="${user.MEMBER_id}">
+	    			<input type="submit" value="출근">
+	    		</form>
+    		</div>
+    	</div>
+		<div class="mebackk">
+			<div class="panel-body">
+				<table class="table table-bordered table-hover">
+					<tr>
+						<td>부서</td>
+						<td>직급</td>
+						<td>이름</td>
+						<td>출근시간</td>
+						<td>퇴근시간</td>
+						<td>근무여부</td>
+						<td>휴가여부</td>
+					</tr>
+					
+					<c:forEach var="comm" items="${comm}">
+						<tr>
+							<c:if test="${comm.depart_code == '1'}">
+								<td>비서실</td>
+							</c:if>
+							<c:if test="${comm.depart_code == '2'}">
+								<td>인사부</td>
+							</c:if>
+							<c:if test="${comm.depart_code == '3'}">
+								<td>총무부</td>
+							</c:if>
+							<c:if test="${comm.depart_code == '4'}">
+								<td>생산부</td>
+							</c:if>
+							<c:if test="${comm.depart_code == '5'}">
+								<td>홍보부</td>
+							</c:if>
+							<c:if test="${comm.depart_code == '6'}">
+								<td>관리부</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '1'}">
+								<td>사장</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '2'}">
+								<td>부사장</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '3'}">
+								<td>전무</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '4'}">
+								<td>상무</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '5'}">
+								<td>이사</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '6'}">
+								<td>부장</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '7'}">
+								<td>차장</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '8'}">
+								<td>과장</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '9'}">
+								<td>대리</td>
+							</c:if>
+							<c:if test="${comm.rank_code == '10'}">
+								<td>사원</td>
+							</c:if>
+							
+							<td>${comm.member_name}</td>
+							<!-- 출근시간 -->
+							<c:if test="${comm.g_arrive == Null}">
+								<td>-</td>
+							</c:if>
+							<c:if test="${comm.g_arrive != Null}">
+								<td><fmt:formatDate pattern="YYYY-MM-dd HH:MM" value="${comm.g_arrive}"/></td>
+							</c:if>
+							<!-- 퇴근시간 -->
+							<c:if test="${comm.g_arrive == Null}">
+								<c:if test="${comm.g_leave == Null}">
+									<td>-</td>
+								</c:if>
+							</c:if>
+							<c:if test="${comm.g_arrive != Null}">
+								<c:if test="${comm.g_leave != Null}">
+									<td><fmt:formatDate pattern="YYYY-MM-dd HH:MM" value="${comm.g_leave}"/></td>
+								</c:if>
+							</c:if>
+							<!-- 출근여부 -->
+							<c:if test="${comm.g_arrive == Null}">
+								<c:if test="${comm.g_leave == Null}">
+									<c:if test="${comm.member_status == '0'}">
+										<td>-</td>
+									</c:if>
+								</c:if>
+							</c:if>
+							<c:if test="${comm.g_arrive != Null}">
+								<c:if test="${comm.g_leave == Null}">
+									<c:if test="${comm.member_status == '1'}">
+										<td>O</td>
+									</c:if>
+								</c:if>
+							</c:if>
+							<c:if test="${comm.g_arrive != Null}">
+								<c:if test="${comm.g_leave != Null}">
+									<c:if test="${comm.member_status == '0'}">
+										<td>-</td>
+									</c:if>
+								</c:if>
+							</c:if>
+							<!-- 휴가여부 -->
+							<c:if test="${comm.member_vacation == '0'}">
+								<td>-</td>
+							</c:if>
+							<c:if test="${comm.member_vacation == '1'}">
+								<td>O</td>
+							</c:if>
+						</tr>
+					</c:forEach>
+	
+				</table>
+   			</div>
+   		</div>
     </section>
+	<!-- Strat member -->
 
   </main><!-- End #main -->
 

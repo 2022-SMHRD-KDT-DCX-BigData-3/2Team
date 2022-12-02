@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.smhrd.mapper.CommutingMapper">
+
+	<select id="getcomm" resultType="kr.smhrd.entity.Commuting">
+		select c.g_seq, c.member_id, c.g_arrive, c.g_leave, c.g_status, m.depart_code, m.rank_code, m.member_name, m.member_status, m.member_vacation from commuting c, member m where c.member_id = m.member_id order by m.depart_code asc, m.rank_code
+	</select>
+
+	<update id="scomm" parameterType="kr.smhrd.entity.Commuting">
+		update commuting set g_arrive = sysdate where member_id = #{member_id}
+	</update>
+
+	<update id="rcomm" parameterType="kr.smhrd.entity.Commuting">
+		update member set member_status = 1 where member_id = #{member_id}
+	</update>
+
+	<update id="ecomm" parameterType="kr.smhrd.entity.Commuting">
+		update commuting set g_leave = sysdate where member_id = #{member_id}
+	</update>
+
+	<update id="lcomm" parameterType="kr.smhrd.entity.Commuting">
+		update member set member_status = 0 where member_id = #{member_id}
+	</update>
+
+</mapper>
