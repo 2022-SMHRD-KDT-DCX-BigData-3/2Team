@@ -60,7 +60,7 @@
   				</tr>
   				<tr class="gettr c1">
   					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile"><input type="text" name="appro_filename"/></td>
+  					<td colspan='3' class="tdfile"><input type="file" name="appro_filename"/></td>
   				</tr>
   				<tr class="gettr p1">
 					<td class="tdnum2">지출일</td>
@@ -86,9 +86,17 @@
   					<td class="tdnum2">제출사유</td>
   					<td colspan='3' class="tdfilen"><textarea rows="6" class="tdin" name="appro_content"></textarea></td>
   				</tr>
+  				<tr class="gettr2 p3">
+					<td colspan='4' class="payz">영수증</td>
+				</tr>
+				<tr class="gettr2 p4">
+					<td colspan='4' class="payc"></td>
+				</tr>
   			</table>`
 				document.querySelector(".p1").style.display = "none";
 				document.querySelector(".p2").style.display = "none";
+				document.querySelector(".p3").style.display = "none";
+				document.querySelector(".p4").style.display = "none";
 				document.querySelector(".c2").style.display = "none";
 				document.querySelector(".c3").style.display = "none";
 				document.querySelector(".c4").style.display = "none";
@@ -118,7 +126,7 @@
   				</tr>
   				<tr class="gettr c1">
   					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile"><input type="text" name="appro_filename" value="NULL"/></td>
+  					<td colspan='3' class="tdfile"><input type="file" name="appro_filename" value="NULL"/></td>
   				</tr>
   				<tr class="gettr p1">
   					<td class="tdnum2">지출일</td>
@@ -143,6 +151,12 @@
   				<tr class="gettr1">
   					<td class="tdnum2">제출사유</td>
   					<td colspan='3' class="tdfilen"><textarea rows="6" class="tdin" name="appro_content"></textarea></td>
+  				</tr>
+  				<tr class="gettr2 p3">
+  					<td colspan='4' class="payz">영수증</td>
+  				</tr>
+  				<tr class="gettr2 p4">
+  					<td colspan='4' class="payc"></td>
   				</tr>
   			</table>`
 			document.querySelector(".c1").style.display = "none";
@@ -174,7 +188,7 @@
   				</tr>
   				<tr class="gettr c1">
   					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile"><input type="text" name="appro_filename" value="NULL"/></td>
+  					<td colspan='3' class="tdfile"><input type="file" name="appro_filename" value="NULL"/></td>
   				</tr>
   				<tr class="gettr p1">
 					<td class="tdnum2">지출일</td>
@@ -200,10 +214,18 @@
   					<td class="tdnum2">휴가사유</td>
   					<td colspan='3' class="tdfilen"><textarea rows="6" class="tdin" name="appro_content"></textarea></td>
   				</tr>
+  				<tr class="gettr2 p3">
+					<td colspan='4' class="payz">영수증</td>
+				</tr>
+				<tr class="gettr2 p4">
+					<td colspan='4' class="payc"></td>
+				</tr>
   			</table>`
 			document.querySelector(".c1").style.display = "none";
 			document.querySelector(".p1").style.display = "none";
 			document.querySelector(".p2").style.display = "none";
+			document.querySelector(".p3").style.display = "none";
+			document.querySelector(".p4").style.display = "none";
 			}
 		});
 		

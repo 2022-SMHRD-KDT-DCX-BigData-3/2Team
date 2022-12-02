@@ -27,7 +27,6 @@ public class ApprovalService {
 	// 결재 게시물 조회
 	public AllApproval select(int appro_id) {
 		AllApproval get = approvalMapper.read(appro_id);
-		System.out.println(get);
 		return get;
 	}
 	

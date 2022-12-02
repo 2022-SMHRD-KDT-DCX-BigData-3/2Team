@@ -11,11 +11,12 @@
 		md.depart_name as depart_name1, d1.depart_name as depart_name2, d2.depart_name as depart_name3, d3.depart_name as depart_name4
 		from approval a, approval_auth q, member m, department md, department d1, department d2, department d3
 		where a.appro_id = #{appro_id}
-		and a.appro_id = q.appro_id
+		and  q.member_id = (select m.member_id from approval a, member m where a.appro_id = #{appro_id} and a.appro_mem1 = m.member_name)
 		and md.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_member_id = m.member_name and m.depart_code = d.depart_code)
 		and d1.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem1 = m.member_name and m.depart_code = d.depart_code)
 		and d2.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem2 = m.member_name and m.depart_code = d.depart_code)
 		and d3.depart_code = (select d.depart_code from approval a, member m, department d where a.appro_id = #{appro_id} and a.appro_mem3 = m.member_name and m.depart_code = d.depart_code)
+		and ROWNUM = 1
 	</select>
 	
 	<update id="inget" parameterType="kr.smhrd.entity.UpApproval">
@@ -26,7 +27,7 @@
 		select DISTINCT md.depart_name,
 		m1.member_name as m1_member_name, r1.rank_name as rank_name_r1,
 		m2.member_name as m2_member_name, r2.rank_name as rank_name_r2,
-		m3.member_name as m3_member_name, r3.rank_name as rank_name_r3, my.member_id, appro_id
+		m3.member_name as m3_member_name, r3.rank_name as rank_name_r3, my.member_id, appro_id, md.depart_code 
 		from member my, department md, member m1, member m2, member m3, rank r1, rank r2, rank r3,
 		(select * from approval ORDER BY appro_id DESC)
 		where my.member_name = #{member_name}
@@ -47,8 +48,8 @@
 	</insert>
 	
 	<insert id="approv" parameterType="kr.smhrd.entity.Approval_auth">
-		insert into approval_auth (apv_num, appro_id, apv_auth_id, apv_auth_name, apv_time, member_id)
-		values ((select NVL(MAX(apv_num), 0) + 1 from approval_auth), (select NVL(MAX(appro_id),0)+1 from approval_auth), 0, #{appro_member_id}, sysdate, (select member_id from member where member_name = #{appro_mem1}))
+		insert into approval_auth (apv_num, appro_id, apv_auth_id, apv_time, member_id)
+		values ((select NVL(MAX(apv_num), 0) + 1 from approval_auth), (select NVL(MAX(appro_id),0)+1 from approval_auth), 0, sysdate, (select member_id from member where member_name = #{appro_mem1}))
 	</insert>
 
 	<insert id="pay" parameterType="kr.smhrd.entity.Approval_auth">

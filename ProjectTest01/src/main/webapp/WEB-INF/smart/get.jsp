@@ -482,7 +482,7 @@
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
-			  				<input type="submit" name="appro_auth3" class="mbu" value="2"/>
+			  				<input type="submit" class="mbu" value="반려"/>
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -493,13 +493,13 @@
 				  		<form action="${capth}/get" method="post">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
-			  				<input type="submit" name="appro_auth2" class="mbu" value="1"/>
+			  				<input type="submit" class="mbu" value="승인"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
 		  				</form>
 		  				<form action="${capth}/get" method="post">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
-			  				<input type="submit" name="appro_auth2" class="mbu" value="2"/>
+			  				<input type="submit" class="mbu" value="반려"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
 		  				</form>
 		  			</c:if>
@@ -510,13 +510,14 @@
 		  			<c:if test="${user.RANK_CODE == 3}">
 				  		<form action="${capth}/get" method="post">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" name="appro_auth1" class="mbu" value="1"/>
+			  				<input type="submit" class="mbu" value="승인"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name"/>
 		  				</form>
 		  				<form action="${capth}/get" method="post">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" name="appro_auth1" class="mbu" value="2"/>
+			  				<input type="submit" class="mbu" value="반려"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
 		  				</form>
@@ -629,8 +630,8 @@
   						<td class="dihtd1">결재</td>
   						<td class="dihtd1">결재자</td>
   						<td class="dihtd1">부서</td>
-  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd2">승인반려사유</td>
   					</tr>
 
@@ -648,9 +649,19 @@
   						</td>
   						<td class="dihtd3">${vo.appro_mem1}</td>
   						<td class="dihtd3">${vo.depart_name2}</td>
-  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date1}"/></td>
   						<td class="dihtd3">${vo.appro_title}</td>
-  						<td class="dihtd4">${vo.appro_cmt}</td>
+  						<c:if test="${vo.appro_auth1 == '0'}">
+  							<td class="dihtd3"></td>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+	  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date1}"/></td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name != Null}">
+	  						<td class="dihtd4">${vo.apv_auth_name}</td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name == Null}">
+	  						<td class="dihtd4"></td>
+  						</c:if>
   					</tr>
   				</table>
   			</div>
@@ -663,8 +674,8 @@
   						<td class="dihtd1">결재</td>
   						<td class="dihtd1">결재자</td>
   						<td class="dihtd1">부서</td>
-  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd2">승인반려사유</td>
   					</tr>
 
@@ -682,9 +693,23 @@
 						</td>
   						<td class="dihtd3">${vo.appro_mem2}</td>
   						<td class="dihtd3">${vo.depart_name3}</td>
-  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date2}"/></td>
   						<td class="dihtd3">${vo.appro_title}</td>
-  						<td class="dihtd4">${vo.appro_cmt}</td>
+  						<c:if test="${vo.appro_auth1 == '0'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+		  						<td class="dihtd3"></td>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '1'}">
+		  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date2}"/></td>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name != Null}">
+	  						<td class="dihtd4">${vo.apv_auth_name}</td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name == Null}">
+	  						<td class="dihtd4"></td>
+  						</c:if>
   					</tr>
   				</table>
   			</div>
@@ -698,8 +723,8 @@
   						<td class="dihtd1">결재</td>
   						<td class="dihtd1">결재자</td>
   						<td class="dihtd1">부서</td>
-  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd2">승인반려사유</td>
   					</tr>
 
@@ -717,9 +742,27 @@
 						</td>
   						<td class="dihtd3">${vo.appro_mem3}</td>
   						<td class="dihtd3">${vo.depart_name4}</td>
-  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date3}"/></td>
   						<td class="dihtd3">${vo.appro_title}</td>
-  						<td class="dihtd4">${vo.appro_cmt}</td>
+  						<c:if test="${vo.appro_auth1 == '0'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+  								<c:if test="${vo.appro_auth3 == '0'}">
+			  						<td class="dihtd3"></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '1'}">
+  								<c:if test="${vo.appro_auth3 == '1'}">
+			  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date3}"/></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name != Null}">
+	  						<td class="dihtd4">${vo.apv_auth_name}</td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name == Null}">
+	  						<td class="dihtd4"></td>
+  						</c:if>
   					</tr>
   				</table>
   			</div>
