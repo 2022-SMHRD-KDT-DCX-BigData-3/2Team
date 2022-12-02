@@ -44,12 +44,6 @@ public class BoardController {
 		// 등록완료 후 ~ 다시 리스트 페이지로 돌아가기
 		return "redirect:/list"; // redirect
 	}
-	@GetMapping("/get") // get?idx=10&aa=aa : (QueryString:질의문자열) 공백 사용X
-	public String get(@RequestParam("idx") int idx, Model model) {
-		Board vo = boardService.get(idx);
-		model.addAttribute("vo", vo);
-		return "board/get"; // get.jsp
-	}
 	@GetMapping("/remove")
 	public String remove(int idx, RedirectAttributes rttr) {
 		rttr.addFlashAttribute("result", boardService.remove(idx));
@@ -99,5 +93,13 @@ public class BoardController {
 	@RequestMapping("/boardmain")
 	public String boardmain() {
 		return "board/boardmain";
+	}
+	@RequestMapping("/calender")
+	public String calender() {
+		return "smart/calender";
+	}
+	@RequestMapping("/login")
+	public String login() {
+		return "smart/login";
 	}
 }
