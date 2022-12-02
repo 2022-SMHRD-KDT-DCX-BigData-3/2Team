@@ -527,7 +527,7 @@
 
                   <!-- Profile Edit Form -->
                   <form action="/update" method="post">
-                  <input type="hidden" name="MEMBER_id" value="${user}"/>
+                  <input type="hidden" name="MEMBER_id" value="${user.MEMBER_id}"/>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 사진</label>
                       <div class="col-md-8 col-lg-9">
