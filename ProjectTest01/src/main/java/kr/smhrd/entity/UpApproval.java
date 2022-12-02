@@ -15,4 +15,6 @@ public class UpApproval {
 	private String appro_auth1;
 	private String appro_auth2;
 	private String appro_auth3;
+	
+	private String apv_auth_name;
 }

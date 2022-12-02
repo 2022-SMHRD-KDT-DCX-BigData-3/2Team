@@ -33,6 +33,7 @@ public class ApprovalService {
 	// 승인반려 등록
 	public void inget(UpApproval app) {
 		approvalMapper.inget(app);
+		approvalMapper.upget(app);
 	}
 
 	// 결재 게시물 등록창

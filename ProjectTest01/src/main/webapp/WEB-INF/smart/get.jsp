@@ -37,6 +37,8 @@
 		});
 		
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -471,18 +473,21 @@
   			<c:if test="${vo.appro_auth2 == '1'}">
 	  			<c:if test="${vo.appro_auth3 == '0'}">
 		  			<c:if test="${user.RANK_CODE == 1}">
-				  		<form action="${capth}/get" method="post">
+				  		<form  action="${capth}/get" method="post">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
 				  			<input type="hidden" name="appro_auth3" value="1"/>
 			  				<input type="submit" class="mbu" value="승인"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  				<form action="${capth}/get" method="post">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
+				  			<input type="hidden" name="appro_auth3" value="0"/>
 			  				<input type="submit" class="mbu" value="반려"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -493,14 +498,18 @@
 				  		<form action="${capth}/get" method="post">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="1"/>
 			  				<input type="submit" class="mbu" value="승인"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  				<form action="${capth}/get" method="post">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="submit" class="mbu" value="반려"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -508,18 +517,22 @@
   			<c:if test="${vo.appro_auth1 == '0'}">
   				<c:if test="${vo.depart_code eq user.DEPART_CODE}">
 		  			<c:if test="${user.RANK_CODE == 3}">
-				  		<form action="${capth}/get" method="post">
+				  		<form class="approvalButton" action="${capth}/get" method="post">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 			  				<input type="submit" class="mbu" value="승인"/>
+			  				<input type="hidden" name="appro_auth1" value="1"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
 			  				<input type="hidden" name="apv_auth_name"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  				<form action="${capth}/get" method="post">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 			  				<input type="submit" class="mbu" value="반려"/>
+			  				<input type="hidden" name="appro_auth1" value="0"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -656,11 +669,11 @@
   						<c:if test="${vo.appro_auth1 == '1'}">
 	  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date1}"/></td>
   						</c:if>
-  						<c:if test="${vo.apv_auth_name != Null}">
+  						<c:if test="${vo.apv_auth_name != 'N'}">
 	  						<td class="dihtd4">${vo.apv_auth_name}</td>
   						</c:if>
-  						<c:if test="${vo.apv_auth_name == Null}">
-	  						<td class="dihtd4"></td>
+  						<c:if test="${vo.apv_auth_name == 'N'}">
+	  						<td class="dihtd4"><input type="text" class="selec"></td>
   						</c:if>
   					</tr>
   				</table>
@@ -700,15 +713,20 @@
   							</c:if>
   						</c:if>
   						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+		  						<td class="dihtd3"></td>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
   							<c:if test="${vo.appro_auth2 == '1'}">
 		  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date2}"/></td>
   							</c:if>
   						</c:if>
-  						<c:if test="${vo.apv_auth_name != Null}">
+  						<c:if test="${vo.apv_auth_name != 'N'}">
 	  						<td class="dihtd4">${vo.apv_auth_name}</td>
   						</c:if>
-  						<c:if test="${vo.apv_auth_name == Null}">
-	  						<td class="dihtd4"></td>
+  						<c:if test="${vo.apv_auth_name == 'N'}">
+	  						<td class="dihtd4"><input type="text" class="selec"></td>
   						</c:if>
   					</tr>
   				</table>
@@ -751,17 +769,31 @@
   							</c:if>
   						</c:if>
   						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+  								<c:if test="${vo.appro_auth3 == '0'}">
+			  						<td class="dihtd3"></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '1'}">
+  								<c:if test="${vo.appro_auth3 == '0'}">
+			  						<td class="dihtd3"></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
   							<c:if test="${vo.appro_auth2 == '1'}">
   								<c:if test="${vo.appro_auth3 == '1'}">
 			  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date3}"/></td>
   								</c:if>
   							</c:if>
   						</c:if>
-  						<c:if test="${vo.apv_auth_name != Null}">
+  						<c:if test="${vo.apv_auth_name != 'N'}">
 	  						<td class="dihtd4">${vo.apv_auth_name}</td>
   						</c:if>
-  						<c:if test="${vo.apv_auth_name == Null}">
-	  						<td class="dihtd4"></td>
+  						<c:if test="${vo.apv_auth_name == 'N'}">
+	  						<td class="dihtd4"><input type="text" class="selec"></td>
   						</c:if>
   					</tr>
   				</table>
@@ -786,5 +818,15 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script>
+const approvalButton = document.querySelector("form.approvalButton")
+const reason = document.querySelectorAll("input.selec")
+
+reason[2].addEventListener("change", () =>{
+	reason.forEach((r)=>r.value = reason[2].value)
+	
+})
+
+</script>
 </body>
 </html>
