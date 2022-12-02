@@ -479,7 +479,8 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
+                  <form action="/update" method="post">
+                  <input type="hidden" name="MEMBER_id" value="${user}"/>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 사진</label>
                       <div class="col-md-8 col-lg-9">
@@ -494,35 +495,35 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">이름</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="이름">
+                        <input name="fullName" type="text" class="form-control" name="MEMBER_NAME" value="${user.MEMBER_NAME}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">부서</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="부서">
+                        <input name="job" type="text" class="form-control" name="DEPART_CODE" value="${user.DEPART_CODE}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">직급</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="직급">
+                        <input name="company" type="text" class="form-control" name="RANK_CODE" value="${user.RANK_CODE}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">주소</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address" value="주소">
+                        <input name="address" type="text" class="form-control" name="MEMBER_ADDRESS" value="${user.MEMBER_ADDRESS}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">핸드폰</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="핸드폰">
+                        <input name="phone" type="text" class="form-control" name="MEMBER_PHONE" value="${user.MEMBER_PHONE}">
                       </div>
                     </div>
 

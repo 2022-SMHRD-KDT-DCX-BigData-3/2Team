@@ -25,10 +25,7 @@ public class ChatController {
 		return mv;
 	}
 	
-	/**
-	 * 방 페이지
-	 * @return
-	 */
+	//방페이지
 	@RequestMapping("/room")
 	public ModelAndView room() {
 		ModelAndView mv = new ModelAndView();
@@ -36,11 +33,7 @@ public class ChatController {
 		return mv;
 	}
 	
-	/**
-	 * 방 생성하기
-	 * @param params
-	 * @return
-	 */
+	//방 생성하기
 	@RequestMapping("/createRoom")
 	public @ResponseBody List<Room> createRoom(@RequestParam HashMap<Object, Object> params){
 		String roomName = (String) params.get("roomName");
@@ -51,21 +44,14 @@ public class ChatController {
 			roomList.add(room);
 		}
 		return roomList;
-	}
-	/**
-	 * 방 정보가져오기
-	 * @param params
-	 * @return
-	 */
+	} 
+	//방 정보 가져오기
 	@RequestMapping("/getRoom")
 	public @ResponseBody List<Room> getRoom(@RequestParam HashMap<Object, Object> params){
 		return roomList;
 	}
-	/**
-	 * 채팅방
-	 * @return
-	 */
-	@RequestMapping("/moveChating")
+	//채팅방
+	@RequestMapping("/moveChating")	
 	public ModelAndView chating(@RequestParam HashMap<Object, Object> params) {
 		ModelAndView mv = new ModelAndView();
 		int roomNumber = Integer.parseInt((String) params.get("roomNumber"));

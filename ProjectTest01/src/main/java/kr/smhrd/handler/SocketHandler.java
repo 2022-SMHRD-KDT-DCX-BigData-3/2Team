@@ -87,7 +87,6 @@ public class SocketHandler extends TextWebSocketHandler {
 			map.put(session.getId(), session);
 			rls.add(map);
 		}
-		
 		//세션등록이 끝나면 발급받은 세션ID값의 메시지를 발송한다.
 		JSONObject obj = new JSONObject();
 		obj.put("type", "getId");

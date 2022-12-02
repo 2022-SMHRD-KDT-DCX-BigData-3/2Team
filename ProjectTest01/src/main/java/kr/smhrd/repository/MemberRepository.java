@@ -14,3 +14,4 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	@Query("select u from Member u Where u.MEMBER_id=:MEMBER_ID and u.MEMBER_PW=:MEMBER_PW")
 	public Member login(@Param("MEMBER_ID") int MEMBER_ID, @Param("MEMBER_PW") String MEMBER_PW);
 }
+
