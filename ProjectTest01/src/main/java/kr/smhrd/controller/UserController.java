@@ -1,5 +1,7 @@
 package kr.smhrd.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import kr.smhrd.entity.Member;
 import kr.smhrd.service.MemberService;
@@ -38,6 +41,13 @@ public class UserController {
 		session.invalidate(); //세션 무효화(로그아웃)
 		return "redirect:/login";
 	}
+	@PostMapping("/update")
+	public String modify(Member mem) {
+		
+		memberService.memmodify(mem);
+		return "redirect:/smart/profile";
+	}
+	
 	
 	@RequestMapping("/main")
 	public String main() {
