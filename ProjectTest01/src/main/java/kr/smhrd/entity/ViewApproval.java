@@ -15,5 +15,7 @@ public class ViewApproval {
 	private String rank_name_r3;
 	private int member_id;
 	private int appro_id;
+	private String depart_code;
+	private String apv_auth_name;
 	
 }

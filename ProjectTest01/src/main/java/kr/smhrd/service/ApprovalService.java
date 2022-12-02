@@ -27,13 +27,13 @@ public class ApprovalService {
 	// 결재 게시물 조회
 	public AllApproval select(int appro_id) {
 		AllApproval get = approvalMapper.read(appro_id);
-		System.out.println(get);
 		return get;
 	}
 	
 	// 승인반려 등록
 	public void inget(UpApproval app) {
 		approvalMapper.inget(app);
+		approvalMapper.upget(app);
 	}
 
 	// 결재 게시물 등록창

@@ -23,6 +23,9 @@ public interface ApprovalMapper {
 	
 	// 승인반려 등록
 	public void inget(UpApproval app);
+	
+	// 승인반려 사유 등록
+	public void upget(UpApproval app);
 
 	// 결재 등록창 데이터 가져오기 메서드
 	public ViewApproval view(String member_name);

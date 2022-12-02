@@ -125,6 +125,10 @@
 }
 .mbudiv {
 	margin-right: 70px;
+	padding-top: 50px;
+}
+.approvalButton {
+	float: right;
 }
 .mbu {
 	margin-top: 20px;
@@ -261,4 +265,29 @@
 	margin-top: 20px;
 	font-size: 17px;
 	text-align: center;
+}
+.gettr2 {
+	border-bottom: 1px solid;
+	border-right: 1px solid;
+	border-left: 1px solid;
+}
+.payz {
+	text-align: center;
+	background-color: #D9D9D9;
+	height: 20px;
+}
+.payc {
+	height: 600px;
+}
+.mebackk {
+	background-color: #ffffff;
+}
+.fl {
+	padding-right: 500px;
+}
+.flo {
+	float: right;
+	margin-right: 100px;
+	margin-top: 30px;
+	margin-bottom: 20px;
 }

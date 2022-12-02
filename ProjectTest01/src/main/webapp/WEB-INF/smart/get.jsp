@@ -37,6 +37,8 @@
 		});
 		
 	});
+	
+	
 </script>
 </head>
 <body>
@@ -298,18 +300,6 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  					<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-				</svg>&nbsp;&nbsp;
-                <span>메일</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            
-            <li>
               <a class="dropdown-item d-flex align-items-center" href="calender">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -365,15 +355,6 @@
         </a>
       </li><!-- End chat Nav -->
 
-	  <li class="nav-item">
-        <a class="nav-link collapsed" href="mail">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-			</svg>&nbsp;&nbsp;
-          <span>메일</span>
-        </a>
-      </li><!-- End mail Nav -->
-      
       <li class="nav-item">
         <a class="nav-link collapsed" href="calender">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
@@ -419,6 +400,16 @@
       </li><!-- End Components Nav -->
 
       <li class="nav-heading">정보</li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="commuting">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+			  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+			</svg>&nbsp;&nbsp;
+          <span>근태관리</span>
+        </a>
+      </li><!-- End Commuting Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
@@ -468,21 +459,26 @@
   <main id="main" class="main">
   	<div class="sect">
   		<div style="text-align: right;" class="mbudiv">
+	  		<button class="mbu">목록</button>
+  			<input type="button" value="인쇄하기" id="print" class="mbu" onclick="window.print()"/>
   			<c:if test="${vo.appro_auth2 == '1'}">
 	  			<c:if test="${vo.appro_auth3 == '0'}">
 		  			<c:if test="${user.RANK_CODE == 1}">
-				  		<form action="${capth}/get" method="post">
+		  				<form action="${capth}/get" method="post" class="approvalButton">
+		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="1"/>
+				  			<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="submit" class="mbu" value="반려"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
+		  				</form>
+				  		<form  action="${capth}/get" method="post" class="approvalButton">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
 				  			<input type="hidden" name="appro_auth3" value="1"/>
 			  				<input type="submit" class="mbu" value="승인"/>
-		  				</form>
-		  				<form action="${capth}/get" method="post">
-		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-				  			<input type="hidden" name="appro_auth1" value="1"/>
-				  			<input type="hidden" name="appro_auth2" value="1"/>
-			  				<input type="submit" name="appro_auth3" class="mbu" value="2"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -490,17 +486,21 @@
   			<c:if test="${vo.appro_auth1 == '1'}">
 	  			<c:if test="${vo.appro_auth2 == '0'}">
 		  			<c:if test="${user.RANK_CODE == 2}">
-				  		<form action="${capth}/get" method="post">
-				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-				  			<input type="hidden" name="appro_auth1" value="1"/>
-			  				<input type="submit" name="appro_auth2" class="mbu" value="1"/>
-			  				<input type="hidden" name="appro_auth3" value="0"/>
-		  				</form>
-		  				<form action="${capth}/get" method="post">
+		  				<form action="${capth}/get" method="post" class="approvalButton">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
-			  				<input type="submit" name="appro_auth2" class="mbu" value="2"/>
+				  			<input type="hidden" name="appro_auth2" value="0"/>
+			  				<input type="submit" class="mbu" value="반려"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
+		  				</form>
+				  		<form action="${capth}/get" method="post" class="approvalButton">
+				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="1"/>
+			  				<input type="submit" class="mbu" value="승인"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -508,23 +508,26 @@
   			<c:if test="${vo.appro_auth1 == '0'}">
   				<c:if test="${vo.depart_code eq user.DEPART_CODE}">
 		  			<c:if test="${user.RANK_CODE == 3}">
-				  		<form action="${capth}/get" method="post">
-				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" name="appro_auth1" class="mbu" value="1"/>
-			  				<input type="hidden" name="appro_auth2" value="0"/>
-			  				<input type="hidden" name="appro_auth3" value="0"/>
-		  				</form>
-		  				<form action="${capth}/get" method="post">
+		  				<form action="${capth}/get" method="post" class="approvalButton">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" name="appro_auth1" class="mbu" value="2"/>
+			  				<input type="submit" class="mbu" value="반려"/>
+			  				<input type="hidden" name="appro_auth1" value="0"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
+		  				</form>
+				  		<form action="${capth}/get" method="post" class="approvalButton">
+				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+			  				<input type="submit" class="mbu" value="승인"/>
+			  				<input type="hidden" name="appro_auth1" value="1"/>
+			  				<input type="hidden" name="appro_auth2" value="0"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
   			</c:if>
-	  		<input type="button" value="인쇄하기" id="print" class="mbu" onclick="window.print()"/>
-	  		<button class="mbu">목록</button>
   		</div>
   		
   		<div style="text-align: center;">
@@ -629,8 +632,8 @@
   						<td class="dihtd1">결재</td>
   						<td class="dihtd1">결재자</td>
   						<td class="dihtd1">부서</td>
-  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd2">승인반려사유</td>
   					</tr>
 
@@ -648,9 +651,19 @@
   						</td>
   						<td class="dihtd3">${vo.appro_mem1}</td>
   						<td class="dihtd3">${vo.depart_name2}</td>
-  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date1}"/></td>
   						<td class="dihtd3">${vo.appro_title}</td>
-  						<td class="dihtd4">${vo.appro_cmt}</td>
+  						<c:if test="${vo.appro_auth1 == '0'}">
+  							<td class="dihtd3"></td>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+	  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date1}"/></td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name != 'N'}">
+	  						<td class="dihtd4">${vo.apv_auth_name}</td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name == 'N'}">
+	  						<td class="dihtd4"><input type="text" class="selec"></td>
+  						</c:if>
   					</tr>
   				</table>
   			</div>
@@ -663,8 +676,8 @@
   						<td class="dihtd1">결재</td>
   						<td class="dihtd1">결재자</td>
   						<td class="dihtd1">부서</td>
-  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd2">승인반려사유</td>
   					</tr>
 
@@ -682,9 +695,28 @@
 						</td>
   						<td class="dihtd3">${vo.appro_mem2}</td>
   						<td class="dihtd3">${vo.depart_name3}</td>
-  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date2}"/></td>
   						<td class="dihtd3">${vo.appro_title}</td>
-  						<td class="dihtd4">${vo.appro_cmt}</td>
+  						<c:if test="${vo.appro_auth1 == '0'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+		  						<td class="dihtd3"></td>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+		  						<td class="dihtd3"></td>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '1'}">
+		  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date2}"/></td>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name != 'N'}">
+	  						<td class="dihtd4">${vo.apv_auth_name}</td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name == 'N'}">
+	  						<td class="dihtd4"><input type="text" class="selec"></td>
+  						</c:if>
   					</tr>
   				</table>
   			</div>
@@ -698,8 +730,8 @@
   						<td class="dihtd1">결재</td>
   						<td class="dihtd1">결재자</td>
   						<td class="dihtd1">부서</td>
-  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd1">결재제목</td>
+  						<td class="dihtd1">결재일시</td>
   						<td class="dihtd2">승인반려사유</td>
   					</tr>
 
@@ -717,9 +749,41 @@
 						</td>
   						<td class="dihtd3">${vo.appro_mem3}</td>
   						<td class="dihtd3">${vo.depart_name4}</td>
-  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date3}"/></td>
   						<td class="dihtd3">${vo.appro_title}</td>
-  						<td class="dihtd4">${vo.appro_cmt}</td>
+  						<c:if test="${vo.appro_auth1 == '0'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+  								<c:if test="${vo.appro_auth3 == '0'}">
+			  						<td class="dihtd3"></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '0'}">
+  								<c:if test="${vo.appro_auth3 == '0'}">
+			  						<td class="dihtd3"></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '1'}">
+  								<c:if test="${vo.appro_auth3 == '0'}">
+			  						<td class="dihtd3"></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.appro_auth1 == '1'}">
+  							<c:if test="${vo.appro_auth2 == '1'}">
+  								<c:if test="${vo.appro_auth3 == '1'}">
+			  						<td class="dihtd3"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_auth_date3}"/></td>
+  								</c:if>
+  							</c:if>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name != 'N'}">
+	  						<td class="dihtd4">${vo.apv_auth_name}</td>
+  						</c:if>
+  						<c:if test="${vo.apv_auth_name == 'N'}">
+	  						<td class="dihtd4"><input type="text" class="selec"></td>
+  						</c:if>
   					</tr>
   				</table>
   			</div>
@@ -743,5 +807,15 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script>
+const approvalButton = document.querySelector("form.approvalButton")
+const reason = document.querySelectorAll("input.selec")
+
+reason[2].addEventListener("change", () =>{
+	reason.forEach((r)=>r.value = reason[2].value)
+	
+})
+
+</script>
 </body>
 </html>
