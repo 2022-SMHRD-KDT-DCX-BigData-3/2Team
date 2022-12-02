@@ -376,10 +376,7 @@
 			</svg>&nbsp;&nbsp;
 			<span>전자결제</span>
         </a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
@@ -393,16 +390,12 @@
           </li>
         </ul>
       </li><!-- End Components Nav -->
-<<<<<<< HEAD
-=======
-=======
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
-      </li><!-- End Forms Nav -->
-<<<<<<< HEAD
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
 
-=======
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
+      </li><!-- End Forms Nav -->
+
+
+
       <li class="nav-heading">정보</li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
