@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.smhrd.entity.Member;
 import kr.smhrd.service.MemberService;
@@ -31,24 +31,22 @@ public class UserController {
 		if(user !=null) { //성공 여부결과를 객체바인딩(HttpSession) 
 			session.setAttribute("user", user); 
 			System.out.println("로그인 성공");
+			System.out.println((user));
 			return "redirect:/main";
 		}
 		System.out.println("로그인 실패");
-		return "redirect:/login";
+		return "redirect:/";
 	}
-	@PostMapping("/logout")
+	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 무효화(로그아웃)
-		return "redirect:/login";
+		return "redirect:/";
 	}
 	@PostMapping("/update")
 	public String modify(Member mem) {
-		
 		memberService.memmodify(mem);
 		return "redirect:/smart/profile";
 	}
-	
-	
 	@RequestMapping("/main")
 	public String main() {
 		return "smart/main";
