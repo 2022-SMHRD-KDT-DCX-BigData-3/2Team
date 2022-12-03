@@ -94,6 +94,7 @@ public class BoardController {
 	public String boardmain() {
 		return "board/boardmain";
 	}
+<<<<<<< HEAD
 	@RequestMapping("/calender")
 	public String calender() {
 		return "smart/calender";
@@ -101,5 +102,10 @@ public class BoardController {
 	@RequestMapping("/login")
 	public String login() {
 		return "smart/login";
+=======
+	@RequestMapping("/register2")
+	public String register2() {
+		return "board/register2";
+>>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
 	}
 }

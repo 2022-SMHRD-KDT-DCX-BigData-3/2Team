@@ -29,6 +29,137 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  	$(document).ready(function() {
+  		loadList();
+	  	$("#regBtn").click(function(){
+	  		$("#msg").css("display","none");
+	  		$("#formDiv").css("display","block");
+	  	});
+	  	$("#register").click(function(){
+	  		// title, content, writer,,,,
+	  		// var title = $("title").val();
+	  		var fData= $("#frm").serialize(); // serialize --> title=XXX&content=XXX&writer=XXX
+	  		$.ajax({
+	  			url : "${cpath}/api/boards",
+	  			type : "POST",
+	  			data : fData,
+	  			success : loadList,
+	  			error : function(){alert("error");}
+	  		});
+	  		// form 초기화
+	  		// $("#frm")[0].reset();
+	  		
+	  		// reset버튼 강제로 누르게 하기
+	  		$("button[type=reset]").trigger("click");
+	  	});
+  	});
+  	function loadList(){
+  		$.ajax({
+  			url : "${cpath}/api/boards",
+  			type : "GET",
+  			dataType : "json", // text(생략가능),json,xml 등등
+  			success : resultHTML,//function(result){ // {"id":1, ~~~~}=>Object
+  				//$("#msg").html(JSON.stringify(result));
+  			//},
+  			error : function(){alert("error");}
+  		});
+  		$("#msg").css("display","block");
+  		$("#formDiv").css("display","none");
+  	}
+  	function resultHTML(result){
+  		var tbl="<table class='table'>";
+  		tbl+="<tr>";
+  		tbl+="<td>번호</td>";
+  		tbl+="<td>제목</td>";
+  		tbl+="<td>작성자</td>";
+  		tbl+="<td>작성일</td>";
+  		tbl+="<td>조회수</td>";
+  		tbl+="</tr>";
+		
+  		// 반복문 함수
+  		$.each(result,function(index,data){ // 람다식은 function()대신 ()=>{}
+	  		tbl+="<tr>";
+	  		tbl+="<td>"+data.idx+"</td>";
+	  		tbl+="<td id='t"+data.idx+"'><a href='${cpath}/get?idx="+data.idx+"'>"+data.title+"</a></td>";
+	  		tbl+="<td>"+data.writer+"</td>";
+	  		tbl+="<td>"+data.indate.split(' ')[0]+"</td>";
+	  		tbl+="<td id='cnt"+data.idx+"'>"+data.count+"</td>";
+	  		tbl+="</tr>";
+	  		
+	  		tbl+="<tr id='c"+data.idx+"' style='display:none;'>";
+	  		tbl+="<td>내용</td>";
+	  		tbl+="<td colspan='2'>";
+	  		tbl+="<textarea id='ta"+data.idx+"' rows='7' readonly='readonly' class='form-control'>"+data.content+"</textarea>"
+	  		tbl+="</td>";
+	  		tbl+="<td colspan='2'>";
+	        tbl+="<span id='b"+data.idx+"'><button class='btn btn-sm btn-info' onclick='goUpdate("+data.idx+")'>수정</button></span>";
+	  		tbl+="&nbsp;&nbsp;";
+	  		tbl+="<button class='btn btn-sm btn-warning' onclick='goDel("+data.idx+")'>삭제</button>";
+	  		tbl+="</td>";
+	  		tbl+="</tr>";
+		});
+  		
+  		tbl+="</table>";
+  		$("#msg").html(tbl);
+  	}
+  	function goUpdate(idx) {
+  		// 1. 제목부분 수정
+  		var title = $("#t"+idx).text();
+  		var newTitle = "<input type='text' class='form-control' id='nt"+idx+"' value='"+title+"'/>";
+  		$("#t"+idx).html(newTitle);
+  		// 2. textarea 속성 수정
+        $("#ta"+idx).attr("readonly",false);
+        // 3. 수정 -> 수정하기 변경
+        var newBtn="<button class='btn btn-sm btn-success' onclick='update("+idx+")'>수정하기</button>";
+        $("#b"+idx).html(newBtn);
+  	}
+  	function update(idx) {
+  		var title = $("#nt"+idx).val();
+  		var content = $("#ta"+idx).val();
+  		//var reqData = "{'idx': idx,'title':title,'content':content}";
+  		$.ajax({
+  			url : "${cpath}/api/boards",
+  			type : "PUT",
+  			contentType : "application/json;charset=utf-8",
+  			//data : reqData,
+  			data : JSON.stringify({"idx":idx,"title":title,"content":content}),
+  			success : loadList,
+  			error : function(){alert("error");}
+  		});
+  	}
+  	function goDel(idx) {
+  		// ${cpath}/api/boards/idx  --> @PathVariable("idx")
+  		$.ajax({
+  			url : "${cpath}/api/boards/"+idx,
+  			type : "DELETE",
+  			success : loadList,
+  			error : function(){alert("error");}
+  		});
+  	}
+  	function goView(idx){
+  		if($("#c"+idx).css("display")=="none"){
+  		$("#c"+idx).css("display","table-row");
+  		}else{
+  		$("#c"+idx).css("display","none");
+  		// 조회수 누적
+  		$.ajax({
+  			url : "${cpath}/api/boards/"+idx,
+  			type : "GET",
+  			dataType : "json",
+  			success : function(obj){ // Board : {			,"count":3}
+  				$("#cnt"+idx).text(obj.count);
+  			},
+  			error : function(){alert("error");}
+  			});
+  		}
+  	}
+  </script>
+>>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -417,7 +548,8 @@
 			<table style="width: 100%">
 			   <tr>
 			     <td colspan="2"><h1>게시판</h1></td>
-			     <td style="text-align: right;"><button class="write">글쓰기</button></td>
+			     <td style="text-align: right;"><button type="button" class="btn btn-sm btn-primary"
+						onclick="location.href='${cpath}/register2'">글쓰기</button></td>
 			   </tr>
 			    <tr>
 			     <td>
