@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
 import kr.smhrd.entity.Approval_auth;
+import kr.smhrd.entity.Commuting;
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.UpApproval;
 import kr.smhrd.entity.ViewApproval;
@@ -55,21 +56,5 @@ public class ApprovalController {
 	public String inser(Approval_auth app) {
 		approvalService.inser(app);
 		return "redirect:/approvaln";
-	}
-	@RequestMapping("/profile")
-	public String profile() {
-		return "smart/profile";
-	}
-	@RequestMapping("/mail")
-	public String mail() {
-		return "smart/mail";
-	}
-	@RequestMapping("/member")
-	public String member() {
-		return "member/member";
-	}
-	@RequestMapping("/calender")
-	public String calender() {
-		return "smart/calender";
 	}
 }
