@@ -21,5 +21,13 @@
 	<update id="lcomm" parameterType="kr.smhrd.entity.Commuting">
 		update member set member_status = 0 where member_id = #{member_id}
 	</update>
+	
+	<select id="getall" resultType="kr.smhrd.entity.AllMember">
+		select m.*, g.g_arrive, g.g_leave from member m, commuting g where g.member_id = m.member_id
+	</select>
 
+	<delete id="del" parameterType="kr.smhrd.entity.AllMember">
+		delete from member where member_id = #{member_id}
+	</delete>
+	
 </mapper>

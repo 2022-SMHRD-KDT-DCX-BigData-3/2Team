@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.smhrd.entity.AllMember;
 import kr.smhrd.entity.Commuting;
+import kr.smhrd.entity.Member;
 import kr.smhrd.mapper.CommutingMapper;
 
 @Service
@@ -32,5 +34,14 @@ public class CommutingService {
 		System.out.println(comm.getMember_id());
 		commutingMapper.ecomm(comm);
 		commutingMapper.lcomm(comm);
+	}
+	
+	public List<AllMember> getall(){
+		List<AllMember> sele = commutingMapper.getall();
+		return sele;
+	}
+	
+	public void del(int member_id) {
+		commutingMapper.del(member_id);
 	}
 }
