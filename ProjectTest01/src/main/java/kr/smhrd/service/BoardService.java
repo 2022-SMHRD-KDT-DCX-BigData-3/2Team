@@ -15,9 +15,9 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	// 전체 리스트를 가져오는 메서드
-	public List<Board> getList(){
+	public List<Board> listget(){
 		// 비즈니스로직을 처리하기위해서..
-		List<Board> list = boardMapper.getList();
+		List<Board> list = boardMapper.listget();
 		return list;
 	}
 	// 글 저장 메서드 만들기
@@ -25,10 +25,10 @@ public class BoardService {
 		//추가로직처리~
 		boardMapper.insert(vo);
 	}
-	public Board get(int idx) {
+	public Board getview(int idx) {
 		// 조회수를 1증가 ~~
 		boardMapper.countUpdate(idx);
-		Board vo = boardMapper.read(idx);
+		Board vo = boardMapper.getview(idx);
 		return vo;
 	}
 	public int remove(int idx) {
@@ -36,8 +36,5 @@ public class BoardService {
 	}
 	public void modify(Board vo) {
 		boardMapper.update(vo);
-	}
-	public Member login(Member vo) {
-		return boardMapper.login(vo);
 	}
 }

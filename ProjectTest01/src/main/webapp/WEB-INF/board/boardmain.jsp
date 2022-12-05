@@ -71,7 +71,7 @@
   		$("#formDiv").css("display","none");
   	}
   	function resultHTML(result){
-  		var tbl="<table class='table'>";
+  		var Board="<table class='table'>";
   		tbl+="<tr>";
   		tbl+="<td>번호</td>";
   		tbl+="<td>제목</td>";
@@ -83,22 +83,22 @@
   		// 반복문 함수
   		$.each(result,function(index,data){ // 람다식은 function()대신 ()=>{}
 	  		tbl+="<tr>";
-	  		tbl+="<td>"+data.idx+"</td>";
-	  		tbl+="<td id='t"+data.idx+"'><a href='${cpath}/get?idx="+data.idx+"'>"+data.title+"</a></td>";
-	  		tbl+="<td>"+data.writer+"</td>";
-	  		tbl+="<td>"+data.indate.split(' ')[0]+"</td>";
-	  		tbl+="<td id='cnt"+data.idx+"'>"+data.count+"</td>";
+	  		tbl+="<td>${list.b_seq}</td>";
+	  		tbl+="<td id='t"+${list.b_seq}+"'><a href='${cpath}/getview?b_seq=${list.b_seq}'>"+${list.b_title}+"</a></td>";
+	  		tbl+="<td>${list.b_title}</td>";
+	  		tbl+="<td>${list.b_date}</td>";
+	  		tbl+="<td id='cnt"+${list.b_seq}+"'>"+${list.b_cnt}+"</td>";
 	  		tbl+="</tr>";
 	  		
-	  		tbl+="<tr id='c"+data.idx+"' style='display:none;'>";
+	  		tbl+="<tr id='c"+${list.b_seq}+"' style='display:none;'>";
 	  		tbl+="<td>내용</td>";
 	  		tbl+="<td colspan='2'>";
-	  		tbl+="<textarea id='ta"+data.idx+"' rows='7' readonly='readonly' class='form-control'>"+data.content+"</textarea>"
+	  		tbl+="<textarea id='ta"+${list.b_seq}+"' rows='7' readonly='readonly' class='form-control'>"+${list.b_content}+"</textarea>"
 	  		tbl+="</td>";
 	  		tbl+="<td colspan='2'>";
-	        tbl+="<span id='b"+data.idx+"'><button class='btn btn-sm btn-info' onclick='goUpdate("+data.idx+")'>수정</button></span>";
+	        tbl+="<span id='b"+${list.b_seq}+"'><button class='btn btn-sm btn-info' onclick='goUpdate("+${list.b_seq}+")'>수정</button></span>";
 	  		tbl+="&nbsp;&nbsp;";
-	  		tbl+="<button class='btn btn-sm btn-warning' onclick='goDel("+data.idx+")'>삭제</button>";
+	  		tbl+="<button class='btn btn-sm btn-warning' onclick='goDel("+${list.b_seq}+")'>삭제</button>";
 	  		tbl+="</td>";
 	  		tbl+="</tr>";
 		});
@@ -106,52 +106,52 @@
   		tbl+="</table>";
   		$("#msg").html(tbl);
   	}
-  	function goUpdate(idx) {
+  	function goUpdate(${list.b_seq}) {
   		// 1. 제목부분 수정
-  		var title = $("#t"+idx).text();
-  		var newTitle = "<input type='text' class='form-control' id='nt"+idx+"' value='"+title+"'/>";
-  		$("#t"+idx).html(newTitle);
+  		var title = $("#t"+${list.b_seq}).text();
+  		var newTitle = "<input type='text' class='form-control' id='nt"+${list.b_seq}+"' value='"+${list.b_title}+"'/>";
+  		$("#t"+${list.b_seq}).html(newTitle);
   		// 2. textarea 속성 수정
-        $("#ta"+idx).attr("readonly",false);
+        $("#ta"+${list.b_seq}).attr("readonly",false);
         // 3. 수정 -> 수정하기 변경
-        var newBtn="<button class='btn btn-sm btn-success' onclick='update("+idx+")'>수정하기</button>";
-        $("#b"+idx).html(newBtn);
+        var newBtn="<button class='btn btn-sm btn-success' onclick='update("+${list.b_seq}+")'>수정하기</button>";
+        $("#b"+${list.b_seq}).html(newBtn);
   	}
-  	function update(idx) {
-  		var title = $("#nt"+idx).val();
-  		var content = $("#ta"+idx).val();
+  	function update(${list.b_seq}) {
+  		var title = $("#nt"+${list.b_seq}).val();
+  		var content = $("#ta"+${list.b_seq}).val();
   		//var reqData = "{'idx': idx,'title':title,'content':content}";
   		$.ajax({
   			url : "${cpath}/api/boards",
   			type : "PUT",
   			contentType : "application/json;charset=utf-8",
   			//data : reqData,
-  			data : JSON.stringify({"idx":idx,"title":title,"content":content}),
+  			data : JSON.stringify({"${list.b_seq}":${list.b_seq},"${list.b_title}":${list.b_title},"${list.b_content}":${list.b_content}}),
   			success : loadList,
   			error : function(){alert("error");}
   		});
   	}
-  	function goDel(idx) {
+  	function goDel(${list.b_seq}) {
   		// ${cpath}/api/boards/idx  --> @PathVariable("idx")
   		$.ajax({
-  			url : "${cpath}/api/boards/"+idx,
+  			url : "${cpath}/api/boards/"+${list.b_seq},
   			type : "DELETE",
   			success : loadList,
   			error : function(){alert("error");}
   		});
   	}
-  	function goView(idx){
-  		if($("#c"+idx).css("display")=="none"){
-  		$("#c"+idx).css("display","table-row");
+  	function goView(${list.b_seq}){
+  		if($("#c"+${list.b_seq}).css("display")=="none"){
+  		$("#c"+${list.b_seq}).css("display","table-row");
   		}else{
-  		$("#c"+idx).css("display","none");
+  		$("#c"+${list.b_seq}).css("display","none");
   		// 조회수 누적
   		$.ajax({
-  			url : "${cpath}/api/boards/"+idx,
+  			url : "${cpath}/api/boards/"+${list.b_seq},
   			type : "GET",
   			dataType : "json",
   			success : function(obj){ // Board : {			,"count":3}
-  				$("#cnt"+idx).text(obj.count);
+  				$("#cnt"+${list.b_seq}).text(obj.count);
   			},
   			error : function(){alert("error");}
   			});
