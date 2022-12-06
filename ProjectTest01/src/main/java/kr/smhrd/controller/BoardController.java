@@ -39,7 +39,7 @@ public class BoardController {
 		return "board/register2";
 	}
 	@GetMapping("/boardremove")
-	public String boardremove(@RequestParam("b_seq") int b_seq, RedirectAttributes rttr) {
+	public String boardremove(int b_seq, RedirectAttributes rttr) {
 		rttr.addFlashAttribute("result", boardService.boardremove(b_seq));
 		return "redirect:/list";
 	}
