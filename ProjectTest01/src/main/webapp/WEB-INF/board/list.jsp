@@ -29,6 +29,7 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link href="css/board.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -205,7 +206,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="assets/img/pro.png" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">${user.MEMBER_NAME}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -451,35 +452,38 @@
       </nav>
     </div><!-- End Page Title -->
 		
-    <section class="section profile">
-    	<div id="wrap">
-
-		<div class="panel-body">
-			<table class="table table-bordered table-hover">
-				<tr>
-					<td>번호</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>작성일</td>
-					<td>조회수</td>
-				</tr>
-				<c:forEach var="list" items="${list}">
+	<section class="notice">
+	   
+	  <!-- board list area -->
+	    <div id="board-list">
+	        <div class="container">
+	            <table class="board-table">
+	                <thead>
+	                <tr>
+	                    <th scope="col" class="th-num">번호</th>
+	                    <th scope="col" class="th-title">제목</th>
+	                    <th scope="col" class="th-writer">작성자</th>
+	                    <th scope="col" class="th-date">작성일</th>
+	                    <th scope="col" class="th-cnt">조회수</th>
+	                </tr>
+	                </thead>
+	                <tbody>
+	                <c:forEach var="list" items="${list}">
 					<form action="getview" method="post">
-					<tr>
-						<td>${list.b_seq}</td>
-						<td><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></td>
-						<td>${list.member_id}</td>
-						<td>날짜</td>
-						<td>${list.b_cnt}</td>
-					</tr>
-					</form>
-				</c:forEach>
-			</table>
-			<button class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register'">글쓰기</button>
-		</div>
+	                <tr>
+	                    <td>${list.b_seq}</td>
+	                    <th><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></th>
+	                    <td>${list.member_name}</td>
+	                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
+	                    <td>${list.b_cnt}</td>
+	                </tr>
+	                </form>
+					</c:forEach>
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
 		
-
-		</div>
 	</section>
 
   </main><!-- End #main -->

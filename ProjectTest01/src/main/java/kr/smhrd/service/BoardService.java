@@ -30,8 +30,9 @@ public class BoardService {
 		Board vo = boardMapper.getview(b_seq);
 		return vo;
 	}
-	public int boardremove(int b_seq) {
-		return boardMapper.boardremove(b_seq);
+	public void boardremove(int b_seq) {
+		boardMapper.boardremove(b_seq);
+		boardMapper.commentsremove(b_seq);
 	}
 	public void boardmodify(Board vo) {
 		boardMapper.boardmodify(vo);

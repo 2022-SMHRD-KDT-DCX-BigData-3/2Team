@@ -16,7 +16,7 @@ import kr.smhrd.entity.Board;
 public interface BoardMapper {
 
 	// 전체 리스트 가져오기 메서드
-		public List<Board> listget();
+	public List<Board> listget();
 	
 	// 게시판 게시물 가져오기 메서드
 	public Board getview(int b_seq);
@@ -27,6 +27,9 @@ public interface BoardMapper {
 	
 	// 게시물 삭제
 	public int boardremove(int b_seq);
+
+	// 댓글 삭제
+	public int commentsremove(int b_seq);
 	
 	// 게시물 수정
 	public void boardmodify(Board vo);
