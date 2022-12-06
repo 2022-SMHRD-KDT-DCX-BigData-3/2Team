@@ -43,9 +43,9 @@ public class BoardController {
 		rttr.addFlashAttribute("result", boardService.boardremove(b_seq));
 		return "redirect:/list";
 	}
-	@PostMapping("/boardmodify")
+	@GetMapping("/boardmodify")
 	public String boardmodify(Board vo) {
 		boardService.boardmodify(vo);
-		return "redirect:/list";
+		return "board/modify";
 	}
 }

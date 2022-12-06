@@ -40,11 +40,11 @@
 				var formObj=$("#frm");
 				var oper=$(this).data("oper");
 				if (oper=='modify'){
-					formObj.attr("action","${cpath}/boardmodify"); // idx
+					formObj.attr("action","/boardmodify"); // idx
 				} else if (oper=='remove'){
-					formObj.attr("action","${cpath}/boardremove"); // idx
+					formObj.attr("action","/boardremove"); // idx
 				} else {
-					formObj.attr("action","${cpath}/list");
+					formObj.attr("action","/list");
 				}
 				formObj.submit(); // form 전송
 			});
@@ -473,23 +473,23 @@
     	<div class="container">
 			<div class="panel-body">
 				<form id="frm" class="form-horizontal">
-				<input type="hidden" name="idx" value="${vo.b_seq}"/>
+				<input type="hidden" name="b_seq" value="${vo.b_seq}"/>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="title">제목:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" value="${vo.b_title}" readonly="readonly">
+							<input type="text" name="b_title" class="form-control" value="${vo.b_title}" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="content">내용:</label>
 						<div class="col-sm-10">
-							<textarea rows="10" class="form-control" readonly="readonly" style="resize: none;">${vo.b_content}</textarea>
+							<textarea rows="10" name="b_content" class="form-control" readonly="readonly" style="resize: none;">${vo.b_content}</textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="writer">작성자:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" value="${vo.member_name}" readonly="readonly">
+							<input type="text" name="member_id" class="form-control" value="${vo.member_id}" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
