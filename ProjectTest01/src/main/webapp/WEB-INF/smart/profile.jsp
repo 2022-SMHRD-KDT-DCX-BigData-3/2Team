@@ -324,8 +324,56 @@
 
               <img src="assets/img/pro.png" alt="Profile" class="rounded-circle">
               <br>
-              <h3>${user.DEPART_CODE }</h3><!-- department -->
-              <h3>${user.RANK_CODE }</h3><!-- rank -->
+          <%--     <h3>${user.DEPART_CODE }</h3><!-- department -->
+              <h3>${user.RANK_CODE }</h3><!-- rank --> --%>
+              <c:if test="${user.DEPART_CODE eq '1'}">
+              	<span>비서실</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '2'}">
+              	<span>인사부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '3'}">
+              	<span>총무부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '4'}">
+              	<span>생산부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '5'}">
+              	<span>홍보부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '6'}">
+              	<span>관리부</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '1'}">
+              	<span>사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '2'}">
+              	<span>부사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '3'}">
+              	<span>전무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '4'}">
+              	<span>상무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '5'}">
+              	<span>이사</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '6'}">
+              	<span>부장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '7'}">
+              	<span>차장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '8'}">
+              	<span>과장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '9'}">
+              	<span>대리</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '10'}">
+              	<span>사원</span>
+              </c:if>
               <h2>${user.MEMBER_NAME }</h2><!-- name -->
             </div>
           </div>
@@ -342,7 +390,7 @@
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">기본정보</button>
                 </li>
-
+             
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">정보수정</button>
                 </li>
@@ -365,12 +413,59 @@
                   
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">부서</div>
-                    <div class="col-lg-9 col-md-8"></div>
+                    <div class="col-lg-9 col-md-8">   
+                    <c:if test="${user.DEPART_CODE eq '1'}">
+              	<span>비서실</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '2'}">
+              	<span>인사부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '3'}">
+              	<span>총무부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '4'}">
+              	<span>생산부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '5'}">
+              	<span>홍보부</span>
+              </c:if>
+              <c:if test="${user.DEPART_CODE eq '6'}">
+              	<span>관리부</span>
+              </c:if></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">직급</div>
-                    <div class="col-lg-9 col-md-8">직급</div>
+                    <div class="col-lg-9 col-md-8"> <c:if test="${user.RANK_CODE eq '1'}">
+              	<span>사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '2'}">
+              	<span>부사장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '3'}">
+              	<span>전무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '4'}">
+              	<span>상무</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '5'}">
+              	<span>이사</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '6'}">
+              	<span>부장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '7'}">
+              	<span>차장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '8'}">
+              	<span>과장</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '9'}">
+              	<span>대리</span>
+              </c:if>
+              <c:if test="${user.RANK_CODE eq '10'}">
+              	<span>사원</span>
+              </c:if></div>
                   </div>
 
                   <div class="row">
@@ -398,8 +493,8 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form action="/update" method="post">
-                  <input type="hidden" name="MEMBER_id" value="${user}"/>
+                  <form action="${capth}/update" method="post">
+                  <input type="hidden" name="MEMBER_id" value="${user.MEMBER_id}"/>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 사진</label>
                       <div class="col-md-8 col-lg-9">
@@ -414,44 +509,39 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">이름</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" name="MEMBER_NAME" value="${user.MEMBER_NAME}">
+                        <input type="text" class="form-control" name="MEMBER_NAME">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">부서</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" name="DEPART_CODE" value="${user.DEPART_CODE}">
+                        <input  type="text" class="form-control" name="DEPART_CODE" >
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">직급</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" name="RANK_CODE" value="${user.RANK_CODE}">
+                        <input  type="text" class="form-control" name="RANK_CODE" >
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">주소</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" name="MEMBER_ADDRESS" value="${user.MEMBER_ADDRESS}">
+                        <input  type="text" class="form-control" name="MEMBER_ADDRESS">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">핸드폰</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" name="MEMBER_PHONE" value="${user.MEMBER_PHONE}">
+                        <input type="text" class="form-control" name="MEMBER_PHONE">
                       </div>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="smart@smhrd.com">
-                      </div>
-                    </div>
+       
 
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">저장하기</button>
@@ -459,29 +549,31 @@
                   </form><!-- End Profile Edit Form -->
 
                 </div>
-
+				
+                
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
+                   <form action="${capth}/pwUpd" method="post">
+                   <input type="hidden" name="MEMBER_id" value="${user.MEMBER_id}"/>
 
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">현재 비밀번호</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
+                        <input name="password" type="password" class="form-control">
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="row mb-3">
                       <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                        <input name="MEMBER_PW" type="password" class="form-control">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                        <input name="MEMBER_PW" type="password" class="form-control">
                       </div>
                     </div>
 

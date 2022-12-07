@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.aspectj.lang.annotation.SuppressAjWarnings;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -87,6 +86,7 @@ public class SocketHandler extends TextWebSocketHandler {
 			map.put(session.getId(), session);
 			rls.add(map);
 		}
+		
 		//세션등록이 끝나면 발급받은 세션ID값의 메시지를 발송한다.
 		JSONObject obj = new JSONObject();
 		obj.put("type", "getId");
