@@ -39,20 +39,17 @@
 				// alert -> 팝업창
 				var formObj=$("#frm");
 				var oper=$(this).data("oper");
-				if (oper=='modify') {
-					formObj.attr("method", "post");
-					formObj.attr("action","${cpath}/board/modify"); // idx
-				} else if (oper=='reset') {
-					formObj[0].reset();
-					return;
+				if (oper=='modify'){
+					formObj.attr("action","/boardmodify"); // idx
+				} else if (oper=='remove'){
+					formObj.attr("action","/boardremove"); // idx
 				} else {
-					formObj.attr("method", "get");
-					formObj.attr("action","${cpath}/board/list");
+					formObj.attr("action","/list");
 				}
 				formObj.submit(); // form 전송
 			});
 		});
-	</script>
+</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -473,35 +470,43 @@
     </div><!-- End Page Title -->
 		
     <section class="section profile">
-    	<div class="panel-body">
-			<form id="frm" class="form-horizontal">
-			<input type="hidden" name="idx" value="${vo.b_seq}"/>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="title">제목:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="title" value="${vo.b_title}">
+    	<div class="container">
+			<div class="panel-body">
+				<form id="frm" class="form-horizontal">
+				<input type="hidden" name="b_seq" value="${vo.b_seq}"/>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="title">제목:</label>
+						<div class="col-sm-10">
+							<input type="text" name="b_title" class="form-control" value="${vo.b_title}" readonly="readonly">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="content">내용:</label>
-					<div class="col-sm-10">
-						<textarea rows="10" class="form-control" name="content">${vo.b_content}</textarea>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="content">내용:</label>
+						<div class="col-sm-10">
+							<textarea rows="10" name="b_content" class="form-control" readonly="readonly" style="resize: none;">${vo.b_content}</textarea>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="writer">작성자:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" value="${vo.member_name}" readonly="readonly">
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="writer">작성자:</label>
+						<div class="col-sm-10">
+							<input type="text" name="member_id" class="form-control" value="${vo.member_id}" readonly="readonly">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="button" data-oper="modify" class="btn btn-primary">수정</button>
-						<button type="button" data-oper="reset" class="btn btn-warning">취소</button>
-						<button type="button" data-oper="list" class="btn btn-success">목록</button>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<c:if test="${user.MEMBER_id eq vo.member_id}">
+								<button type="button" data-oper="modify" class="btn btn-primary">수정</button>
+								<button type="button" data-oper="remove" class="btn btn-warning">삭제</button>
+							</c:if>
+							<c:if test="${user.MEMBER_id ne vo.member_id}">
+								<button type="button" disabled="disabled" data-oper="modify" class="btn btn-primary">수정</button>
+								<button type="button" disabled="disabled" data-oper="remove" class="btn btn-warning">삭제</button>
+							</c:if>
+							<button type="button" data-oper="list" class="btn btn-success">목록</button>
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</section>
 
