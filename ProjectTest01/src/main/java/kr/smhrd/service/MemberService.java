@@ -23,8 +23,11 @@ public Member login(Member vo) {
 	return memberRepository.login(vo.getMEMBER_id(), vo.getMEMBER_PW());
   }
 
-public void memmodify(Member mem) {
-	memberMapper.memmodify(mem);
+public void upd(Member mem) {
+	memberMapper.upd(mem);
+}
+public void pupd(Member mem) {
+	memberMapper.pupd(mem);
 }
 
 

@@ -2,12 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="kr.smhrd.mapper.MemberMapper">
 
-	<update id="memModify" parameterType="Member">
+	<update id="upd" parameterType="Member">
 		update Member set 
 		MEMBER_NAME=#{MEMBER_NAME},
 		DEPART_CODE=#{DEPART_CODE},
 		MEMBER_ADDRESS=#{MEMBER_ADDRESS},
 		MEMBER_PHONE=#{MEMBER_PHONE} 
+		where MEMBER_id=#{MEMBER_id}
+	</update>
+	
+	<update id="pupd" parameterType="Member">
+		update Member set
+		MEMBER_PW=#{MEMBER_PW}
 		where MEMBER_id=#{MEMBER_id}
 	</update>
 	

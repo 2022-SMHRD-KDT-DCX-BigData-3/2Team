@@ -43,12 +43,17 @@ public class UserController {
 		return "redirect:/";
 	}
 	@PostMapping("/update")
-	public String modify(Member mem) {
-		memberService.memmodify(mem);
-		return "redirect:/smart/profile";
+	public String upd(Member mem) {
+		memberService.upd(mem);
+		return "redirect:/logout";
 	}
 	@RequestMapping("/main")
 	public String main() {
 		return "smart/main";
 	}
+	@PostMapping("/pwUpd")
+	public String pupd(Member mem) {
+		return"redirect:/logout";
+	}
+	
 }

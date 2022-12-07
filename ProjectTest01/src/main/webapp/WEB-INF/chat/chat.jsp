@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="css/chat.css" rel="stylesheet">
 <meta charset="UTF-8">
-	<title>Chating</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
 <!-- Favicons -->
 <link href="assets/img/favicon.png" rel="icon">
 <!-- Google Fonts -->
@@ -23,143 +23,82 @@
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-<!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
-	<style>
-	
-		*{
-			margin:0;
-			padding:0;
-			
-		}
-		.container{
-			width: 500px;
-			margin: 0 auto;
-			padding: 25px
-		}
-		.container h1{
-			text-align: left;
-			padding: 5px 5px 5px 15px;
-			color: #87cefa;
-			border-left: 3px solid #87cefa;
-			margin-bottom: 20px;
-		}
-		.chating{
-			background-color: #000;
-			width: 500px;
-			height: 500px;
-			overflow: auto;
-		}
-		.chating .me{
-			color: #F6F6F6;
-			text-align: right;
-		}
-		.chating .others{
-			color: #FFE400;
-			text-align: left;
-		}
-		input{
-			width: 400px;
-			height: 25px;
-		}
-		#yourMsg{
-			display: none;
-		}
-	</style>
+
+	<title>Chating</title>
 </head>
 
 <script type="text/javascript">
-var ws;
+	var ws;
+	var now = new Date();
+	var minutes = now.getMinutes();
+	var hours = now.getHours();
 
-function wsOpen(){
-	//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-	ws = new WebSocket("ws://" + location.host + "/chating/"+$("#roomNumber").val());
-	wsEvt();
-}
-	
-function wsEvt() {
-	ws.onopen = function(data){
-		//소켓이 열리면 동작
+	function wsOpen(){
+		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
+		ws = new WebSocket("ws://" + location.host + "/chating/"+$("#roomNumber").val());
+		wsEvt();
 	}
-	
-	ws.onmessage = function(data) {
-		//메시지를 받으면 동작
-		var msg = data.data;
-		if(msg != null && msg.type != ''){
-			//파일 업로드가 아닌 경우 메시지를 뿌려준다.
-			var d = JSON.parse(msg);
-			if(d.type == "getId"){
-				var si = d.sessionId != null ? d.sessionId : "";
-				if(si != ''){
-					$("#sessionId").val(si); 
-				}
-			}else if(d.type == "message"){
-				if(d.sessionId == $("#sessionId").val()){
-					$("#chating").append("<p class='me'>나 :" + d.msg + "</p>");	
+		
+	function wsEvt() {
+		ws.onopen = function(data){
+			//소켓이 열리면 동작
+		}
+		
+		ws.onmessage = function(data) {
+			//메시지를 받으면 동작
+			var msg = data.data;
+			if(msg != null && msg.trim() != ''){
+				var d = JSON.parse(msg);
+				if(d.type == "getId"){
+					var si = d.sessionId != null ? d.sessionId : "";
+					if(si != ''){
+						$("#sessionId").val(si); 
+					}
+				}else if(d.type == "message"){
+					if(d.sessionId == $("#sessionId").val()){
+						$("#chating").append("<div class='mine messages'><p class='message'>" + d.msg + "</p><span class='time'>"+hours+"시"+minutes
+								+"분"+"</span></div>");	
+					}else{
+						$("#chating").append("<div class='yours messages'><p class='message'>"+d.userName + ": "+ d.msg + "</p><span class='time'>"+hours+"시"+minutes
+								+"분"+"</span></div>");
+					}
+						
 				}else{
-					$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+					console.warn("unknown type!")
 				}
-					
-			}else{
-				console.warn("unknown type!")
 			}
+		}
+
+		document.addEventListener("keypress", function(e){
+			if(e.keyCode == 13){ //enter press
+				send();
+			}
+		});
+	}
+
+	function chatName(){
+		var userName = $("#userName").val();
+		if(userName == null || userName.trim() == ""){
+			alert("사용자 이름을 입력해주세요.");
+			$("#userName").focus();
 		}else{
-			//파일 업로드한 경우 업로드한 파일을 채팅방에 뿌려준다.
-			var url = URL.createObjectURL(new Blob([msg]));
-			$("#chating").append("<div class='img'><img class='msgImg' src="+url+"></div><div class='clearBoth'></div>");
+			wsOpen();
+			$("#yourName").hide();
+			$("#yourMsg").show();
 		}
 	}
 
-	document.addEventListener("keypress", function(e){
-		if(e.keyCode == 13){ //enter press
-			send();
-		}
-	});
-}
-
-function chatName(){
-	var userName = $("#userName").val();
-	if(userName == null || userName.trim() == ""){
-		alert("사용자 이름을 입력해주세요.");
-		$("#userName").focus();
-	}else{
-		wsOpen();
-		$("#yourName").hide();
-		$("#yourMsg").show();
-	}
-}
-
-function send() {
-	var option ={
-		type: "message",
-		roomNumber: $("#roomNumber").val(),
-		sessionId : $("#sessionId").val(),
-		userName : $("#userName").val(),
-		msg : $("#chatting").val()
-	}
-	ws.send(JSON.stringify(option))
-	$('#chatting').val("");
-}
-
-function fileSend(){
-	var file = document.querySelector("#fileUpload").files[0];
-	var fileReader = new FileReader();
-	fileReader.onload = function() {
-		var param = {
-			type: "fileUpload",
-			file: file,
+	function send() {
+		var option ={
+			type: "message",
 			roomNumber: $("#roomNumber").val(),
 			sessionId : $("#sessionId").val(),
-			msg : $("#chatting").val(),
-			userName : $("#userName").val()
+			userName : $("#userName").val(),
+			msg : $("#chatting").val()
 		}
-		ws.send(JSON.stringify(param)); //파일 보내기전 메시지를 보내서 파일을 보냄을 명시한다.
-
-	    arrayBuffer = this.result;
-		ws.send(arrayBuffer); //파일 소켓 전송
-	};
-	fileReader.readAsArrayBuffer(file);
-}
+		ws.send(JSON.stringify(option))
+		$('#chatting').val("");
+	}
 </script>
 <body>
 <!-- ======= Header ======= -->
@@ -167,8 +106,8 @@ function fileSend(){
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <img src="assets/img/smh.png" alt="">
+        <span class="d-none d-lg-block">Smart Groupware</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -336,7 +275,8 @@ function fileSend(){
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">${user.MEMBER_NAME}</span>
           </a><!-- End Profile Iamge Icon -->
-           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>${user.MEMBER_NAME}</h6>
               <c:if test="${user.DEPART_CODE eq '1'}">
@@ -406,7 +346,7 @@ function fileSend(){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile">
+              <a class="dropdown-item d-flex align-items-center" href="room">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
 	  				<path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
 				  	<path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -419,11 +359,12 @@ function fileSend(){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  					<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+              <a class="dropdown-item d-flex align-items-center" href="calender">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+				  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 				</svg>&nbsp;&nbsp;
-                <span>메일</span>
+                <span>캘린더</span>
               </a>
             </li>
             <li>
@@ -444,7 +385,7 @@ function fileSend(){
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="logout">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 				  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 				  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
@@ -467,7 +408,7 @@ function fileSend(){
     <ul class="sidebar-nav" id="sidebar-nav">
 
 	  <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-chat">
+        <a class="nav-link collapsed" href="room">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
   				<path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
 			  	<path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -476,14 +417,15 @@ function fileSend(){
         </a>
       </li><!-- End chat Nav -->
 
-	  <li class="nav-item">
-        <a class="nav-link collapsed" href="mail">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="calender">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+			  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+			  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 			</svg>&nbsp;&nbsp;
-          <span>메일</span>
+          <span>캘린더</span>
         </a>
-      </li><!-- End mail Nav -->
+      </li><!-- End calender Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="boardmain">
@@ -495,17 +437,15 @@ function fileSend(){
         </a>
       </li><!-- End board Nav -->
 	  
-	  
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="boardmain">
+	  <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
 			  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 			</svg>&nbsp;&nbsp;
-			<span>전자결제</span>
+			<span>전자결재</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
@@ -520,12 +460,18 @@ function fileSend(){
         </ul>
       </li><!-- End Components Nav -->
 
-
-      </li><!-- End Forms Nav -->
-
-
-
       <li class="nav-heading">정보</li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="commuting">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+			  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+			</svg>&nbsp;&nbsp;
+          <span>근태관리</span>
+        </a>
+      </li><!-- End Commuting Page Nav -->
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
@@ -537,28 +483,42 @@ function fileSend(){
       </li><!-- End Profile Page Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="member">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
 			  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
 			</svg>&nbsp;&nbsp;
-          <span>직원관리</span>
+			<span>직원관리</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Member Page Nav -->
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원 정보수정</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End member Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-logout">
+        <a class="nav-link collapsed" href="logout">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 			  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
 			</svg>&nbsp;&nbsp;
-          <span>로그아웃</span>
+         <span>로그아웃</span>
         </a>
+        </form>
       </li><!-- End Logout Page Nav -->
 
     </ul>
 
   </aside><!-- End Sidebar-->
-  <main id="main" class="container">
+
+	<main id="main">
 	<div id="container" class="container">
 		<h1>${roomName}의 채팅방</h1>
 		<input type="hidden" id="sessionId" value="">
@@ -581,17 +541,13 @@ function fileSend(){
 				<tr>
 					<th>메시지</th>
 					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-					<th><button onclick="send()" id="sendBtn">보내기</button></th>
-				</tr>
-				<tr>
-					<th>파일업로드</th>
-					<th><input type="file" id="fileUpload"></th>
-					<th><button onclick="fileSend()" id="sendFileBtn">파일올리기</button></th>
+					<th><button onclick="send()" id="sendBtn"><i class="meterial-icons">send</button></i></th>
 				</tr>
 			</table>
 		</div>
 	</div>
 	</main>
+	
 		<!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
