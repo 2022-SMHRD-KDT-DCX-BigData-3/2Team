@@ -5,9 +5,10 @@
     		color: #4154f1;
     		border-left: 3px solid #4154f1;
     		margin-bottom: 20px;
+    		margin-top: 30px;
 		}
 		.roomContainer{
-			width: 5000px;
+			width: 1000px;
     		height: 300px;
     		overflow: auto;
     		margin-left: 80px;

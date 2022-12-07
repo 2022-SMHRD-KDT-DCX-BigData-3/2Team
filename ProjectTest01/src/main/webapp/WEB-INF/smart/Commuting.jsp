@@ -224,8 +224,8 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
-	  <li class="nav-item">
+    
+      <li class="nav-item">
         <a class="nav-link collapsed" href="commuting">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
 			  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
@@ -265,7 +265,7 @@
         </a>
       </li><!-- End board Nav -->
 	  
-	   <li class="nav-item">
+	  <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -276,30 +276,30 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="approvalp">
+              <i class="bi bi-circle"></i><span>결재신청</span>
+            </a>
+          </li>
+          <li>
             <a href="approvaln">
               <i class="bi bi-circle"></i><span>결재대기 ${ap.apro_status0}</span>
             </a>
           </li>
           <li>
-            <a href="approvaln">
+            <a href="approvald">
               <i class="bi bi-circle"></i><span>결재진행 ${ap.apro_status1}</span>
             </a>
           </li>
           <li>
-            <a href="approvald">
-              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
-            </a>
-          </li>
-          <li>
             <a href="approvale">
-              <i class="bi bi-circle"></i><span>결재신청</span>
+              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
             </a>
           </li>
         </ul>
       </li><!-- End APPROVAL Nav -->
 
       <li class="nav-heading">정보</li>
-
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">

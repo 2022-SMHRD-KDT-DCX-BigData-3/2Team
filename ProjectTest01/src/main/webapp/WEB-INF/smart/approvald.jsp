@@ -250,23 +250,23 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="approvalp">
+              <i class="bi bi-circle"></i><span>결재신청</span>
+            </a>
+          </li>
+          <li>
             <a href="approvaln">
               <i class="bi bi-circle"></i><span>결재대기 ${ap.apro_status0}</span>
             </a>
           </li>
           <li>
-            <a href="approvaln">
+            <a href="approvald">
               <i class="bi bi-circle"></i><span>결재진행 ${ap.apro_status1}</span>
             </a>
           </li>
           <li>
-            <a href="approvald">
-              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
-            </a>
-          </li>
-          <li>
             <a href="approvale">
-              <i class="bi bi-circle"></i><span>결재신청</span>
+              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
             </a>
           </li>
         </ul>
@@ -356,7 +356,7 @@
 									</thead>
 	
 									<c:forEach var="vo" items="${list}">
-										<c:if test="${vo.apro_status == '0'}">
+										<c:if test="${vo.apro_status == '1' || vo.apro_status == '2'}">
 											<tbody>
 												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
 												<tr>
