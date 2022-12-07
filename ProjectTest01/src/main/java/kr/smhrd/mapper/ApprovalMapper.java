@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import kr.smhrd.entity.AllApproval;
+import kr.smhrd.entity.App;
 import kr.smhrd.entity.Approval;
 import kr.smhrd.entity.Approval_auth;
 import kr.smhrd.entity.UpApproval;
@@ -41,4 +42,13 @@ public interface ApprovalMapper {
 	
 	// 휴가결재 등록
 	public void vacation(Approval_auth app);
+	
+	// 결재 대기 개수
+	public int main0();
+
+	// 결재 진행 개수
+	public int main1();
+	
+	// 결재 완료 개수
+	public int main2();
 }

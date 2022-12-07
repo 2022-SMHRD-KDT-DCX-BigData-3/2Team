@@ -32,205 +32,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("input[type='radio']").click(function(e){
-			var data=$(this).val();
-			if(data=="0"){
-				$("h2").html("일반결재");
-				const tableContainer = document.querySelector(".getdiv");
-				tableContainer.innerHTML = `<table class="gettable2 thj">
-  				<tr class="gettr">
-  					<td class="tdnum">문서번호</td>
-  					<td class="tdnum1">${view.appro_id+1}</td>
-  					<td class="tdnum">기안일자</td>
-  					<td class="tdnum1"><input type="text" class="tdin1" placeholder="YYYY-MM-DD"></td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum">기안자</td>
-  					<input type="hidden" name="appro_member_id" value="${user.MEMBER_NAME}">
-  					<input type="hidden" name="member_id" value="${view.member_id}">
-  					<td class="tdnum1">${user.MEMBER_NAME}</td>
-  					<td class="tdnum">기안부서</td>
-  					<td class="tdnum1">${view.depart_name}</td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum2">문서제목</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="appro_title"/></td>
-  				</tr>
-  				<tr class="gettr c1">
-  					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile"><input type="file" name="appro_filename"/></td>
-  				</tr>
-  				<tr class="gettr p1">
-					<td class="tdnum2">지출일</td>
-					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="pay_date" value="NULL"/></td>
-				</tr>
-				<tr class="gettr p2">
-					<td class="tdnum2">지출금액</td>
-					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="pay_cash" value="NULL"/></td>
-				</tr>
-  				<tr class="gettr c2">
-  					<td class="tdnum2">휴가시작일</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="member_stratdate" value="NULL"/></td>
-  				</tr>
-  				<tr class="gettr c3">
-  					<td class="tdnum2">휴가종료일</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="member_enddate" value="NULL"/></td>
-  				</tr>
-  				<tr class="gettr c4">
-					<td class="tdnum2">휴가일</td>
-					<td colspan='3' class="tdfilen"><input type="number" min="0" max="20" class="tdin" name="member_num" value="0"/></td>
-				</tr>
-  				<tr class="gettr1">
-  					<td class="tdnum2">제출사유</td>
-  					<td colspan='3' class="tdfilen"><textarea rows="6" class="tdin" name="appro_content"></textarea></td>
-  				</tr>
-  				<tr class="gettr2 p3">
-					<td colspan='4' class="payz">영수증</td>
-				</tr>
-				<tr class="gettr2 p4">
-					<td colspan='4' class="payc"></td>
-				</tr>
-  			</table>`
-				document.querySelector(".p1").style.display = "none";
-				document.querySelector(".p2").style.display = "none";
-				document.querySelector(".p3").style.display = "none";
-				document.querySelector(".p4").style.display = "none";
-				document.querySelector(".c2").style.display = "none";
-				document.querySelector(".c3").style.display = "none";
-				document.querySelector(".c4").style.display = "none";
-
-			}
-			else if(data=="1"){
-				$("h2").html("지출결재");
-				const tableContainer = document.querySelector(".getdiv");
-				tableContainer.innerHTML = `<table class="gettable2 thj">
-  				<tr class="gettr">
-  					<td class="tdnum">문서번호</td>
-  					<td class="tdnum1">${view.appro_id+1}</td>
-  					<td class="tdnum">기안일자</td>
-  					<td class="tdnum1"><input type="text" class="tdin1" placeholder="YYYY-MM-DD"></td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum">기안자</td>
-  					<input type="hidden" name="appro_member_id" value="${user.MEMBER_NAME}">
-  					<input type="hidden" name="member_id" value="${view.member_id}">
-  					<td class="tdnum1">${user.MEMBER_NAME}</td>
-  					<td class="tdnum">기안부서</td>
-  					<td class="tdnum1">${view.depart_name}</td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum2">문서제목</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="appro_title"/></td>
-  				</tr>
-  				<tr class="gettr c1">
-  					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile"><input type="file" name="appro_filename" value="NULL"/></td>
-  				</tr>
-  				<tr class="gettr p1">
-  					<td class="tdnum2">지출일</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="pay_date"/></td>
-  				</tr>
-  				<tr class="gettr p2">
-  					<td class="tdnum2">지출금액</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="pay_cash"/></td>
-  				</tr>
-  				<tr class="gettr c2">
-  					<td class="tdnum2">휴가시작일</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="member_stratdate" value="NULL"/></td>
-  				</tr>
-  				<tr class="gettr c3">
-  					<td class="tdnum2">휴가종료일</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="member_enddate" value="NULL"/></td>
-  				</tr>
-  				<tr class="gettr c4">
-					<td class="tdnum2">휴가일</td>
-					<td colspan='3' class="tdfilen"><input type="number" min="0" max="20" class="tdin" name="member_num" value="0"/></td>
-				</tr>
-  				<tr class="gettr1">
-  					<td class="tdnum2">제출사유</td>
-  					<td colspan='3' class="tdfilen"><textarea rows="6" class="tdin" name="appro_content"></textarea></td>
-  				</tr>
-  				<tr class="gettr2 p3">
-  					<td colspan='4' class="payz">영수증</td>
-  				</tr>
-  				<tr class="gettr2 p4">
-  					<td colspan='4' class="payc"></td>
-  				</tr>
-  			</table>`
-			document.querySelector(".c1").style.display = "none";
-			document.querySelector(".c2").style.display = "none";
-			document.querySelector(".c3").style.display = "none";
-			document.querySelector(".c4").style.display = "none";
-			}
-			else {
-				$("h2").html("휴가결재");
-				const tableContainer = document.querySelector(".getdiv");
-				tableContainer.innerHTML = `<table class="gettable2 thj">
-  				<tr class="gettr">
-  					<td class="tdnum">문서번호</td>
-  					<td class="tdnum1">${view.appro_id+1}</td>
-  					<td class="tdnum">기안일자</td>
-  					<td class="tdnum1"><input type="text" class="tdin1" placeholder="YYYY-MM-DD"></td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum">기안자</td>
-  					<input type="hidden" name="appro_member_id" value="${user.MEMBER_NAME}">
-  					<input type="hidden" name="member_id" value="${view.member_id}">
-  					<td class="tdnum1">${user.MEMBER_NAME}</td>
-  					<td class="tdnum">기안부서</td>
-  					<td class="tdnum1">${view.depart_name}</td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum2">문서제목</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="appro_title"/></td>
-  				</tr>
-  				<tr class="gettr c1">
-  					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile"><input type="file" name="appro_filename" value="NULL"/></td>
-  				</tr>
-  				<tr class="gettr p1">
-					<td class="tdnum2">지출일</td>
-					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="pay_date" value="NULL"/></td>
-				</tr>
-				<tr class="gettr p2">
-					<td class="tdnum2">지출금액</td>
-					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="pay_cash" value="NULL"/></td>
-				</tr>
-  				<tr class="gettr c2">
-  					<td class="tdnum2">휴가시작일</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="member_stratdate"/></td>
-  				</tr>
-  				<tr class="gettr c3">
-  					<td class="tdnum2">휴가종료일</td>
-  					<td colspan='3' class="tdfilen"><input type="text" class="tdin" name="member_enddate"/></td>
-  				</tr>
-  				<tr class="gettr c4">
-  					<td class="tdnum2">휴가일</td>
-  					<td colspan='3' class="tdfilen"><input type="number" min="0" max="20" class="tdin" name="member_num"/></td>
-  				</tr>
-  				<tr class="gettr1">
-  					<td class="tdnum2">휴가사유</td>
-  					<td colspan='3' class="tdfilen"><textarea rows="6" class="tdin" name="appro_content"></textarea></td>
-  				</tr>
-  				<tr class="gettr2 p3">
-					<td colspan='4' class="payz">영수증</td>
-				</tr>
-				<tr class="gettr2 p4">
-					<td colspan='4' class="payc"></td>
-				</tr>
-  			</table>`
-			document.querySelector(".c1").style.display = "none";
-			document.querySelector(".p1").style.display = "none";
-			document.querySelector(".p2").style.display = "none";
-			document.querySelector(".p3").style.display = "none";
-			document.querySelector(".p4").style.display = "none";
-			}
-		});
-		
-	});
-</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -513,7 +314,7 @@
 
 	<div class="pagetitle">
 		<form id="frm" class="form-horizontal" method="post">
-			     <h1>결재신청</h1></td>
+			     <h1>결재완료</h1></td>
 			     <nav>
 		        <ol class="breadcrumb">
 		          <li class="breadcrumb-item"><a href="http://localhost:9999/main">Home</a></li>
@@ -525,60 +326,83 @@
 	</div><!-- End Page Title -->
 		
     <section class="section profile">
-    	<div class="sect">
-  		<form action="${capth}/approvalp" method="post">
-  		<div style="text-align: right;" class="mbudiv">
-	  		<button class="mbu" type="submit">신청</button>
-	  		<button class="mbu" type="reset">취소</button>
-	  		<button class="mbu" type="button" onclick="location.href='${capth}/approvaln'">목록</button>
-  		</div>
-  		
-  		<div style="text-align: center;">
-	  			<h2>
-	  			</h2>
-  		</div>
-  		
-  			<table class="gettable thj">
-  				<tr class="gra">
-  					<td rowspan='2' class="gratd1">결재</td>
-  					<td class="gratd2">1차 결재자</td>
-  					<td class="gratd2">2차 결재자</td>
-  					<td class="gratd3">3차 결재자</td>
-  				</tr>
-  				<tr class="gar">
-  					<td class="votd1">
-  					<input type="hidden" name="appro_mem1" value="${view.m3_member_name}">
-  					${view.m3_member_name}<br>
-  					${view.rank_name_r3}<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
-  					</td>
-  					<td class="votd1">
-  					<input type="hidden" name="appro_mem2" value="${view.m2_member_name}">
-  					${view.m2_member_name}<br>
-  					${view.rank_name_r2}<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
-  					</td>
-  					<td class="votd2">
-  					<input type="hidden" name="appro_mem3" value="${view.m1_member_name}">
-  					${view.m1_member_name}<br>
-  					${view.rank_name_r1}<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value=""/>
-  					</td>
-  				</tr>
-  			</table>
-  		
-  		<div class="getdiv">
-  			
-  		</div>
-  		<div class="radi">
-			<input type="radio"  name="appro_sort" class="radi1" value="0"/>일반결재
-			<input type="radio"  name="appro_sort" class="radi1" value="1"/>지출결재
-			<input type="radio"  name="appro_sort" class="radi1" value="2"/>휴가결재
-  		</div>
-  		</form>
-  	</div>
+    	<div id="wrap">
+
+		<!--결재리스트 목록 시작-->
+
+		<div id="content">
+			<div class="col-md-13">
+				<div class="box">
+
+					<div class="box-body">
+						<div>
+								
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
+										</tr>
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '2'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
+													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
+									</c:forEach>
+								</table>
+								
+						</div>
+					</div>
+					<div id="pageIndexList" class="text-center">
+					</div>
+				</div>
+				<!-- /.box-footer-->
+			</div>
+		</div>
+		<!--결재리스트 목록 종료-->
+
+	</div>
 	</section>
+
   </main><!-- End #main -->
+
+<script>
+	var result = '${msg}';
+
+	if (result == 'SUCCESS') {
+		alert("처리가 완료되었습니다.");
+	}
+</script>
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
