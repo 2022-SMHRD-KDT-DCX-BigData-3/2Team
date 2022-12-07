@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-package kr.smhrd.service;
+
+/*package kr.smhrd.service;
 
 import java.util.List;
 
@@ -27,8 +27,8 @@ public class ApprovalService {
 		Approval app = approvalMapper.read(appro_id);
 		return app;
 	}
-}
-=======
+}*/
+
 package kr.smhrd.service;
 
 import java.util.List;
@@ -87,4 +87,4 @@ public class ApprovalService {
 		}
 	}
 }
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+

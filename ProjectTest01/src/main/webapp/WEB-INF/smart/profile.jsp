@@ -290,7 +290,7 @@
             </li>
 
             <li>
-<<<<<<< HEAD
+
               <a class="dropdown-item d-flex align-items-center" href="users-profile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
   					<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
@@ -316,8 +316,8 @@
             </li>
 
             <li>
-=======
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
+
               <a class="dropdown-item d-flex align-items-center" href="boardmain">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
 				  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -363,7 +363,7 @@
         </a>
       </li><!-- End chat Nav -->
 
-<<<<<<< HEAD
+
 	  <li class="nav-item">
         <a class="nav-link collapsed" href="mail">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -383,8 +383,7 @@
         </a>
       </li><!-- End calender Nav -->
 
-=======
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="boardmain">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
@@ -405,7 +404,7 @@
 			</svg>&nbsp;&nbsp;
 			<span>전자결재</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-<<<<<<< HEAD
+
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
@@ -419,7 +418,7 @@
           </li>
         </ul>
       </li><!-- End Components Nav -->
-=======
+
 
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -437,7 +436,7 @@
 
 
       </li><!-- End Forms Nav -->
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
 
 
 
@@ -595,7 +594,7 @@
                   </div>
 
                   <div class="row">
-<<<<<<< HEAD
+
                     <div class="col-lg-3 col-md-4 label">은행명</div>
                     <div class="col-lg-9 col-md-8">계좌번호</div>
                   </div>
@@ -603,10 +602,10 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
                     <div class="col-lg-9 col-md-8">Email</div>
-=======
+
                     <div class="col-lg-3 col-md-4 label">생일</div>
                     <div class="col-lg-9 col-md-8">${user.MEMBER_BIRTH}</div>
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
                   </div>
 
                 </div>
@@ -635,8 +634,7 @@
                     </div>
 
                     <div class="row mb-3">
-<<<<<<< HEAD
-=======
+
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">부서</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="job" type="text" class="form-control" name="DEPART_CODE" value="${user.DEPART_CODE}">
@@ -651,7 +649,7 @@
                     </div>
 
                     <div class="row mb-3">
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">주소</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="address" type="text" class="form-control" name="MEMBER_ADDRESS" value="${user.MEMBER_ADDRESS}">

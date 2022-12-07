@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/*
 package kr.smhrd.entity;
 
 import java.util.Date;
@@ -36,8 +36,8 @@ public class Approval {
 	private Date appro_auth_date3;
 	private String appro_cmt;
 	private String apro_status;
-}
-=======
+}*/
+
 package kr.smhrd.entity;
 
 import java.util.Date;
@@ -73,4 +73,4 @@ public class Approval {
 	private String appro_cmt;
 	private String apro_status;
 }
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+

@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-package kr.smhrd.controller;
+
+/*package kr.smhrd.controller;
 
 import java.util.List;
 
@@ -40,8 +40,8 @@ public class ApprovalController {
 	public String get() {
 		return "smart/get";
 	}
-}
-=======
+}*/
+
 package kr.smhrd.controller;
 
 import java.util.List;
@@ -59,7 +59,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.Approval;
 import kr.smhrd.entity.Approval_auth;
-import kr.smhrd.entity.Commuting;
+
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.UpApproval;
 import kr.smhrd.entity.ViewApproval;
@@ -102,4 +102,4 @@ public class ApprovalController {
 		return "redirect:/approvaln";
 	}
 }
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+

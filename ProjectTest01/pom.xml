@@ -135,8 +135,8 @@
 			<artifactId>ojdbc8</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
@@ -148,7 +148,7 @@
 		  <version>1.1.1</version>
 		</dependency>
 		<!-- json simple  -->
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
 	</dependencies>
 
 	<build>

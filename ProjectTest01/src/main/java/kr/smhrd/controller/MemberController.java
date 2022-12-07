@@ -36,8 +36,12 @@ public class MemberController {
 	public String member() {
 		return "member/member";
 	}
-	@RequestMapping("/calender")
-	public String calender() {
-		return "smart/calender";
-	}
+	
+	
+//	 @RequestMapping("/calendar") 
+//	 public String calendar() { 
+//		 return"smart/calendar"; 
+//		 }
+	 
+	 
 }

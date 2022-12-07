@@ -6,8 +6,8 @@
 		select * from APPROVAL
 	</select>
 
-<<<<<<< HEAD
-=======
+
+
 	<select id="read" resultType="kr.smhrd.entity.AllApproval" parameterType="int">
 		select DISTINCT a.*, q.apv_auth_id, q.apv_auth_name, q.apv_time, q.apv_num, md.depart_code,
 		md.depart_name as depart_name1, d1.depart_name as depart_name2, d2.depart_name as depart_name3, d3.depart_name as depart_name4
@@ -67,5 +67,4 @@
 		update member set member_vacation = 1, member_vacation_num = (select member_num-#{member_num} from member where member_id = #{member_id}), member_stratdate = #{member_stratdate}, member_enddate = #{member_enddate}, member_num = #{member_num} where member_id = #{member_id}
 	</update>
 
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
 </mapper>

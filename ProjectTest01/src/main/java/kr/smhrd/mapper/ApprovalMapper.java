@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-package kr.smhrd.mapper;
+
+/*package kr.smhrd.mapper;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public interface ApprovalMapper {
 	
 	// 결재 게시물 가져오기 메서드
 	public Approval read(Long appro_id);
-}
-=======
+}*/
+
 package kr.smhrd.mapper;
 
 import java.util.List;
@@ -65,4 +65,4 @@ public interface ApprovalMapper {
 	// 휴가결재 등록
 	public void vacation(Approval_auth app);
 }
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+

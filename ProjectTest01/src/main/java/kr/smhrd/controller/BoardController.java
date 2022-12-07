@@ -18,6 +18,7 @@ import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Member;
 import kr.smhrd.service.BoardService;
 
+
 @Controller
 public class BoardController {
 	
@@ -60,46 +61,46 @@ public class BoardController {
 		boardService.modify(vo);
 		return "redirect:/list";
 	}
-	@PostMapping("/login")
-	public String login(Member vo, HttpSession session) { // memId, memPwd
-		Member mvo = boardService.login(vo);
-		if (mvo!=null) { // 로그인 성공 => 객체 바인딩 (HttpSession)
-			session.setAttribute("mvo", mvo); // JSP -> ${empty mvo}로그인 실패, ${!empty mvo}로그인 성공
-		}
-		return "redirect:/list"; // <- 여기서 로그인 성공 여부를 체크
-	}
-	@PostMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate(); // 무효화 (로그아웃)
-		return "redirect:/list";
-	}
+	/*
+	 * @PostMapping("/login") public String login(Member vo, HttpSession session) {
+	 * // memId, memPwd Member mvo = boardService.login(vo); if (mvo!=null) { // 로그인
+	 * 성공 => 객체 바인딩 (HttpSession) session.setAttribute("mvo", mvo); // JSP ->
+	 * ${empty mvo}로그인 실패, ${!empty mvo}로그인 성공 } return "redirect:/list"; // <- 여기서
+	 * 로그인 성공 여부를 체크 }
+	 */
+
+	/*
+	 * @PostMapping("/logout") public String logout(HttpSession session) {
+	 * session.invalidate(); // 무효화 (로그아웃) return "redirect:/list"; }
+	 */
 	@GetMapping("/calc")
 	public @ResponseBody List<Board> calc() { // <-- 요청
 		List<Board> list = boardService.getList();
 		return list; // redirect or forward -> 응답(ajax) : Jackson Databind
 	}
-	@RequestMapping("/profile")
-	public String profile() {
-		return "smart/profile";
-	}
+
+	/*
+	 * @RequestMapping("/profile") public String profile() { return "smart/profile";
+	 * }
+	 */
 	@RequestMapping("/mail")
 	public String mail() {
 		return "smart/mail";
 	}
-	@RequestMapping("/member")
-	public String member() {
-		return "member/member";
-	}
+
+	/*
+	 * @RequestMapping("/member") public String member() { return "member/member"; }
+	 */
 	@RequestMapping("/boardmain")
 	public String boardmain() {
 		return "board/boardmain";
 	}
-	@RequestMapping("/calender")
-	public String calender() {
-		return "smart/calender";
-	}
-	@RequestMapping("/login")
-	public String login() {
-		return "smart/login";
-	}
+
+	/*
+	 * @RequestMapping("/calender") public String calender() { return
+	 * "smart/calender"; }
+	 */
+	/*
+	 * @RequestMapping("/login") public String login() { return "smart/login"; }
+	 */
 }
