@@ -52,7 +52,7 @@
 			// var title = $("title").val();
 			var fData = $("#frm").serialize(); // serialize --> title=XXX&content=XXX&writer=XXX
 			$.ajax({
-				url : "${cpath}/api/boards",
+				url : "${cpath}/boards",
 				type : "POST",
 				data : fData,
 				success : loadList,

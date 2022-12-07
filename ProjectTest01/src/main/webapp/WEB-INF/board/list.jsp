@@ -475,7 +475,7 @@
 					</form>
 				</c:forEach>
 			</table>
-			<button class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register'">글쓰기</button>
+			<button class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register2'">글쓰기</button>
 		</div>
 		
 

@@ -11,9 +11,9 @@
 	</select>
 
 	<delete id="boardremove">
-		delete from Board where b_seq=#{b_seq} on delete cascade
+		delete from Board where b_seq=#{b_seq}
 	</delete>
-	
+
 	<update id="boardmodify" parameterType="kr.smhrd.entity.Board">
 		update Board set b_title=#{b_title}, b_content=#{b_content} where b_seq=#{b_seq}
 	</update>
