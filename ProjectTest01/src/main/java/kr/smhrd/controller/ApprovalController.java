@@ -37,6 +37,7 @@ public class ApprovalController {
 	public String get(@RequestParam("appro_id") int appro_id, Model model) {
 		AllApproval vo = approvalService.select(appro_id);
 		model.addAttribute("vo", vo);
+		System.out.println(vo);
 		return "smart/get";
 	}
 	@PostMapping("/get")
