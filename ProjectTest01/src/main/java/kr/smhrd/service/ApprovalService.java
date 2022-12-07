@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.smhrd.entity.AllApproval;
+import kr.smhrd.entity.App;
 import kr.smhrd.entity.Approval;
 import kr.smhrd.entity.Approval_auth;
 import kr.smhrd.entity.UpApproval;
@@ -54,5 +55,14 @@ public class ApprovalService {
 			approvalMapper.appro(app);
 			approvalMapper.vacation(app);
 		}
+	}
+	
+	public App main() {
+		App ap = new App();
+		ap.setApro_status0(approvalMapper.main0());
+		ap.setApro_status1(approvalMapper.main1());
+		ap.setApro_status2(approvalMapper.main2());
+		
+		return ap;
 	}
 }

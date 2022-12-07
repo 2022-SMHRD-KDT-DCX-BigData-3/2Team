@@ -239,7 +239,7 @@
         </a>
       </li><!-- End board Nav -->
 	  
-	  <li class="nav-item">
+	   <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -251,16 +251,26 @@
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
-              <i class="bi bi-circle"></i><span>결재조회</span>
+              <i class="bi bi-circle"></i><span>결재대기 ${ap.apro_status0}</span>
             </a>
           </li>
           <li>
-            <a href="approvalp">
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>결재진행 ${ap.apro_status1}</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvald">
+              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvale">
               <i class="bi bi-circle"></i><span>결재신청</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Components Nav -->
+      </li><!-- End APPROVAL Nav -->
 
       <li class="nav-heading">정보</li>
       
@@ -304,7 +314,7 @@
 
 	<div class="pagetitle">
 		<form id="frm" class="form-horizontal" method="post">
-			     <h1>일반결재</h1></td>
+			     <h1>결재대기</h1></td>
 			     <nav>
 		        <ol class="breadcrumb">
 		          <li class="breadcrumb-item"><a href="http://localhost:9999/main">Home</a></li>
@@ -353,96 +363,6 @@
 												<tr>
 													<td>${vo.appro_id}</td>
 													<td><a href="${cpath}/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
-													<td>${vo.appro_member_id}</td>
-													<c:if test="${vo.appro_sort == '0'}">
-														<td>일반결재</td>
-													</c:if>
-													<c:if test="${vo.appro_sort == '1'}">
-														<td>지출결재</td>
-													</c:if>
-													<c:if test="${vo.appro_sort == '2'}">
-														<td>휴가결재</td>
-													</c:if>
-													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
-												</tr>
-											</tbody>
-										</c:if>
-									</c:forEach>
-								</table>
-								
-							<h4>결재진행중</h4>
-								<table id="list" class="table table-hover">
-									<colgroup>
-										<col width="40px" />
-										<col width="150px" />
-										<col width="60px" />
-										<col width="60px" />
-										<col width="40px" />
-	
-									</colgroup>
-									<thead>
-										<tr class="active">
-											<th>번호</th>
-											<th>제목</th>
-											<th>제출자</th>
-											<th>결재종류</th>
-											<th>작성일</th>
-										</tr>
-									</thead>
-	
-									<c:forEach var="vo" items="${list}">
-										<c:if test="${vo.apro_status == '1'}">
-											<tbody>
-												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
-												<tr>
-													<td>${vo.appro_id}</td>
-													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
-													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
-													<td>${vo.appro_member_id}</td>
-													<c:if test="${vo.appro_sort == '0'}">
-														<td>일반결재</td>
-													</c:if>
-													<c:if test="${vo.appro_sort == '1'}">
-														<td>지출결재</td>
-													</c:if>
-													<c:if test="${vo.appro_sort == '2'}">
-														<td>휴가결재</td>
-													</c:if>
-													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
-												</tr>
-											</tbody>
-										</c:if>
-									</c:forEach>
-								</table>
-								
-							<h4>결재완료</h4>
-								<table id="list" class="table table-hover">
-									<colgroup>
-										<col width="40px" />
-										<col width="150px" />
-										<col width="60px" />
-										<col width="60px" />
-										<col width="40px" />
-	
-									</colgroup>
-									<thead>
-										<tr class="active">
-											<th>번호</th>
-											<th>제목</th>
-											<th>제출자</th>
-											<th>결재종류</th>
-											<th>작성일</th>
-										</tr>
-									</thead>
-	
-									<c:forEach var="vo" items="${list}">
-										<c:if test="${vo.apro_status == '2'}">
-											<tbody>
-												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
-												<tr>
-													<td>${vo.appro_id}</td>
-													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
-													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
 													<td>${vo.appro_member_id}</td>
 													<c:if test="${vo.appro_sort == '0'}">
 														<td>일반결재</td>
