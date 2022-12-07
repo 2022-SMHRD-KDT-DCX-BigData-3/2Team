@@ -17,6 +17,8 @@
 		where MEMBER_id=#{MEMBER_id}
 	</update>
 	
+	
+	
 </mapper>
 
 

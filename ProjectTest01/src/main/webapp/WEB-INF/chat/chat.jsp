@@ -25,6 +25,9 @@
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
 	<title>Chating</title>
+	<style>
+	
+	</style>
 </head>
 
 <script type="text/javascript">
@@ -98,6 +101,7 @@
 		}
 		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
+		setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
 	}
 </script>
 <body>
@@ -525,6 +529,7 @@
 		<input type="hidden" id="roomNumber" value="${roomNumber}">
 		
 		<div id="chating" class="chating">
+		
 		</div>
 		
 		<div id="yourName">
@@ -541,7 +546,7 @@
 				<tr>
 					<th>메시지</th>
 					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-					<th><button onclick="send()" id="sendBtn"><i class="meterial-icons">send</button></i></th>
+					<th><button onclick="" id="sendBtn"><i class="meterial-icons">send</button></i></th>
 				</tr>
 			</table>
 		</div>
@@ -560,5 +565,31 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+ <script>
+ const button = document.getElementById('sendBtn')
+ button.addEventListener('click', ()=>{
+	 const div = document.createElement('div')
+	 div.className = "mine messages"
+	 const message2 = document.getElementById('chatting').value
+	 console.log(message2)
+	 
+	 div.innerHTML = `<p class="message">`+message2+`</p><span class="time">16시16분</span>`;
+	 const chatContainer = document.getElementById("chating");
+	 chatContainer.appendChild(div)
+	 
+	 $.ajax({  
+
+	      url: "/addChat",  
+		  type:"post",
+	      data: {chat_log:message2},  
+
+	      success: ()=>alert("데이터 삽입 성공"),  
+
+	      error : () => alert("에러")
+
+	});  
+ })
+ //<div class="mine messages"><p class="message">aaaaa</p><span class="time">16시16분</span></div>
+ </script>
 </body>
 </html>

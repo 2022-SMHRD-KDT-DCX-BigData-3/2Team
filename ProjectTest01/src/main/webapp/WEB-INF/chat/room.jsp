@@ -47,7 +47,7 @@
 		$("#createRoom").click(function(){
 			var msg = {	roomName : $('#roomName').val()	};
 
-			commonAjax('/createRoom', msg, 'post', function(result){
+			commonAjax('/createRoom', msg, 'POST', function(result){
 				createChatingRoom(result);
 			});
 

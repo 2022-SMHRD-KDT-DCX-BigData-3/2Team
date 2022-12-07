@@ -1,40 +1,19 @@
 @charset "UTF-8";
-
-.chating {
-	margin-left:300px;
-	width: 500px;
-	height: 450px;
-	overflow: auto;
-	background-color: white;
+*{
+	margin:0;
+	padding:0;
 }
-#chating::-webkit-scrollbar {
-    display: none;
-}
-.maincontainer{
-	width: 1000px;
-	height: 1000px;
-	overflow: auto;
-	margin-left: 1000px;
-}
-#yourName{
-	margin-left: 330px;
-	margin-top: 20px;
-}
-
 .container{
 	width: 500px;
 	margin: 0 auto;
 	padding: 25px
 }
-.container h1{
-	text-align: left;
-	padding: 5px 5px 5px 15px;
-	color: #4154f1;
-	border-left: 3px solid #4154f1;
-	margin-bottom: 20px;
-	margin-left: 30px;
+.chating{
+	background-color: white;
+	width: 300px;
+	height: 500px;
+	overflow: auto;
 }
-
 .messages {
   margin-top: 30px;
   display: flex;
@@ -79,13 +58,9 @@
 }
 	
 input{
-	
-	width: 330px;
+	width: 150px;
 	height: 25px;
 }
 #yourMsg{
-	margin-left: 330px;
-	margin-top: 20px;
 	display: none;
 }
-

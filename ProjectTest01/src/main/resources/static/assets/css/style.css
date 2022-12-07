@@ -44,11 +44,13 @@ h6 {
   margin-top: 60px;
   padding: 20px 30px;
   transition: all 0.3s;
+  background-color: #f6f9ff;
 }
 
 @media (max-width: 1199px) {
   #main {
     padding: 20px;
+    background-color: #f6f9ff;
   }
 }
 
