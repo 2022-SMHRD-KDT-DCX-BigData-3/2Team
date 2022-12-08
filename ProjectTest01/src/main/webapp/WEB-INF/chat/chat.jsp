@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="css/chat.css" rel="stylesheet">
 <meta charset="UTF-8">
@@ -20,6 +19,7 @@
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
 <!-- Vendor CSS Files -->
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -33,6 +33,8 @@
 <link href="css/style.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- icons -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <script type="text/javascript">
 	var ws;
@@ -68,6 +70,7 @@
 					}else{
 						$("#chating").append("<div class='yours messages'><p class='message'>"+d.userName + ": "+ d.msg + "</p><span class='time'>"+hours+"시"+minutes
 								+"분"+"</span></div>");
+						setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
 					}
 						
 				}else{
@@ -399,7 +402,7 @@
 			 <table class="inputTable">
 				<tr>
 					<th>유저</th>
-					<th><input type="text" name="userName" id="userName" value="${user.MEMBER_NAME}" readonly="readonly"></th>
+					<th><input style="border:none" type="text" name="userName" id="userName" value="${user.MEMBER_NAME}" readonly="readonly"></th>
 					<th><button onclick="chatName()" id="startBtn">시작하기</button></th>
 				</tr>
 			</table> 
@@ -407,14 +410,17 @@
 		<div id="yourMsg">
 			<table class="inputTable">
 				<tr>
-					<th>메시지</th>
-					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-					<th><button onclick="" id="sendBtn"><i class="meterial-icons">send</button></i></th>
+					<th><span class="material-symbols-outlined" style="margin-right: 25px"> add_reaction</span></th>
+					<th><input id="chatting" style="border:none" placeholder=" 보내실 메시지를 입력하세요."></th>
+					<th><button class="button button2" onclick="send()" id="sendBtn" style="margin-right: 20px">보내기</button></th>
+					<th></th>
 				</tr>
 			</table>
 		</div>
+		
 	</div>
 	</main>
+	
 	
 		<!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -429,29 +435,6 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
  <script>
- const button = document.getElementById('sendBtn')
- button.addEventListener('click', ()=>{
-	 const div = document.createElement('div')
-	 div.className = "mine messages"
-	 const message2 = document.getElementById('chatting').value
-	 console.log(message2)
-	 
-	 div.innerHTML = `<p class="message">`+message2+`</p><span class="time">16시16분</span>`;
-	 const chatContainer = document.getElementById("chating");
-	 chatContainer.appendChild(div)
-	 
-	 $.ajax({  
-
-	      url: "/addChat",  
-		  type:"post",
-	      data: {chat_log:message2},  
-
-	      success: ()=>alert("데이터 삽입 성공"),  
-
-	      error : () => alert("에러")
-
-	});  
- })
  //<div class="mine messages"><p class="message">aaaaa</p><span class="time">16시16분</span></div>
  </script>
 </body>
