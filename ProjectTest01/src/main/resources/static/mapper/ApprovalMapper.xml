@@ -20,7 +20,7 @@
 	</select>
 	
 	<update id="inget" parameterType="kr.smhrd.entity.UpApproval">
-		update approval set appro_auth1=#{appro_auth1},appro_auth2=#{appro_auth2}, appro_auth3=#{appro_auth3}, appro_auth_date1 = sysdate, appro_auth_date2 = sysdate, appro_auth_date3 = sysdate where appro_id = #{appro_id}
+		update approval set appro_auth1=#{appro_auth1},appro_auth2=#{appro_auth2}, appro_auth3=#{appro_auth3}, appro_auth_date1 = sysdate, appro_auth_date2 = sysdate, appro_auth_date3 = sysdate, apro_status = apro_status+1 where appro_id = #{appro_id}
 	</update>
 
 	<update id="upget" parameterType="kr.smhrd.entity.UpApproval">
@@ -70,11 +70,11 @@
 	</select>
 
 	<select id="main1" parameterType="kr.smhrd.entity.App" resultType="int">
-		select count(apro_status) as apro_status1 from approval a where apro_status = 1
+		select count(apro_status) as apro_status1 from approval a where apro_status = 1 or apro_status = 2
 	</select>
 
 	<select id="main2" parameterType="kr.smhrd.entity.App" resultType="int">
-		select count(apro_status) as apro_status2 from approval a where apro_status = 2
+		select count(apro_status) as apro_status2 from approval a where apro_status = 3
 	</select>
 
 </mapper>

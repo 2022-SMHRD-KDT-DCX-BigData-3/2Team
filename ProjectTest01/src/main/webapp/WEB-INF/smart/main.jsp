@@ -270,7 +270,8 @@
 	<!-- ======= Sidebar ======= -->
 	<aside id="sidebar" class="sidebar">
 
-		<ul class="sidebar-nav" id="sidebar-nav">
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
 
 
 			<li class="nav-item"><a class="nav-link collapsed" href="room">
