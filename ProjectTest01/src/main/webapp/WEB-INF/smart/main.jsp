@@ -272,7 +272,7 @@
 
 		<ul class="sidebar-nav" id="sidebar-nav">
 
-<<<<<<< HEAD
+
 			<li class="nav-item"><a class="nav-link collapsed" href="room">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 						fill="currentColor" class="bi bi-chat-left-dots"
@@ -284,7 +284,7 @@
 			</svg>&nbsp;&nbsp; <span>채팅</span>
 			</a></li>
 			<!-- End chat Nav -->
-=======
+
     <ul class="sidebar-nav" id="sidebar-nav">
     
       <li class="nav-item">
@@ -296,7 +296,7 @@
           <span>근태관리</span>
         </a>
       </li><!-- End Commuting Page Nav -->
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
 
 			<li class="nav-item"><a class="nav-link collapsed"
 				href="calender"> <svg xmlns="http://www.w3.org/2000/svg"
@@ -322,7 +322,7 @@
 			</a></li>
 			<!-- End board Nav -->
 
-<<<<<<< HEAD
+
 			<li class="nav-item"><a class="nav-link collapsed"
 				data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -344,7 +344,7 @@
 					</a></li>
 				</ul></li>
 			<!-- End Components Nav -->
-=======
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="list">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
@@ -387,9 +387,9 @@
           </li>
         </ul>
       </li><!-- End APPROVAL Nav -->
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
 
-<<<<<<< HEAD
+
+
 			<li class="nav-heading">정보</li>
 
 			<li class="nav-item"><a class="nav-link collapsed"
@@ -403,7 +403,7 @@
 			</svg>&nbsp;&nbsp; <span>근태관리</span>
 			</a></li>
 			<!-- End Commuting Page Nav -->
-=======
+
       <li class="nav-heading">정보</li>
       
       <li class="nav-item">
@@ -426,7 +426,7 @@
         </a>
       </li><!-- End member Nav -->
       </c:if>
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
+
 
 			<li class="nav-item"><a class="nav-link collapsed"
 				href="profile"> <svg xmlns="http://www.w3.org/2000/svg"
