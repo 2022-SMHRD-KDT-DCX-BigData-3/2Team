@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.smhrd.entity.AllMember;
 import kr.smhrd.entity.Commuting;
+import kr.smhrd.entity.Member;
+import kr.smhrd.entity.UpApproval;
 import kr.smhrd.service.CommutingService;
 
 @Controller
@@ -37,5 +40,17 @@ public class CommutingController {
 	public String ecomm(Commuting comm) {
 		commutingService.ecomm(comm);
 		return "redirect:/commuting";
+	}
+	@RequestMapping("/member")
+	public String member(Model model) {
+		List<AllMember> sele = commutingService.getall();
+		model.addAttribute("sele", sele);
+		return "member/member";
+	}
+	@PostMapping("/del")
+	public String del(int member_id) {
+		System.out.println("멀까 : "+ member_id);
+		commutingService.del(member_id);
+		return "redirect:/member";
 	}
 }

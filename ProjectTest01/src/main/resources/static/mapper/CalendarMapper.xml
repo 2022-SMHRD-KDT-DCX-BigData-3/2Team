@@ -1,45 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!-- <mapper namespace="kr.smhrd.mapper.CalendarMapper">
-	<resultMap type="Calendar" id="calMap">
-		<result property="CALENDAR_START" column="CALENDAR_START"/>
-		<result property="CALENDAR_END" column="CALENDAR_END"/>
-	</resultMap>
-	<select id="getList" resultMap="calMap">
-		SELECT CALENDAR_ID, CALENDAR_TITLE,
-		TO_char(CALENDAR_START, 'YYYY-MM-DD"T"HH24:MI:SS') CALENDAR_START,
-		TO_char(CALENDAR_END, 'YYYY-MM-DD"T"HH24:MI:SS') CALENDAR_END,
-		CALENDAR_ALLDAY,
-		CALENDAR_COLOR,
-		FROM CALENDAR
-	</select>
-</mapper>   -->
 
-<!-- <mapper namespace="Calendar">
-  <resultMap id="calMap" type="Calendar">
-    <id property="CALENDAR_ID" column="CALENDAR_ID" />
-    <result property="calendarTitle" column="CALENDAR_TITLE" />
-    <result property="CALENDAR_CONTENT" column="CALENDAR_CONTENT" />
-    <result property="CALENDAR_START" column="CALENDAR_START" />
-    <result property="CALENDAR_END" column="CALENDAR_END" />
-  </resultMap>
-	
-	<select id="calendarList" resultMap="calMap">
-		select * from calendar 
-	</select>
-	
-</mapper> -->
  <mapper namespace="kr.smhrd.mapper.CalendarMapper">
-<resultMap id="calMap" type="Calendar">
-    <id property="CALENDAR_ID" column="CALENDAR_ID" />
-    <result property="CALENDAR_TITLE" column="CALENDAR_TITLE" />
-    <result property="CALENDAR_CONTENT" column="CALENDAR_CONTENT" />
-    <result property="CALENDAR_START" column="CALENDAR_START" />
-    <result property="CALENDAR_END" column="CALENDAR_END" />
-    <result property="CALENDAR_COLOR" column="CALENDAR_COLOR" />
-  </resultMap>
+
 	<select id="getList" resultType="kr.smhrd.entity.Calendar">
-		select * from CALENDAR where member_id = #{member_id}
+		select * from CALENDAR where MEMBER_ID = #{MEMBER_ID,jdbcType=VARCHAR}
 	</select>
 	
 	<!-- <delete id="cal_delete" parameterType="kr.smhrd.entity.Calendar" >

@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import kr.smhrd.entity.AllMember;
 import kr.smhrd.entity.Commuting;
+import kr.smhrd.entity.Member;
 
 @Repository
 @Mapper
@@ -25,4 +27,8 @@ public interface CommutingMapper {
 	
 	// 퇴근 확인
 	public void lcomm(Commuting comm);
+	
+	public List<AllMember> getall();
+
+	public void del(int member_id);
 }

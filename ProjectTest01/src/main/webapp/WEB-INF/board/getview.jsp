@@ -29,10 +29,27 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<link href="css/board.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	// $(document) -> 선택자
+		$(document).ready(function() {
+			$("button").click(function() {
+				// alert -> 팝업창
+				var formObj=$("#frm");
+				var oper=$(this).data("oper");
+				if (oper=='modify'){
+					formObj.attr("action","/boardmodify"); // idx
+				} else if (oper=='remove'){
+					formObj.attr("action","/boardremove"); // idx
+				} else {
+					formObj.attr("action","/list");
+				}
+				formObj.submit(); // form 전송
+			});
+		});
+</script>
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -452,38 +469,45 @@
       </nav>
     </div><!-- End Page Title -->
 		
-	<section class="notice">
-	   
-	  <!-- board list area -->
-	    <div id="board-list">
-	        <div class="container">
-	            <table class="board-table">
-	                <thead>
-	                <tr>
-	                    <th scope="col" class="th-num">번호</th>
-	                    <th scope="col" class="th-title">제목</th>
-	                    <th scope="col" class="th-writer">작성자</th>
-	                    <th scope="col" class="th-date">작성일</th>
-	                    <th scope="col" class="th-cnt">조회수</th>
-	                </tr>
-	                </thead>
-	                <tbody>
-	                <c:forEach var="list" items="${list}">
-					<form action="getview" method="post">
-	                <tr>
-	                    <td>${list.b_seq}</td>
-	                    <th><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></th>
-	                    <td>${list.member_name}</td>
-	                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
-	                    <td>${list.b_cnt}</td>
-	                </tr>
-	                </form>
-					</c:forEach>
-	                </tbody>
-	            </table>
-	        </div>
-	    </div>
-		
+    <section class="section profile">
+    	<div class="container">
+			<div class="panel-body">
+				<form id="frm" class="form-horizontal">
+				<input type="hidden" name="b_seq" value="${vo.b_seq}"/>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="title">제목:</label>
+						<div class="col-sm-10">
+							<input type="text" name="b_title" class="form-control" value="${vo.b_title}" readonly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="content">내용:</label>
+						<div class="col-sm-10">
+							<textarea rows="10" name="b_content" class="form-control" readonly="readonly" style="resize: none;">${vo.b_content}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="writer">작성자:</label>
+						<div class="col-sm-10">
+							<input type="text" name="member_id" class="form-control" value="${vo.member_id}" readonly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<c:if test="${user.MEMBER_id eq vo.member_id}">
+								<button type="button" data-oper="modify" class="btn btn-primary">수정</button>
+								<button type="button" data-oper="remove" class="btn btn-warning">삭제</button>
+							</c:if>
+							<c:if test="${user.MEMBER_id ne vo.member_id}">
+								<button type="button" disabled="disabled" data-oper="modify" class="btn btn-primary">수정</button>
+								<button type="button" disabled="disabled" data-oper="remove" class="btn btn-warning">삭제</button>
+							</c:if>
+							<button type="button" data-oper="list" class="btn btn-success">목록</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</section>
 
   </main><!-- End #main -->

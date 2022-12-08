@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.container h1{
+			text-align: left;
+    		padding: 5px 5px 5px 15px;
+    		color: #4154f1;
+    		border-left: 3px solid #4154f1;
+    		margin-bottom: 20px;
+		}
+		.roomContainer{
+			width: 5000px;
+    		height: 300px;
+    		overflow: auto;
+    		margin-left: 80px;
+		}
+	
+		.container{
+			width: 500px;
+			margin: 0 auto;
+			padding: 25px
+		}
+	
+		.roomList{
+			border: none;
+			width: 1000px;
+		}
+		.roomList th{
+			border: 1px solid  #4154f1;
+			background-color: #fff;
+			color:  #4154f1;
+		}
+		.roomList td{
+			border: 1px solid  #4154f1;
+			background-color: #fff;
+			text-align: left;
+			color:  #4154f1;
+		}
+		.roomList .num{
+			width: 75px;
+			text-align: center;
+		}
+		.roomList .room{
+			width: 350px;
+		}
+		.roomList .go{
+			width: 71px;
+			text-align: center;
+		}
+		button{
+			background-color:  #4154f1;
+			font-size: 14px;
+			color: #000;
+			border: 1px solid #000;
+			border-radius: 5px;
+			padding: 3px;
+			margin: 3px;
+		}
+		.inputTable th{
+		
+			padding: 5px;
+		}
+		.inputTable input{
+			width: 430px;
+			height: 25px;
+		}
