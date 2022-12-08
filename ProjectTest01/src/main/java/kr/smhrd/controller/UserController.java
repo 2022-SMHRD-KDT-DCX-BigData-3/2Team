@@ -45,7 +45,7 @@ public class UserController {
 	@PostMapping("/update")
 	public String upd(Member mem) {
 		memberService.upd(mem);
-		return "redirect:/logout";
+		return "redirect:/member";
 	}
 	@PostMapping("/pwUpd")
 	public String pupd(Member mem) {

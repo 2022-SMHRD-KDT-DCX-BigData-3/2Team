@@ -46,7 +46,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="main" class="logo d-flex align-items-center">
+      <a href="http://localhost:9999/main" class="logo d-flex align-items-center">
         <img src="assets/img/smh.png" alt="">
         <span class="d-none d-lg-block">Smart Groupware</span>
       </a>
@@ -128,19 +128,7 @@
               	<span>사원</span>
               </c:if>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
-				  	<path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-				  	<path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
-				</svg>&nbsp;&nbsp;
-                <span>프로필</span>
-              </a>
-            </li>
+            
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -280,18 +268,6 @@
         </ul>
       </li><!-- End APPROVAL Nav -->
 
-      <li class="nav-heading">정보</li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="profile">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
-			  <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-			  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
-			</svg>&nbsp;&nbsp;
-          <span>프로필</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      
       <c:if test="${user.MEMBER_id == '1'}">
       <li class="nav-item">
         <a class="nav-link collapsed" href="member">
@@ -320,9 +296,20 @@
   
   <main id="main" class="main">
   	<div class="sect">
-  		<div style="text-align: right;" class="mbudiv">
-	  		<button class="mbu">목록</button>
-  			<input type="button" value="인쇄하기" id="print" class="mbu" onclick="window.print()"/>
+  		<div style="text-align: right;" class="mbudivz">
+	  		<button class="mbu"onclick="location.href='${capth}/approvaln'">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-columns-reverse" viewBox="0 0 16 16">
+				  <path fill-rule="evenodd" d="M0 .5A.5.5 0 0 1 .5 0h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 .5Zm4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10A.5.5 0 0 1 4 .5Zm-4 2A.5.5 0 0 1 .5 2h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 4h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 8h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Z"/>
+				</svg>
+				<span>목록</span>
+			</button>
+	  		<button id="print" class="mbu" onclick="window.print()">
+	  			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+				  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+				  <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+				</svg>
+          		<span>인쇄</span>
+	  		</button>
   			<c:if test="${vo.appro_auth2 == '1'}">
 	  			<c:if test="${vo.appro_auth3 == '0'}">
 		  			<c:if test="${user.RANK_CODE == 1}">
@@ -331,16 +318,28 @@
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
 				  			<input type="hidden" name="appro_auth3" value="0"/>
-			  				<input type="submit" class="mbu" value="반려"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
+			  				<button type="submit" class="mbu">
+			  					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+								</svg>
+								<span>반려</span>
+			  				</button>
+			  				<input type="hidden" name="apv_auth_name">
 		  				</form>
 				  		<form  action="${capth}/get" method="post" class="approvalButton">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
 				  			<input type="hidden" name="appro_auth3" value="1"/>
-			  				<input type="submit" class="mbu" value="승인"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
+			  				<button type="submit" class="mbu">
+			  					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+								</svg>
+								<span>승인</span>
+			  				</button>
+			  				<input type="hidden" name="apv_auth_name">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -352,17 +351,29 @@
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="0"/>
-			  				<input type="submit" class="mbu" value="반려"/>
+			  				<button type="submit" class="mbu">
+			  					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+								</svg>
+								<span>반려</span>
+			  				</button>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
+			  				<input type="hidden" name="apv_auth_name">
 		  				</form>
 				  		<form action="${capth}/get" method="post" class="approvalButton">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
-			  				<input type="submit" class="mbu" value="승인"/>
+			  				<button type="submit" class="mbu">
+			  					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+								</svg>
+								<span>승인</span>
+			  				</button>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
+			  				<input type="hidden" name="apv_auth_name">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
@@ -372,28 +383,40 @@
 		  			<c:if test="${user.RANK_CODE == 3}">
 		  				<form action="${capth}/get" method="post" class="approvalButton">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" class="mbu" value="반려"/>
+			  				<button type="submit" class="mbu">
+			  					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+								</svg>
+								<span>반려</span>
+			  				</button>
 			  				<input type="hidden" name="appro_auth1" value="0"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
+			  				<input type="hidden" name="apv_auth_name">
 		  				</form>
 				  		<form action="${capth}/get" method="post" class="approvalButton">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" class="mbu" value="승인"/>
+			  				<button type="submit" class="mbu">
+			  					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+								</svg>
+								<span>승인</span>
+			  				</button>
 			  				<input type="hidden" name="appro_auth1" value="1"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
 			  				<input type="hidden" name="apv_auth_name"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
 	  			</c:if>
   			</c:if>
   		</div>
   		
+  		<div class="bord">
   		<div style="text-align: center;">
-  			<h2>
+  			<h2 style="margin-top: 20px;">
 				<c:if test="${vo.appro_sort == '0'}">
 					일반결재
 				</c:if>
@@ -406,7 +429,7 @@
   			</h2>
   		</div>
   		
-  			<table class="gettable">
+  			<table class="gettable1">
   				<tr class="gra">
   					<td rowspan='2' class="gratd1">결재</td>
   					<td class="gratd2">1차 결재자</td>
@@ -459,8 +482,7 @@
   				</tr>
   			</table>
   		
-  		<div class="getdiv">
-  			<table class="gettable2">
+  			<table class="gettable4">
   				<tr class="gettr">
   					<td class="tdnum">문서번호</td>
   					<td class="tdnum1">${vo.apv_num}</td>
@@ -486,6 +508,7 @@
   					<td colspan='3' class="tdnum3">${vo.appro_content}</td>
   				</tr>
   			</table>
+  			</div>
   			
   			<h5 class="dih">1차 결재자 결재의견</h5>
   			<div>

@@ -15,4 +15,5 @@ public interface MemberMapper {
 	//비밀번호 수정 메서드
 	public void pupd(Member mem);
 	
+	public Member profile(int member_id);
 }
