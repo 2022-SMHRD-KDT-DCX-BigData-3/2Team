@@ -124,46 +124,32 @@
 	width: 100%;
 }
 .mbudiv {
+	margin-right: 100px;
+	padding-top: 50px;
+}
+.mbudivz {
+	margin-right: 60px;
+	padding-top: 50px;
+}
+.mbudiv1 {
 	margin-right: 70px;
 	padding-top: 50px;
 }
 .approvalButton {
-	float: left;
+	float: right;
 }
 .mbu {
 	margin-top: 20px;
 	margin-right: 10px;
 	border-radius: 5px;
-	border: 1px solid;
+	border: 0px solid;
 	font-size: 16px;
+	width: 80px;
+	height: 30px;
 }
 .mbu:hover{
 	color: #ffffff;
 	background-color: #333; 
-}
-.mbub {
-	margin-top: 20px;
-	margin-right: 10px;
-	border-radius: 5px;
-	border: 1px solid;
-	font-size: 20px;
-	background-color: #3084E0;
-	color: #ffffff;
-}
-.mbub:hover{
-	background-color: green;
-}
-.mbur {
-	margin-top: 20px;
-	margin-right: 10px;
-	border-radius: 5px;
-	border: 1px solid;
-	font-size: 20px;
-	background-color: #E05D5D;
-	color: #ffffff;
-}
-.mbur:hover{
-	background-color: green;
 }
 .gettable {
 	margin-left: 820px;
@@ -201,23 +187,26 @@
 .votd2 {
 	width: 120px;
 }
+.bord {
+	border: 1px solid;
+	width: 90%;
+	margin-left: 60px;
+	margin-top: 30px;
+}
 .gettable2 {
 	margin-top: 30px;
-	margin-left: 60px;
 	border-top: 2px solid;
-	width: 90%;
+	width: 100%;
 }
 .gettable3 {
 	margin-top: 30px;
-	margin-left: 60px;
 	border-top: 2px solid;
-	width: 91%;
+	width: 100%;
 }
 .gettable4 {
 	margin-top: 30px;
-	margin-left: 100px;
 	border-top: 2px solid;
-	width: 84%;
+	width: 100%;
 }
 .gettr {
 	border-bottom: 1px solid;
@@ -261,12 +250,12 @@
 }
 .dih {
 	margin-top: 30px;
-	margin-left: 100px;
+	margin-left: 60px;
 }
 .dihta {
-	margin-left: 100px;
+	margin-left: 60px;
 	border: 1px solid;
-	width: 84%;
+	width: 90%;
 	text-align: center;
 }
 .dihtr {
@@ -340,24 +329,38 @@
 }
 .remo {
 	border-radius: 10px;
-	border: 1px solid;
-	background-color: #012970;
+	border: 0px solid;
+	background-color: #0090CF;
 	color: #ffffff;
+}
+.remo:hover{
+	background-color: #E0DAE3;
+	color: #012970;
 }
 .nosp {
 	font-size: 30px;
-	margin-left: 170px;
+	margin-left: 530px;
+	margin-bottom: 10px;
+}
+.radi1 {
+	border: 0px solid;
+	width: 100px;
+	height: 30px;
+	margin-left: 10px;
+}
+.radi1:hover {
+	box-shadow: 50px black;
 }
 .start {
 	font-size: 18px;
-	color: #BFBFBF;
-	background-color: blue;
+	color: #ffffff;
+	background-color: #0090CF;
 	border: 0px solid;
 	width: 100px;
 }
 .start:hover {
 	color: #012970;
-	background-color: green;
+	background-color: #E0DAE3;
 }
 @media (max-width: 380px){
 	.gettable {
