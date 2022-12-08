@@ -105,7 +105,7 @@
 			else if(data=="1"){
 				$("h2").html("지출결재");
 				const tableContainer = document.querySelector(".getdiv");
-				tableContainer.innerHTML = `<table class="gettable2 thj">
+				tableContainer.innerHTML = `<table class="gettable3 thj">
   				<tr class="gettr">
   					<td class="tdnum">문서번호</td>
   					<td class="tdnum1">${view.appro_id+1}</td>
@@ -167,7 +167,7 @@
 			else {
 				$("h2").html("휴가결재");
 				const tableContainer = document.querySelector(".getdiv");
-				tableContainer.innerHTML = `<table class="gettable2 thj">
+				tableContainer.innerHTML = `<table class="gettable3 thj">
   				<tr class="gettr">
   					<td class="tdnum">문서번호</td>
   					<td class="tdnum1">${view.appro_id+1}</td>

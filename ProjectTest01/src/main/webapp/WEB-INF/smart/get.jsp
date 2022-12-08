@@ -320,26 +320,24 @@
   
   <main id="main" class="main">
   	<div class="sect">
-  		<div style="text-align: right;" class="mbudiv">
-	  		<button class="mbu">목록</button>
-  			<input type="button" value="인쇄하기" id="print" class="mbu" onclick="window.print()"/>
+  		<div>
   			<c:if test="${vo.appro_auth2 == '1'}">
 	  			<c:if test="${vo.appro_auth3 == '0'}">
 		  			<c:if test="${user.RANK_CODE == 1}">
+				  		<form  action="${capth}/get" method="post" class="approvalButton" style="margin-left: 100px;">
+				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="1"/>
+				  			<input type="hidden" name="appro_auth3" value="1"/>
+			  				<input type="submit" class="mbub" value="승인"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
+		  				</form>
 		  				<form action="${capth}/get" method="post" class="approvalButton">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="1"/>
 				  			<input type="hidden" name="appro_auth3" value="0"/>
-			  				<input type="submit" class="mbu" value="반려"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
-		  				</form>
-				  		<form  action="${capth}/get" method="post" class="approvalButton">
-				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-				  			<input type="hidden" name="appro_auth1" value="1"/>
-				  			<input type="hidden" name="appro_auth2" value="1"/>
-				  			<input type="hidden" name="appro_auth3" value="1"/>
-			  				<input type="submit" class="mbu" value="승인"/>
+			  				<input type="submit" class="mbur" value="반려"/>
 			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
 		  			</c:if>
@@ -348,19 +346,19 @@
   			<c:if test="${vo.appro_auth1 == '1'}">
 	  			<c:if test="${vo.appro_auth2 == '0'}">
 		  			<c:if test="${user.RANK_CODE == 2}">
+				  		<form action="${capth}/get" method="post" class="approvalButton" style="margin-left: 100px;">
+				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+				  			<input type="hidden" name="appro_auth1" value="1"/>
+				  			<input type="hidden" name="appro_auth2" value="1"/>
+			  				<input type="submit" class="mbub" value="승인"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
+		  				</form>
 		  				<form action="${capth}/get" method="post" class="approvalButton">
 		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
 				  			<input type="hidden" name="appro_auth1" value="1"/>
 				  			<input type="hidden" name="appro_auth2" value="0"/>
-			  				<input type="submit" class="mbu" value="반려"/>
-			  				<input type="hidden" name="appro_auth3" value="0"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
-		  				</form>
-				  		<form action="${capth}/get" method="post" class="approvalButton">
-				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-				  			<input type="hidden" name="appro_auth1" value="1"/>
-				  			<input type="hidden" name="appro_auth2" value="1"/>
-			  				<input type="submit" class="mbu" value="승인"/>
+			  				<input type="submit" class="mbur" value="반려"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
 			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
@@ -370,26 +368,30 @@
   			<c:if test="${vo.appro_auth1 == '0'}">
   				<c:if test="${vo.depart_code eq user.DEPART_CODE}">
 		  			<c:if test="${user.RANK_CODE == 3}">
-		  				<form action="${capth}/get" method="post" class="approvalButton">
-		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" class="mbu" value="반려"/>
-			  				<input type="hidden" name="appro_auth1" value="0"/>
-			  				<input type="hidden" name="appro_auth2" value="0"/>
-			  				<input type="hidden" name="appro_auth3" value="0"/>
-			  				<input type="hidden" name="apv_auth_name" class="selec">
-		  				</form>
-				  		<form action="${capth}/get" method="post" class="approvalButton">
+				  		<form action="${capth}/get" method="post" class="approvalButton" style="margin-left: 100px;">
 				  			<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
-			  				<input type="submit" class="mbu" value="승인"/>
+			  				<input type="submit" class="mbub" value="승인"/>
 			  				<input type="hidden" name="appro_auth1" value="1"/>
 			  				<input type="hidden" name="appro_auth2" value="0"/>
 			  				<input type="hidden" name="appro_auth3" value="0"/>
 			  				<input type="hidden" name="apv_auth_name"/>
 			  				<input type="hidden" name="apv_auth_name" class="selec">
 		  				</form>
+		  				<form action="${capth}/get" method="post" class="approvalButton">
+		  					<input type="hidden" name="appro_id" value="${vo.appro_id}"/>
+			  				<input type="submit" class="mbur" value="반려"/>
+			  				<input type="hidden" name="appro_auth1" value="0"/>
+			  				<input type="hidden" name="appro_auth2" value="0"/>
+			  				<input type="hidden" name="appro_auth3" value="0"/>
+			  				<input type="hidden" name="apv_auth_name" class="selec">
+		  				</form>
 		  			</c:if>
 	  			</c:if>
   			</c:if>
+  		</div>
+  		<div style="text-align: right;" class="mbudiv">
+	  		<button class="mbu">목록</button>
+  			<input type="button" value="인쇄하기" id="print" class="mbu" onclick="window.print()" style="margin-right: 50px;"/>
   		</div>
   		
   		<div style="text-align: center;">
@@ -406,7 +408,7 @@
   			</h2>
   		</div>
   		
-  			<table class="gettable">
+  			<table class="gettable1">
   				<tr class="gra">
   					<td rowspan='2' class="gratd1">결재</td>
   					<td class="gratd2">1차 결재자</td>
@@ -460,7 +462,7 @@
   			</table>
   		
   		<div class="getdiv">
-  			<table class="gettable2">
+  			<table class="gettable4">
   				<tr class="gettr">
   					<td class="tdnum">문서번호</td>
   					<td class="tdnum1">${vo.apv_num}</td>

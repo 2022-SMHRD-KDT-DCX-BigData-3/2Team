@@ -355,16 +355,20 @@
     		<div class="fl">
 	    		<form action="ecommuting" method="post" class="flo">
 	    			<input type="hidden" name="member_id" value="${user.MEMBER_id}">
-	    			<input type="submit" value="퇴근">
+	    			<input type="submit" value="퇴근" class="start">
 	    		</form>
 	    		<form action="scommuting" method="post" class="flo">
 	    			<input type="hidden" name="member_id" value="${user.MEMBER_id}">
-	    			<input type="submit" value="출근">
+	    			<input type="submit" value="출근" class="start">
 	    		</form>
     		</div>
     	</div>
 		<div class="mebackk">
 			<div class="panel-body">
+				<span class="nosp">
+					<c:set var="now" value="<%= new java.util.Date() %>" />
+		    		<fmt:formatDate pattern="YYYY-MM-dd HH:MM" value="${now}"/>
+				</span>
 				<table class="table table-bordered table-hover">
 					<tr>
 						<td>부서</td>
