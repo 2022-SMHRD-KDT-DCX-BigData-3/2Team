@@ -345,15 +345,15 @@
   </aside><!-- End Sidebar-->
 
 	<main id="main" class="container">
-		<h1 id="roomtitle">채팅방</h1>
+		<h1 id="roomtitle">그룹채팅</h1>
 		<div id="roomContainer" class="roomContainer">
 			<table id="roomList" class="roomList"></table>
 		</div>
-		<div class="tlqkf" style="margin-left:350px">
+		<div class="tlqkf" style="margin-left:300px" >
 			<table class="inputTable">
 				<tr>
 					<th>방 제목</th>
-					<th><input type="text" name="roomName" id="roomName"></th>
+					<th><input class="input_room" type="text" name="roomName" id="roomName" placeholder="방이름을 입력해주세요" ></th>
 					<th><button id="createRoom">방 만들기</button></th>
 				</tr>
 			</table>

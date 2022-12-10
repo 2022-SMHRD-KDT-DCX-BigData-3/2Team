@@ -2,8 +2,8 @@
 .container h1{
 			text-align: left;
     		padding: 5px 5px 5px 15px;
-    		color: #4154f1;
-    		border-left: 3px solid #4154f1;
+    		color: #0090CF;
+    		border-left: 3px solid #0090CF;
     		margin-bottom: 20px;
     		margin-top: 30px;
 		}
@@ -12,6 +12,7 @@
     		height: 300px;
     		overflow: auto;
     		margin-left: 80px;
+    		text-align: center;
 		}
 	
 		.container{
@@ -23,17 +24,17 @@
 		.roomList{
 			border: none;
 			width: 1000px;
+			
 		}
 		.roomList th{
-			border: 1px solid  #4154f1;
+			border: 1px solid  #0090CF;
 			background-color: #fff;
-			color:  #4154f1;
+			color:  #0090CF;
 		}
 		.roomList td{
-			border: 1px solid  #4154f1;
+			border: 1px solid  #0090CF;
 			background-color: #fff;
-			text-align: left;
-			color:  #4154f1;
+			color:  #0090CF;
 		}
 		.roomList .num{
 			width: 75px;
@@ -47,14 +48,20 @@
 			text-align: center;
 		}
 		button{
-			background-color:  #4154f1;
+			background-color:  #0090CF;
 			font-size: 14px;
-			color: #000;
-			border: 1px solid #000;
+			color: #ffffff;
+			border: 0px solid;
 			border-radius: 5px;
-			padding: 3px;
+			padding: 5px;
 			margin: 3px;
 		}
+		button:hover{
+			background-color: #E0dae3;
+			color : #012970;
+			
+		}
+		
 		.inputTable th{
 			
 			padding: 5px;
@@ -62,4 +69,11 @@
 		.inputTable input{
 			width: 430px;
 			height: 25px;
+		}
+		.tlqkf {
+		 	width: 700px;
+		}
+		.input_room{
+			text-align: center;
+			border: none;
 		}

@@ -110,6 +110,29 @@
 		$('#chatting').val("");
 		setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
 	}
+	
+	function fakeMessage() {
+		  if ($('.chatting').val() != '') {
+		    return false;
+		  }
+		  $('<div class="message loading new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+		  updateScrollbar();
+
+		  setTimeout(function() {
+		    $('.message.loading').remove();
+		    $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + Fake[i] + '</div>').appendTo($('.mCSB_container')).addClass('new');
+		    setDate();
+		    updateScrollbar();
+		    i++;
+		  }, 1000 + (Math.random() * 20) * 100);
+
+		}
+	
+	
+	
+	
+	
+	
 </script>
 <body>
 <!-- ======= Header ======= -->
@@ -366,7 +389,7 @@
 
 	<main id="main">
 	<div id="container" class="container">
-		<h1>${roomName}의 채팅방</h1>
+		<h1>${roomName}의 회의</h1>
 		<input type="hidden" id="sessionId" value="">
 		<input type="hidden" id="roomNumber" value="${roomNumber}">
 		
@@ -386,8 +409,9 @@
 		<div id="yourMsg">
 			<table class="inputTable">
 				<tr>
-					<th><span class="material-symbols-outlined" style="margin-right: 25px"> add_reaction</span></th>
-					<th><input id="chatting" style="border:none" placeholder=" 보내실 메시지를 입력하세요."></th>
+					<!-- <th><span class="material-symbols-outlined" style="margin-right: 25px"> add_reaction</span></th> -->
+					<th>메세지</th>
+					<th><input  id="chatting" style="border:none" placeholder=" 보내실 메시지를 입력하세요."></th>
 					<th><button class="button button2" onclick="send()" id="sendBtn" style="margin-right: 20px">보내기</button></th>
 					<th></th>
 				</tr>
