@@ -288,8 +288,7 @@
 			</svg>&nbsp;&nbsp;
           <span>캘린더</span>
         </a>
-
-      </li><!-- End mail Nav -->
+      </li><!-- End calendar Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="list">
@@ -312,22 +311,8 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="approvaln">
-
-              <i class="bi bi-circle"></i><span>일반결재</span>
-            </a>
-          </li>
-          <li>
-            <a href="approvalp">
-              <i class="bi bi-circle"></i><span>지출결재</span>
-
-              <i class="bi bi-circle"></i><span>결재조회</span>
-            </a>
-          </li>
-          <li>
             <a href="approvalp">
               <i class="bi bi-circle"></i><span>결재신청</span>
-
             </a>
           </li>
           <li>
@@ -400,7 +385,7 @@
 							<div class="card info-card sales-card">
 
 								<div class="filter">
-									<a class="icon" href="calender" data-bs-toggle="dropdown">more</a>
+									<a class="icon" href="calendar" data-bs-toggle="dropdown">more</a>
 								</div>
 
 								<div class="card-body">
@@ -425,7 +410,7 @@
 
 							</div>
 						</div>
-						<!-- End calender Card -->
+						<!-- End calendar Card -->
 
 						<!-- Revenue Card -->
 						<div class="col-xxl-4 col-md-6">
