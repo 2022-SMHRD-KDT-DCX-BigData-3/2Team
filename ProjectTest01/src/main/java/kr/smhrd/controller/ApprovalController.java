@@ -1,4 +1,3 @@
-
 package kr.smhrd.controller;
 
 import java.util.List;
@@ -14,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.smhrd.entity.AllApproval;
+import kr.smhrd.entity.App;
 import kr.smhrd.entity.Approval;
 import kr.smhrd.entity.Approval_auth;
-
 import kr.smhrd.entity.Member;
 import kr.smhrd.entity.UpApproval;
 import kr.smhrd.entity.ViewApproval;
@@ -34,16 +33,29 @@ public class ApprovalController {
 		model.addAttribute("list", list);
 		return "smart/approvaln";
 	}
+	@RequestMapping("/approvald")
+	public String approvald(Model model) {
+		List<Approval> list = approvalService.getList();
+		model.addAttribute("list", list);
+		return "smart/approvald";
+	}
+	@RequestMapping("/approvale")
+	public String approvale(Model model) {
+		List<Approval> list = approvalService.getList();
+		model.addAttribute("list", list);
+		return "smart/approvale";
+	}
 	@GetMapping("/get")
 	public String get(@RequestParam("appro_id") int appro_id, Model model) {
 		AllApproval vo = approvalService.select(appro_id);
 		model.addAttribute("vo", vo);
+		System.out.println(vo);
 		return "smart/get";
 	}
 	@PostMapping("/get")
 	public String inget(UpApproval app) {
 		approvalService.inget(app);
-		return "redirect:/get?appro_id="+app.getAppro_id();
+		return "redirect:/main";
 	}
 	@GetMapping("/approvalp")
 	public String approvalp(HttpSession session ,Model model) {
@@ -58,7 +70,12 @@ public class ApprovalController {
 		approvalService.inser(app);
 		return "redirect:/approvaln";
 	}
-
-
+	@RequestMapping("/main")
+	public String main(HttpSession session) {
+		App ap = approvalService.main();
+		session.setAttribute("ap", ap);
+		System.out.println(ap.getApro_status0());
+		return "smart/main";
+	}
 }
 

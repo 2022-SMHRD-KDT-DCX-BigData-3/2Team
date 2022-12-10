@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="cpath" value="${pageContext.request.contextPath}" />
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Insert title here</title>
@@ -18,95 +17,22 @@
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <!-- Vendor CSS Files -->
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css"
-	rel="stylesheet">
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-<link href="css/MainChat.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<script type="text/javascript">
-	var ws;
-	var now = new Date();
-	var minutes = now.getMinutes();
-	var hours = now.getHours();
-
-
-	function wsOpen(){
-		ws = new WebSocket("ws://" + location.host + "/mainchating");
-		wsEvt();
-	}
-		
-	function wsEvt() {
-		ws.onopen = function(data){
-			//소켓이 열리면 동작
-		}
-		
-		ws.onmessage = function(data) {
-			//메시지를 받으면 동작
-			var msg = data.data;
-			if(msg != null && msg.trim() != ''){
-				var d = JSON.parse(msg);
-				if(d.type == "getId"){
-					var si = d.sessionId != null ? d.sessionId : "";
-					if(si != ''){
-						$("#sessionId").val(si); 
-					}
-				}else if(d.type == "message"){
-					if(d.sessionId == $("#sessionId").val()){
-						$("#chating").append("<div class='mine messages'><p class='message'>" + d.msg + "</p><span class='time'>"+hours+"시"+minutes
-								+"분"+"</span></div>");
-					}else{
-						$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
-					}
-						
-				}else{
-					console.warn("unknown type!")
-				}
-			}
-		}
-
-		document.addEventListener("keypress", function(e){
-			if(e.keyCode == 13){ //enter press
-				send();
-			}
-		});
-	}
-
-	function chatName(){
-		var userName = $("#userName").val();
-		if(userName == null || userName.trim() == ""){
-			alert("사용자 이름을 입력해주세요.");
-			$("#userName").focus();
-		}else{
-			wsOpen();
-			$("#yourName").hide();
-			$("#yourMsg").show();
-		}
-	}
-
-	function send() {
-		var option ={
-			type: "message",
-			sessionId : $("#sessionId").val(),
-			userName : $("#userName").val(),
-			msg : $("#chatting").val()
-		}
-		ws.send(JSON.stringify(option))
-		$('#chatting').val("");
-	}
-</script>
 <body>
 <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -225,7 +151,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="calendar">
+              <a class="dropdown-item d-flex align-items-center" href="calender">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 				  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
@@ -294,15 +220,14 @@
       </li><!-- End chat Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="calendar">
+        <a class="nav-link collapsed" href="calender">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 			  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 			</svg>&nbsp;&nbsp;
           <span>캘린더</span>
         </a>
-
-      </li><!-- End mail Nav -->
+      </li><!-- End calender Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="list">
@@ -325,25 +250,8 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-<<<<<<< HEAD
-            <a href="approvaln">
-
-              <i class="bi bi-circle"></i><span>일반결재</span>
-            </a>
-          </li>
-          <li>
-            <a href="approvalp">
-              <i class="bi bi-circle"></i><span>지출결재</span>
-
-              <i class="bi bi-circle"></i><span>결재조회</span>
-            </a>
-          </li>
-          <li>
-=======
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
             <a href="approvalp">
               <i class="bi bi-circle"></i><span>결재신청</span>
-
             </a>
           </li>
           <li>
@@ -401,320 +309,114 @@
     </ul>
 
   </aside><!-- End Sidebar-->
+  
+  <main id="main" class="main">
 
-	<main id="main" class="main">
+	<div class="pagetitle">
+		<form id="frm" class="form-horizontal" method="post">
+			     <h1>결재완료</h1></td>
+			     <nav>
+		        <ol class="breadcrumb">
+		          <li class="breadcrumb-item"><a href="http://localhost:9999/main">Home</a></li>
+		          <li class="breadcrumb-item">Users</li>
+		          <li class="breadcrumb-item active">Approval</li>
+		        </ol>
+		      </nav>
+		</form>
+	</div><!-- End Page Title -->
+		
+    <section class="section profile">
+    	<div id="wrap">
 
-		<div class="pagetitle">
-			<h1>대시보드</h1>
-			<nav>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a
-						href="http://localhost:9999/main">Home</a></li>
-					<li class="breadcrumb-item active">대시보드</li>
-				</ol>
-			</nav>
-		</div>
-		<!-- End Page Title -->
+		<!--결재리스트 목록 시작-->
 
-		<section class="section dashboard">
-			<div class="row">
+		<div id="content">
+			<div class="col-md-13">
+				<div class="box">
 
-				<!-- Left side columns -->
-				<div class="col-lg-8">
-					<div class="row">
-
-						<!-- Sales Card -->
-						<div class="col-xxl-4 col-md-6">
-							<div class="card info-card sales-card">
-
-								<div class="filter">
-									<a class="icon" href="calender" data-bs-toggle="dropdown">more</a>
-								</div>
-
-								<div class="card-body">
-									<h5 class="card-title">오늘일정</h5>
-
-									<div class="d-flex align-items-center">
-										<div
-											class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16"
-												height="16" fill="currentColor" class="bi bi-calendar-check"
-												viewBox="0 0 16 16">
-							<path
-													d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-							<path
-													d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-						</svg>
-										</div>
-										<div class="ps-3">
-											<h6>145</h6>
-											<span class="text-success small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
-
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-						<!-- End calender Card -->
-
-						<!-- Revenue Card -->
-						<div class="col-xxl-4 col-md-6">
-							<div class="card info-card revenue-card">
-
-								<div class="filter">
-									<a class="icon" href="approvaln" data-bs-toggle="dropdown">more</a>
-								</div>
-
-								<div class="card-body">
-									<h5 class="card-title">결재대기</h5>
-
-									<div class="d-flex align-items-center">
-										<div
-											class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16"
-												height="16" fill="currentColor"
-												class="bi bi-clipboard-check" viewBox="0 0 16 16">
-						  <path fill-rule="evenodd"
-													d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-						  <path
-													d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-						  <path
-													d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
-					  	</svg>
-										</div>
-										<div class="ps-3">
-											<h6>$3,264</h6>
-											<span class="text-success small pt-1 fw-bold">8%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
-
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-						<!-- End commuting Card -->
-
-						<!-- Customers Card -->
-						<div class="col-xxl-4 col-xl-12">
-
-							<div class="card info-card customers-card">
-
-								<div class="filter">
-									<a class="icon" href="list" data-bs-toggle="dropdown">more</a>
-								</div>
-
-								<div class="card-body">
-									<h5 class="card-title">공지사항</h5>
-
-									<div class="d-flex align-items-center">
-										<div
-											class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16"
-												height="16" fill="currentColor" class="bi bi-card-checklist"
-												viewBox="0 0 16 16">
-						  <path
-													d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-						  <path
-													d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
-						</svg>
-										</div>
-										<div class="ps-3">
-											<h6>1244</h6>
-											<span class="text-danger small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">decrease</span>
-
-										</div>
-									</div>
-
-								</div>
-							</div>
-
-						</div>
-						<!-- End Customers Card -->
-
-						<!-- Reports -->
-						<div class="col-12">
-							<div class="card">
-
-								<div class="filter">
-									<a class="icon" href="#" data-bs-toggle="dropdown"><i
-										class="bi bi-three-dots"></i></a>
-									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-										<li class="dropdown-header text-start">
-											<h6>Filter</h6>
-										</li>
-
-										<li><a class="dropdown-item" href="#">Today</a></li>
-										<li><a class="dropdown-item" href="#">This Month</a></li>
-										<li><a class="dropdown-item" href="#">This Year</a></li>
-									</ul>
-								</div>
-
-								<div class="card-body">
-									<h5 class="card-title">
-										Reports <span>/Today</span>
-									</h5>
-
-									<!-- Line Chart -->
-									<div id="reportsChart"></div>
-
-									<script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
-                  </script>
-									<!-- End Line Chart -->
-
-								</div>
-
-							</div>
-						</div>
-						<!-- End Reports -->
-
-					</div>
-				</div>
-				<!-- End Left side columns -->
-
-				<!-- Right side columns -->
-				<div class="col-lg-4">
-					<!-- Recent Activity -->
-					<div class="card">
-						<div class="filter">
-							<a class="icon" href="#" data-bs-toggle="dropdown"><i
-								class="bi bi-three-dots"></i></a>
-							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-								<li class="dropdown-header text-start">
-									<h6>Filter</h6>
-								</li>
-
-								<li><a class="dropdown-item" href="#">Today</a></li>
-								<li><a class="dropdown-item" href="#">This Month</a></li>
-								<li><a class="dropdown-item" href="#">This Year</a></li>
-							</ul>
-						</div>
-
-						<div class="card-body">
-							<h5 class="card-title">
-								Chat <span>| Today</span>
-							</h5>
-							<div id="container" class="container">
+					<div class="box-body">
+						<div>
 								
-								<div id="chating" class="chating"></div>
-
-								<div id="yourName">
-									<table class="inputTable">
-										<tr>
-											<th>사용자명</th>
-											<th><input type="text" name="userName" id="userName"></th>
-											<th><button onclick="chatName()" id="startBtn">이름
-													등록</button></th>
+								<table id="list" class="table table-hover">
+									<colgroup>
+										<col width="40px" />
+										<col width="150px" />
+										<col width="60px" />
+										<col width="60px" />
+										<col width="40px" />
+	
+									</colgroup>
+									<thead>
+										<tr class="active">
+											<th>번호</th>
+											<th>제목</th>
+											<th>제출자</th>
+											<th>결재종류</th>
+											<th>작성일</th>
 										</tr>
-									</table>
-								</div>
-								<div id="yourMsg">
-									<table class="inputTable">
-										<tr>
-											<th>메시지</th>
-											<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-											<th><button onclick="send()" id="sendBtn">보내기</button></th>
-										</tr>
-									</table>
-								</div>
-							</div>
-
-
-							<i
-								class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-
+									</thead>
+	
+									<c:forEach var="vo" items="${list}">
+										<c:if test="${vo.apro_status == '3'}">
+											<tbody>
+												<!-- <input type='hidden' name='div_apv_sq' id="div_apv_sq" value="${approval.div_apv_sq}"> -->
+												<tr>
+													<td>${vo.appro_id}</td>
+													<!-- <td><a href="${cpath}/smart/get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td> -->
+													<td><a href="get?appro_id=${vo.appro_id}">${vo.appro_title}</a></td>
+													<td>${vo.appro_member_id}</td>
+													<c:if test="${vo.appro_sort == '0'}">
+														<td>일반결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '1'}">
+														<td>지출결재</td>
+													</c:if>
+													<c:if test="${vo.appro_sort == '2'}">
+														<td>휴가결재</td>
+													</c:if>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.appro_indate}"/></td>
+												</tr>
+											</tbody>
+										</c:if>
+									</c:forEach>
+								</table>
+								
 						</div>
-						<!-- End activity item-->
-
-
-
-
-
 					</div>
-					<!-- End activity item-->
-
+					<div id="pageIndexList" class="text-center">
+					</div>
 				</div>
-
+				<!-- /.box-footer-->
 			</div>
-			</div>
-			<!-- End Recent Activity -->
+		</div>
+		<!--결재리스트 목록 종료-->
 
-		</section>
+	</div>
+	</section>
 
-	</main>
-	<!-- End #main -->
+  </main><!-- End #main -->
 
-	<a href="#"
-		class="back-to-top d-flex align-items-center justify-content-center"><i
-		class="bi bi-arrow-up-short"></i></a>
+<script>
+	var result = '${msg}';
 
-	<!-- Vendor JS Files -->
-	<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/vendor/chart.js/chart.min.js"></script>
-	<script src="assets/vendor/echarts/echarts.min.js"></script>
-	<script src="assets/vendor/quill/quill.min.js"></script>
-	<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-	<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-	<script src="assets/vendor/php-email-form/validate.js"></script>
-
-	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
-
-
+	if (result == 'SUCCESS') {
+		alert("처리가 완료되었습니다.");
+	}
 </script>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.min.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 </body>
 </html>

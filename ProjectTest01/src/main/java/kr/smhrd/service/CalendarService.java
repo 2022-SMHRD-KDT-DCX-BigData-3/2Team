@@ -19,15 +19,15 @@ public class CalendarService  {
 	@Autowired
 	private CalendarMapper calendarMapper;
 	
-	public List<Calendar> getList(){
-		List<Calendar> list = calendarMapper.getList();
+	public List<Calendar> getList(int memeber_id){
+		List<Calendar> list = calendarMapper.getList(memeber_id);
 		return list;
 	}
 	
-	public void add(Calendar vo) {
-	     
-	      calendarMapper.insert(vo);
-	   }
+	public void inCal(int member_id) {
+		calendarMapper.inCal(member_id);
+					
+		}
 	
 	
 	

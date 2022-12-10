@@ -13,7 +13,9 @@ import kr.smhrd.entity.Calendar;
 @Mapper
 public interface CalendarMapper {
 
-	public List<Calendar> getList();
+	public List<Calendar> getList(int memeber_id);
 	
-	public void insert(Calendar vo);
+	public void inCal(int member_id);
+	
+	
 }

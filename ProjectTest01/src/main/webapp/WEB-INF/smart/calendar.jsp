@@ -2,10 +2,14 @@
 <%@page import="java.util.List"%>
 <%-- <%@page import="kr.smhrd.entity.Calendar.calendar.model.vo.Calendar"%> --%>
 <%@page import="kr.smhrd.entity.Calendar"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="cpath" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<%-- <c:set var="cpath" value="${pageContext.request.contextPath}"/> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +34,7 @@
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <!-- =======================================================
@@ -42,6 +47,7 @@
 <!--캘린더-->
 
 
+  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -495,121 +501,14 @@
 
   </main><!-- End #main -->
   
-	
-<style>
-        #calendarBox{
-            width: 90%;
-          
-          
-            padding-left: 20%;
-            
-        }
-
-    </style>
-
-	<div id="calendarBox">
-	
-        <div id="calendar"></div>
- 
-    </div>
-
-    <!-- modal 추가 -->
-    <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">일정을 입력하세요.</h5><br>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_modal">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                            
-                
-                
-                <div class="modal-body">
-                    <div class="form-group">
-                    
-                    	
-                        <label for="taskId" class="col-form-label">일정 내용</label>
-                        <input type="text" class="form-control" name="calendar_title">
-                        <label style="display:none" class="content">내용을 입력해주세요</label><br>
-                        <label for="taskId" class="col-form-label">시작 날짜</label>
-                        <input type="date" class="form-control" name="calendar_start_date">
-                      	<label style="display:none" class="needStart">시작 날짜를 입력해주세요</label><br>
-                        <label for="taskId" class="col-form-label">종료 날짜</label>
-                        <input type="date" class="form-control" name="calendar_end_date">
-                        <label style="display:none" class="needEnd">종료 날짜를 입력해주세요</label><br> 
-                     
-
-
-
-
-					</div>
-                </div>
-                <div class="modal-footer">
-                    <button id ="addButton" type="button" class="btn btn-warning">추가</button>
-                    <button id ="close_modal2" type="button" class="btn btn-secondary">취소</button>
-                </div>
-    
-            </div>
-        </div>
-    </div>
-   
-
-
-
-
-  
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.min.js"></script>
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
- <!--  <script src="assets/js/jquery-3.6.1.min.js"></script>
-    -->
-<link href="fullcalendar-5.11.3/lib/main.css" rel="stylesheet" />
-<script src="fullcalendar-5.11.3/lib/main.js"></script>
-<script src="fullcalendar-5.11.3/lib/locales/ko.js"></script>
-<script src="fullcalendar-5.11.3/lib/locales-all.min.js"></script>
-<!-- <script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/fullcalendar.js"></script>
-<script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/jscolor.min.js"></script> -->
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-  
-  
-<style>
-/* #calendar{
-   width:90%;
-   margin:40px auto;
-} */
+	<style>
 body {
 line-height:14px;
 }
  
  
 #calendar {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
 }
  
@@ -729,151 +628,333 @@ input:focus, textarea:focus {
   background-color:white;
 }
 </style>
-<script class="cssdesk" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="css/style.css" />
+
+
+
 	
+	<script src="fullcalendar-5.11.3/lib/jquery-ui.js"></script>
 	<script type='text/javascript'>
+	
+	
+	var ctx ="${path}";
+	   var isAdm ="${isAdm}";
+	   var edit = true;
+	   if(isAdm==1) edit=true;
+	   
+	   var diaLogOpt={
+	        modal:true        //모달대화상자
+	        ,resizable:false  //크기 조절 못하게
+	        , width : "570"   // dialog 넓이 지정
+	        , height : "470"  // dialog 높이 지정
+	      };
+	   var calFunc ={
+			   calcDate: function(arg,calendar){
+			      var rObj = new Object();
+			      var start  = null;
+			        var end    = null;
+			        var allDay = arg.allDay;
+			      var startDisp =null;
+			      var endDisp = null;
+			      var id = null;
+			      var xcontent = null;
+			      var title = null;
+			      var color = null;
+			      //============================== date get / set ======================================
+			       
+			        if(arg.id!=""&& arg.id!=null && arg.id!=undefined) id=arg.id;
+			        if(arg.title!=""&& arg.title!=null && arg.title!=undefined) title=arg.title;
+			        if(arg.extendedProps!=undefined){
+			          if(arg._def.extendedProps.xcontent!=""&& arg._def.extendedProps.xcontent!=null && arg._def.extendedProps.xcontent!=undefined){
+			              xcontent=arg._def.extendedProps.xcontent;
+			          }
+			        }
+			        
+			        if(allDay){//하루종일이면
+			            var start  = arg.start.toISOString().slice(0,10); //returnCdate(calendar,arg.start);
+			            var end=null;             
+			            if(arg.end!=""&& arg.end!=null && arg.end!=undefined){
+			                end    = arg.end.toISOString().slice(0,10);  //실제 데이터는 날짜를 하루 빼지 않는다 
+			            }
+			            if(start==end) end=null;  //같은날이면 end날짜 없음
+			            
+			            startDisp = start;
+			            if(end!=null) endDisp = dateRel(arg.end.toISOString().slice(0,10)); //알릴때만 날짜 하루 빼기 
+			        }else{//시간이 같이 들어오면
+			            start = arg.start.toISOString();             
+			            if(arg.end!=""&& arg.end!=null && arg.end!=undefined){
+			                end   = arg.end.toISOString();
+			            }
+			            startDisp = returnCdate(calendar,arg.start);
+			            if(end!=null) endDisp = returnCdate(calendar,arg.end);
+			        }
+			        rObj.start=start;
+			        rObj.end=end;
+			        rObj.start=start;
+			        rObj.startDisp=startDisp;
+			        rObj.endDisp=endDisp;
+			        rObj.id=id;
+			        rObj.xcontent=xcontent;
+			        rObj.title=title;
+			       //============================== date get / set ======================================
+			        return rObj;
+			   },
+			   
+			  
+			 //등록초기
+			   setDateRangeView :function(xobj){
+			       var dispStr = xobj.startDisp;
+			       if(xobj.endDisp!=null) dispStr+=" ~ "+xobj.endDisp;
+			       
+			       $("form#diaForm").find("input[name='xdate']").val(dispStr);
+			       $("form#diaForm").find("input[name='start']").val(xobj.start);
+			       $("form#diaForm").find("input[name='end']").val(xobj.end);
+			       $("form#diaForm").find("input[name='actType']").val("C"); //등록
+			   },
+			   
+			  
+			   //form안에 name값을 $obj에 주입
+			   getFormValue :function(){
+			       var $dForm =$("form#diaForm");
+			       var $obj = new Object();
+			       $("form#diaForm").find("input,textarea,select").each(function(){
+			           var xval = $(this).val();            
+			           $obj[$(this).attr("name")]=xval;
+			       });
+			       
+			       return $obj;
+			   },
+			   
+			   //모든 태그 비활성화
+			   formDsbTrue :function(){
+			       $("form#diaForm").find("input,textarea,select").each(function(){
+			           $(this).attr("disabled",true);
+			       });
+			   },
+			   
+			   
+			   //모든 태그 활성화
+			   formDsbFalse :function(){                
+			       $("form#diaForm").find("input,textarea,select").each(function(){
+			               $(this).attr("disabled",false);
+			       });
+			   },
+			   
+			   //데이터 조회
+			   setDataForm :function(xobj){
+			       var dispStr = xobj.startDisp;
+			       if(xobj.endDisp!=null) dispStr+=" ~ "+xobj.endDisp;
+			       
+			       $("form#diaForm").find("input[name='xdate']").val(dispStr);
+			       $("form#diaForm").find("input[name='start']").val(xobj.start);
+			       $("form#diaForm").find("input[name='end']").val(xobj.end);
+			       $("form#diaForm").find("input[name='actType']").val("U"); //수정
+			       
+			       
+			       $("form#diaForm").find("input[name='id']").val(xobj.id);
+			       $("form#diaForm").find("input[name='title']").val(xobj.title);
+			       $("form#diaForm").find("textarea[name='xcontent']").val(xobj.xcontent);
+			   }
+			 };
+			 //calFunc[e]
+			  
+			  
+			  
+			  
+			 //등록 액션    
+			 function createClnd(cal,xobj){ 
+			   if(!confirm("일정을 등록 하시겠습니까?")) return false; 
+			   var $obj = calFunc.getFormValue();    
+			   
+			   $.ajax({ 
+			       url: ctx+"calendar_create", 
+			       type: "POST", 
+			       contentType: "application/json;charset=UTF-8",
+			       data:JSON.stringify($obj) 
+			  }).done(function(data) { 
+			       var result = jQuery.parseJSON(data); 
+			       console.log(result);
+			       //모든 소스에서 이벤트를 다시 가져와 화면에 다시 렌더링
+			       cal.refetchEvents();
+			  }).fail(function(e) {  
+			      alert("실패하였습니다."+e);
+			  }).always(function() { 
+			      $("#name").val("");
+			      $("#comment").val("");
+			  }); 
+			   
+			 }
+			  
+			  
+			 //수정액션
+			 function updateClnd(cal,xobj,event){ 
+			   if(!confirm("해당일정을 정말로 수정 하시겠습니까?")){
+			       if(event!=undefined) event.revert();
+			       return false; 
+			   }
+			   var $obj = calFunc.getFormValue();    
+			   
+			   $.ajax({ 
+			       url: ctx+"/adms/calendar/management/update_ajx.do", 
+			       type: "POST", 
+			       contentType: "application/json;charset=UTF-8",
+			       data:JSON.stringify($obj) 
+			  }).done(function(data) { 
+			       var result = jQuery.parseJSON(data);
+			       cal.refetchEvents();
+			  }).fail(function(e) {  
+			      alert("실패하였습니다."+e);
+			  }).always(function() { 
+			      $("#name").val("");
+			      $("#comment").val("");
+			  }); 
+			 }
+			  
+			 //삭제액션
+			 function deleteClnd(cal,xobj){ 
+			   if(!confirm("해당일정을 정말로 삭제 하시겠습니까?")) return false; 
+			   
+			   var $obj = calFunc.getFormValue();    
+			   $.ajax({ 
+			       url: ctx+"/adms/calendar/management/delete_ajx.do", 
+			       type: "POST", 
+			       contentType: "application/json;charset=UTF-8",
+			       data:JSON.stringify($obj) 
+			  }).done(function(data) { 
+			       var result = jQuery.parseJSON(data); 
+			       cal.refetchEvents();
+			  }).fail(function(e) {  
+			      alert("실패하였습니다."+e);
+			  }).always(function() { 
+			      $("#name").val("");
+			      $("#comment").val("");
+			  }); 
+			 }
+			 //=========================================== function =========================================== 
+			  
+			 //관리자만 ,주,일 옵션 뷰
+			 var rightm = "";
+			 rightm+=',listWeek';  
+	
+	
+			 
 	document.addEventListener('DOMContentLoaded', function () {
 		
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth', 
+            //initialView: 'dayGridMonth', 
+            allDay:false,
             selectable: true,
             navLinks: true,
-            nowIndicator: true,
-            dayMaxEvents: true,
-            edittable: true,
+            timeZone: 'Asia/Seoul',
+            //nowIndicator: true,
+            //dayMaxEvents: true,
             selectMirror: true,
             theme:true,
             themeSystem:'bootstrap',
+            editable: true, // false로 변경 시 draggable 작동 x 
+            //displayEventTime: false, // 시간 표시 x
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right:'dayGridMonth,timeGridWeek,timeGridDay listWeek,addEventButton'
+                right:'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             	}, 
             	
             locale : "ko",
-            eventAdd: function(obj){
-            	console.log('add')
-            },
+            
            
-			 eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
-				
-				// GMT 시간은 9시간 빨라서 9시간 빼줘야됨
-				var start = obj.event._instance.range.start;
-				if(start.getHours() == 9) {
-					start = moment(start).format('YYYY-MM-DD') + " 00:00";
-				}
-				else {
-					start = start.setHours(start.getHours() - 9);
-					start = moment(start).format('YYYY-MM-DD hh:mm');
-				}
-				
-				
-				var end = obj.event._instance.range.end;
-				if(end.getHours() == 9) {
-					end = moment(end).format('YYYY-MM-DD') + " 00:00";
-				}
-				else {
-					end = end.setHours(end.getHours() - 9);
-					end = moment(end).format('YYYY-MM-DD hh:mm');
-				}
-				
-				
-				$.ajax({
-						  url: "calendar_edit",
-						  type: "POST",
-						  dataType: "JSON",
-						  contentType: "application/json; charset=UTF-8",
-						  data : {
-								title : obj.event._def.title,
-								start: start,
-								end: end
-						  },
-						  traditional: true,
-						  async: false, //동기
-						  success : function(data){
-							  console.log(data)
-						  },
-						  error : function(request,status,error){
-							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-							console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-						  }
-					});
-				
-			}, 
-             
-        		
-        		
-			eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
-				console.log('remove');
+			 eventChange: function(fetchInfo, successCallback, failureCallback) { // 이벤트가 수정되면 발생하는 이벤트
+				 var start= fetchInfo.start.toISOString().slice(0, 7);
+			       var end = fetchInfo.end.toISOString().slice(0, 7);
+			       var param = "";
+			       param+="start="+start;
+			       param+="&end="+end;
+			       
+			       $.ajax({ 
+			             url: ctx+"/adms/calendar/management/read_ajx.do", 
+			             type: "POST",                  
+			             data:param
+			        }).done(function(data) { 
+			             var result = jQuery.parseJSON(data); 
+			             successCallback(result.list);
+			             console.log(result);
+			        }).fail(function(e) {  
+			            alert("실패하였습니다."+e);
+			        }).always(function() { 
+			            
+			        }); 
 				
 			},
+			eventDrop: function(info) {               
+		           var xObj = calFunc.calcDate(info.event,calendar); //get event data
+		                calFunc.setDataForm(xObj);  //Set Form Data
+		          updateClnd(calendar,xObj,info); 
+		    },
+		       eventResize: function(info) {           
+		             var xObj = calFunc.calcDate(info.event,calendar); //get event data
+		           calFunc.setDataForm(xObj);  //Set Form Data
+		          updateClnd(calendar,xObj,info);  
+		       },
+		  eventTimeFormat: { 
+		        hour: '2-digit',
+		        minute: '2-digit',
+		        hour12: false
+		  },
+             			
 			select: function(arg) { // 캘린더에서 드래그로 이벤트 생성
-				
-				var title = prompt('입력할 일정:');
-				var color = prompt('색상 입력:');
-				if (title || color) {
-					$.ajax({
-						  url: "calendar_add",
-						  type: "POST",
-						  dataType: "JSON",
-						  contentType: "application/json; charset=UTF-8",
-						  data : {
-								title: title,
-								start: arg.start,
-								end: arg.end,
-								allDay: arg.allDay
-						  },
-						  traditional: true,
-						  async: false, //동기
-						  success : function(data){
-							  console.log(data)
-						  },
-						  error : function(request,status,error){
-							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-							console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-						  }
-					});
-
-					calendar.addEvent({
-						title: title,
-						start: arg.start,
-						end: arg.end,
-						allDay: arg.allDay
-					})
-				} 
-				
-				calendar.unselect()
+				//$("#calendarModal").modal("show"); // modal 나타내기
+				//if(isAdm==0) return false; 관리자모드
+		        var xObj = calFunc.calcDate(arg,calendar);     //get event data     
+		       
+		        //================ dialog 옵션 추가 ===================
+		        var btnOpt ={                
+		                        "저장":function(){                            
+		                            createClnd(calendar,xObj);  //저장클릭시 액션 함수
+		                            $(this).dialog("close");
+		                            
+		                        },"취소":function(){
+		                            $(this).dialog("close");
+		                        }                
+		                    }
+		        var dOpt =diaLogOpt;
+		        dOpt.buttons = btnOpt;
+		        $("#name").val("");
+		         $("#comment").val("");
+		        
+		       //================ dialog 옵션 추가 ===================
+		      calFunc.formDsbFalse();          //Form data disabeld false
+		       $('#dialog').dialog(dOpt);       //다이얼로그 오픈
+		       calFunc.setDateRangeView(xObj);  //SET Form data
+		      
+		        calendar.unselect();
 			},
-			droppable: true,
-			eventClick: function(arg) { 
-				// 있는 일정 클릭시, 
-				console.log(arg);
-				if (confirm('일정을 삭제하시겠습니까?')) 
-				{ 
-					$.ajax({
-						  url: "calendar_delete",
-						  type: "POST",
-						  dataType: "JSON",
-						  contentType: "application/json; charset=UTF-8",
-						  data : {
-								title : arg.event._def.title
-						  },
-						  traditional: true,
-						  async: false, //동기
-						  success : function(data){
-							  
-							 console.log(data);
-						  },
-						  error : function(request,status,error){
-							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-							console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-						  }
-					});
-					arg.event.remove();
-				} 
+			//droppable: true,
+			eventClick: function(calEvent, jsEvent) {
+				//$("#calendarModal").modal("show");
+				var xObj = calFunc.calcDate(calEvent.event,calendar);  //get event data          
+       //================ dialog 옵션 추가 ===================
+     var btnOpt ={                
+                    "삭제":function(){
+                        deleteClnd(calendar,xObj); //삭제클릭시 액션 함수
+                        $(this).dialog("close");
+                    },"수정":function(){
+                        updateClnd(calendar,xObj); //수정클릭시 액션 함수
+                        $(this).dialog("close");
+                    },"닫기":function(){
+                        $(this).dialog("close");
+                    }                
+                  }
+   //================ dialog 옵션 추가 ===================
+     var dOpt =diaLogOpt;
+     dOpt.buttons = btnOpt;                  
+     //================ dialog 옵션 추가 ===================
+    
+     //================ 실행                      ===================
+     $('#dialog').dialog(dOpt);  //다이얼로그 오픈
+     calFunc.setDataForm(xObj);  //SET Form Data
+				
 			},
+			editable:edit,
+			dayMaxEvents: true,
 			 events: function(info, successCallback, failureCallback){ // ajax 처리로 데이터를 로딩 시킨다. 
 				$.ajax({
 					  url: "calendar_load",
@@ -912,86 +993,115 @@ input:focus, textarea:focus {
 					
 			}, 
 		 	
-            	customButtons: {
-                addEventButton: { // 추가한 버튼 설정
-                    text : "일정 추가",  // 버튼 내용
-                    click : function(){ // 버튼 클릭 시 이벤트 추가
-                        $("#calendarModal").modal("show"); // modal 나타내기
-
-                        $("#addButton").on("click",function(){  // modal의 추가 버튼 클릭 시
-                            var content = $("#calendar_title").val();
-                            var start_date = $("#calendar_start_date").val();
-                            var end_date = $("#calendar_end_date").val();
-                           
-                            
-                            //내용 입력 여부 확인
-                            if(title == null || title == ''){
-                                alert("내용을 입력하세요.");
-                            }else if(start_date == ''){
-                                alert("시작일을 입력하세요.");
-                            }else if(end_date == ''){
-                            	alert("종료일을 입력하세요");
-                            }else if(new Date(end_date)- new Date(start_date) < 0){ // date 타입으로 변경 후 확인
-                                alert("종료일이 시작일보다 먼저입니다.");
-                            }else{ // 정상적인 입력 시
-                                var obj = {
-                                    "title" : title,
-                                    "start" : start_date,
-                                    "end" : end_date,
-                                   
-                                }//전송할 객체 생성
-
-                                console.log(obj); //서버로 해당 객체를 전달해서 DB 연동 가능
-                            }
-                        });
-                    }
-                }
-            },
-            editable: true, // false로 변경 시 draggable 작동 x 
-            displayEventTime: false // 시간 표시 x
+            	
+            
             
             
         });
+        
         calendar.render();
         $("span.fa-chevron-left").html("이전달"); 
         $("span.fa-chevron-right").html("다음달");
     });
 
-	var content = document.querySelector("input[name=calendar_title]");
-	var start_date = document.querySelector("input[name=calendar_start_date]");
-    var end_date = document.querySelector("input[name=calendar_end_date]");
-	const addCalendar = document.getElementById("Calendar")
- 	addButton.addEventListener("click", ()=>{
- 		
- 		 if(content.value == ''){
- 			document.querySelector(".content").style.display = "inline"
- 		}else if(content.value !=''){
- 			document.querySelector(".content").style.display = "none"
- 		}if(start_date.value == ''){
- 			document.querySelector(".needStart").style.display = "inline"	
- 		}else if(start_date.value !=''){
- 			document.querySelector(".needStart").style.display = "none"
- 		}if(end_date.value == ''){
- 			document.querySelector(".needEnd").style.display = "inline"
- 		}else if(end_date.value !=''){
- 			document.querySelector(".needEnd").style.display = "none"
- 		}
- 			
-
- 			
- 		
- 			
- 	}
- 	)
- 	$(document).ready(function() {
-            $("#close_modal").click(function() {
-                $("#calendarModal").modal("hide");
-            });
-            $("#close_modal2").click(function() {
-                $("#calendarModal").modal("hide");
-            });
-        });
+	
+	
+	
+	function dateRel(date){ 
+		  var selectDate = date.split("-");
+		  var changeDate = new Date();
+		  changeDate.setFullYear(selectDate[0], selectDate[1]-1, selectDate[2]-1);
+		  
+		  var y = changeDate.getFullYear();
+		    var m = changeDate.getMonth() + 1;
+		    var d = changeDate.getDate();
+		    
+		    if(m < 10) { 
+		        m = "0" + m;
+		    }
+		 
+		    if(d < 10) {
+		        d = "0" + d;
+		    }
+		    var resultDate = y + "-" + m + "-" + d;
+		   return resultDate;
+		}
+		 
+		function returnCdate(cal,time){      
+		  return cal.formatDate(time,{month: 'long',year: 'numeric',day: 'numeric', hour:'numeric',minute:'numeric', timeZone: 'Asia/Seoul',locale: 'ko'});
+		}
  </script>
+  <div id="contents">
+<div id="dialog" title="일정 관리" style="display:none;">
+    <div id="form-div">
+        <form class="diaForm" id="diaForm" >
+              <input type="hidden" name="actType" value="C" /> <!-- C:등록 U:수정 D:삭제 -->
+            <input type="hidden" name="id" value="" />
+            <input type="hidden" name="start" value="" />
+            <input type="hidden" name="end" value="" />
+            
+            <p class="name">
+                <input name="title" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="일정타이틀" id="name" />
+            </p>
+            
+            <p class="email">
+                <input name="xdate" type="text" readonly="readonly" class="validate[required,custom[email]] feedback-input"  placeholder="선택된날짜 및 시간" />
+            </p>
+            
+            <p class="text">
+                <textarea name="xcontent" class="validate[required,length[6,100]] feedback-input" id="comment" placeholder="일정내용"></textarea>
+            </p>
+            
+            <p class="CalCOL">
+                <input name="color" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="배경색" id="col" />
+            </p>
+                    
+        </form>
+    </div>
+</div>
+<br/>
+<div id='calendar'></div>
+</div>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.min.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+ <!--  <script src="assets/js/jquery-3.6.1.min.js"></script>
+    -->
+<link href="fullcalendar-5.11.3/lib/main.css" rel="stylesheet" />
+<script src="fullcalendar-5.11.3/lib/main.js"></script>
+<script src="fullcalendar-5.11.3/lib/locales/ko.js"></script>
+<script src="fullcalendar-5.11.3/lib/locales-all.min.js"></script>
+<!-- <script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/fullcalendar.js"></script>
+<script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/jscolor.min.js"></script> -->
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  
+  
+
+
  
  
  

@@ -32,13 +32,6 @@ public class MemberController {
 	public String profile() {
 		return "smart/profile";
 	}
-	/*
-	 * @RequestMapping("/member") public String member() { return "member/member"; }
-	 */
-
-	/*
-	 * @RequestMapping("/calender") public String calender() { return
-	 * "smart/calender"; }
-	 */
+	
 
 }

@@ -4,18 +4,19 @@
  <mapper namespace="kr.smhrd.mapper.CalendarMapper">
 
 	<select id="getList" resultType="kr.smhrd.entity.Calendar">
-		select * from CALENDAR where MEMBER_ID = #{MEMBER_ID,jdbcType=VARCHAR}
+		select c.*, c.member_id from Calendar c, member m where c.member_id = m.member_id and m.member_id=#{member_id}
 	</select>
 	
-	<!-- <delete id="cal_delete" parameterType="kr.smhrd.entity.Calendar" >
+	
+	<update id="inCal" parameterType="kr.smhrd.entity.Calendar">
 		
-		delete calendar where calendar_id = #{calendar_id} 
+		update Calendar set calendar_title = #{calendar_title}, calendar_content = #{calendar_content}, calendar_color = #{calendar_color} where member_id = #{member_id}
 	
-	</delete>
+	</update>
 	
-	<insert id="insert" parameterType="kr.smhrd.entity.Calendar" >
-		insert into CALENDAR (CALENDAR_TITLE,CALENDAR_COLOR) values(#{CALENDAR_TITLE},#{CALENDAR_COLOR})  
-	</insert> -->
+	<!-- <insert id="inCal" parameterType="kr.smhrd.entity.Calendar" >
+		 insert into CALENDAR (MEMBER_id,CALENDAR_TITLE,CALENDAR_COLOR,CALENDAR_CONTENT) values(seq_calendar_id.nextval,#{CALENDAR_TITLE},#{CALENDAR_COLOR},#{CALENDAR_CONTENT})
+	</insert>  -->
 	
 </mapper> 
 

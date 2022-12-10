@@ -47,10 +47,6 @@ public class UserController {
 		memberService.upd(mem);
 		return "redirect:/logout";
 	}
-	@RequestMapping("/main")
-	public String main() {
-		return "smart/main";
-	}
 	@PostMapping("/pwUpd")
 	public String pupd(Member mem) {
 		return"redirect:/logout";

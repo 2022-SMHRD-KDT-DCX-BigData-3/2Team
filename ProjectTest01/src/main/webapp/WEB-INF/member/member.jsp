@@ -253,17 +253,27 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="approvaln">
-              <i class="bi bi-circle"></i><span>결재조회</span>
-            </a>
-          </li>
-          <li>
             <a href="approvalp">
               <i class="bi bi-circle"></i><span>결재신청</span>
             </a>
           </li>
+          <li>
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>결재대기 ${ap.apro_status0}</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvald">
+              <i class="bi bi-circle"></i><span>결재진행 ${ap.apro_status1}</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvale">
+              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
+            </a>
+          </li>
         </ul>
-      </li><!-- End Components Nav -->
+      </li><!-- End APPROVAL Nav -->
 
       <li class="nav-heading">정보</li>
       
