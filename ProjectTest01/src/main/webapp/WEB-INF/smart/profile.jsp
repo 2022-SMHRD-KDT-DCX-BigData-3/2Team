@@ -126,19 +126,7 @@
               	<span>사원</span>
               </c:if>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
-				  	<path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-				  	<path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
-				</svg>&nbsp;&nbsp;
-                <span>프로필</span>
-              </a>
-            </li>
+            
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -358,6 +346,7 @@
           </li>
         </ul>
       </li><!-- End APPROVAL Nav -->
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
@@ -379,6 +368,8 @@
           <span>프로필</span>
         </a>
       </li><!-- End Profile Page Nav -->
+=======
+>>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
       
       <c:if test="${user.MEMBER_id == '1'}">
       <li class="nav-item">
@@ -454,55 +445,55 @@
               <br>
           <%--     <h3>${user.DEPART_CODE }</h3><!-- department -->
               <h3>${user.RANK_CODE }</h3><!-- rank --> --%>
-              <c:if test="${user.DEPART_CODE eq '1'}">
+              <c:if test="${prof.DEPART_CODE eq '1'}">
               	<span>비서실</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '2'}">
+              <c:if test="${prof.DEPART_CODE eq '2'}">
               	<span>인사부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '3'}">
+              <c:if test="${prof.DEPART_CODE eq '3'}">
               	<span>총무부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '4'}">
+              <c:if test="${prof.DEPART_CODE eq '4'}">
               	<span>생산부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '5'}">
+              <c:if test="${prof.DEPART_CODE eq '5'}">
               	<span>홍보부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '6'}">
+              <c:if test="${prof.DEPART_CODE eq '6'}">
               	<span>관리부</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '1'}">
+              <c:if test="${prof.RANK_CODE eq '1'}">
               	<span>사장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '2'}">
+              <c:if test="${prof.RANK_CODE eq '2'}">
               	<span>부사장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '3'}">
+              <c:if test="${prof.RANK_CODE eq '3'}">
               	<span>전무</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '4'}">
+              <c:if test="${prof.RANK_CODE eq '4'}">
               	<span>상무</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '5'}">
+              <c:if test="${prof.RANK_CODE eq '5'}">
               	<span>이사</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '6'}">
+              <c:if test="${prof.RANK_CODE eq '6'}">
               	<span>부장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '7'}">
+              <c:if test="${prof.RANK_CODE eq '7'}">
               	<span>차장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '8'}">
+              <c:if test="${prof.RANK_CODE eq '8'}">
               	<span>과장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '9'}">
+              <c:if test="${prof.RANK_CODE eq '9'}">
               	<span>대리</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '10'}">
+              <c:if test="${prof.RANK_CODE eq '10'}">
               	<span>사원</span>
               </c:if>
-              <h2>${user.MEMBER_NAME }</h2><!-- name -->
+              <h2>${prof.MEMBER_NAME }</h2><!-- name -->
             </div>
           </div>
 
@@ -536,7 +527,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">이름</div>
-                    <div class="col-lg-9 col-md-8">${user.MEMBER_NAME}</div>
+                    <div class="col-lg-9 col-md-8">${prof.MEMBER_NAME}</div>
                   </div>
 
                   <div class="row">
@@ -547,63 +538,63 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">부서</div>
                     <div class="col-lg-9 col-md-8">   
-                    <c:if test="${user.DEPART_CODE eq '1'}">
+                    <c:if test="${prof.DEPART_CODE eq '1'}">
               	<span>비서실</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '2'}">
+              <c:if test="${prof.DEPART_CODE eq '2'}">
               	<span>인사부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '3'}">
+              <c:if test="${prof.DEPART_CODE eq '3'}">
               	<span>총무부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '4'}">
+              <c:if test="${prof.DEPART_CODE eq '4'}">
               	<span>생산부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '5'}">
+              <c:if test="${prof.DEPART_CODE eq '5'}">
               	<span>홍보부</span>
               </c:if>
-              <c:if test="${user.DEPART_CODE eq '6'}">
+              <c:if test="${prof.DEPART_CODE eq '6'}">
               	<span>관리부</span>
               </c:if></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">직급</div>
-                    <div class="col-lg-9 col-md-8"> <c:if test="${user.RANK_CODE eq '1'}">
+                    <div class="col-lg-9 col-md-8"> <c:if test="${prof.RANK_CODE eq '1'}">
               	<span>사장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '2'}">
+              <c:if test="${prof.RANK_CODE eq '2'}">
               	<span>부사장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '3'}">
+              <c:if test="${prof.RANK_CODE eq '3'}">
               	<span>전무</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '4'}">
+              <c:if test="${prof.RANK_CODE eq '4'}">
               	<span>상무</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '5'}">
+              <c:if test="${prof.RANK_CODE eq '5'}">
               	<span>이사</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '6'}">
+              <c:if test="${prof.RANK_CODE eq '6'}">
               	<span>부장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '7'}">
+              <c:if test="${prof.RANK_CODE eq '7'}">
               	<span>차장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '8'}">
+              <c:if test="${prof.RANK_CODE eq '8'}">
               	<span>과장</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '9'}">
+              <c:if test="${prof.RANK_CODE eq '9'}">
               	<span>대리</span>
               </c:if>
-              <c:if test="${user.RANK_CODE eq '10'}">
+              <c:if test="${prof.RANK_CODE eq '10'}">
               	<span>사원</span>
               </c:if></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">입사일</div>
-                    <div class="col-lg-9 col-md-8">${user.MEMBER_INDATE}</div>
+                    <div class="col-lg-9 col-md-8">${prof.MEMBER_INDATE}</div>
                   </div>
 
                   <div class="row">
@@ -613,12 +604,12 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">주소</div>
-                    <div class="col-lg-9 col-md-8">${user.MEMBER_ADDRESS}</div>
+                    <div class="col-lg-9 col-md-8">${prof.MEMBER_ADDRESS}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">핸드폰</div>
-                    <div class="col-lg-9 col-md-8">${user.MEMBER_PHONE}</div>
+                    <div class="col-lg-9 col-md-8">${prof.MEMBER_PHONE}</div>
                   </div>
 
                   <div class="row">
@@ -632,8 +623,12 @@
                     <div class="col-lg-9 col-md-8">Email</div>
 
                     <div class="col-lg-3 col-md-4 label">생일</div>
+<<<<<<< HEAD
                     <div class="col-lg-9 col-md-8">${user.MEMBER_BIRTH}</div>
 
+=======
+                    <div class="col-lg-9 col-md-8">${prof.MEMBER_BIRTH}</div>
+>>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
                   </div>
 
                 </div>
@@ -642,7 +637,7 @@
 
                   <!-- Profile Edit Form -->
                   <form action="${capth}/update" method="post">
-                  <input type="hidden" name="MEMBER_id" value="${user.MEMBER_id}"/>
+                  <input type="hidden" name="MEMBER_id" value="${prof.MEMBER_id}"/>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 사진</label>
                       <div class="col-md-8 col-lg-9">
@@ -711,40 +706,6 @@
                       <button type="submit" class="btn btn-primary">저장하기</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
-
-                </div>
-				
-                
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
-                   <form action="${capth}/pwUpd" method="post">
-                   <input type="hidden" name="MEMBER_id" value="${user.MEMBER_id}"/>
-
-                    <!-- <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">현재 비밀번호</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control">
-                      </div>
-                    </div> -->
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새 비밀번호</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="MEMBER_PW" type="password" class="form-control">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="MEMBER_PW" type="password" class="form-control">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">비밀번호 변경</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
 
                 </div>
 

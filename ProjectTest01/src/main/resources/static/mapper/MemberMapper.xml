@@ -6,6 +6,7 @@
 		update Member set 
 		MEMBER_NAME=#{MEMBER_NAME},
 		DEPART_CODE=#{DEPART_CODE},
+		RANK_CODE=#{RANK_CODE},
 		MEMBER_ADDRESS=#{MEMBER_ADDRESS},
 		MEMBER_PHONE=#{MEMBER_PHONE} 
 		where MEMBER_id=#{MEMBER_id}
@@ -17,7 +18,9 @@
 		where MEMBER_id=#{MEMBER_id}
 	</update>
 	
-	
+	<select id="profile" parameterType="int" resultType="kr.smhrd.entity.Member">
+		select * from member where member_id = #{member_id}
+	</select>
 	
 </mapper>
 

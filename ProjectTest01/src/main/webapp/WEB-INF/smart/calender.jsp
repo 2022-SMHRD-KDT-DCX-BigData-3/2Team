@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link href="css/chat.css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Insert title here</title>
@@ -19,7 +14,6 @@
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
 <!-- Vendor CSS Files -->
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -28,112 +22,16 @@
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- icons -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<!-- =======================================================
+* Template Name: NiceAdmin - v2.4.1
+* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+======================================================== -->
 </head>
-<script type="text/javascript">
-	var ws;
-	var now = new Date();
-	var minutes = now.getMinutes();
-	var hours = now.getHours();
-
-	function wsOpen(){
-		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-		ws = new WebSocket("ws://" + location.host + "/chating/"+$("#roomNumber").val());
-		wsEvt();
-	}
-		
-	function wsEvt() {
-		ws.onopen = function(data){
-			//소켓이 열리면 동작
-		}
-		
-		ws.onmessage = function(data) {
-			//메시지를 받으면 동작
-			var msg = data.data;
-			if(msg != null && msg.trim() != ''){
-				var d = JSON.parse(msg);
-				if(d.type == "getId"){
-					var si = d.sessionId != null ? d.sessionId : "";
-					if(si != ''){
-						$("#sessionId").val(si); 
-					}
-				}else if(d.type == "message"){
-					if(d.sessionId == $("#sessionId").val()){
-						$("#chating").append("<div class='mine messages'><p class='message'>" + d.msg + "</p><span class='time'>"+hours+"시"+minutes
-								+"분"+"</span></div>");	
-					}else{
-						$("#chating").append("<div class='yours messages'><p class='message'>"+d.userName + ": "+ d.msg + "</p><span class='time'>"+hours+"시"+minutes
-								+"분"+"</span></div>");
-						setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
-					}
-						
-				}else{
-					console.warn("unknown type!")
-				}
-			}
-		}
-
-		document.addEventListener("keypress", function(e){
-			if(e.keyCode == 13){ //enter press
-				send();
-			}
-		});
-	}
-
-	function chatName(){
-		var userName = $("#userName").val();
-		if(userName == null || userName.trim() == ""){
-			alert("사용자 이름을 입력해주세요.");
-			$("#userName").focus();
-		}else{
-			wsOpen();
-			$("#yourName").hide();
-			$("#yourMsg").show();
-		}
-	}
-
-	function send() {
-		var option ={
-			type: "message",
-			roomNumber: $("#roomNumber").val(),
-			sessionId : $("#sessionId").val(),
-			userName : $("#userName").val(),
-			msg : $("#chatting").val()
-		}
-		ws.send(JSON.stringify(option))
-		$('#chatting').val("");
-		setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
-	}
-	
-	function fakeMessage() {
-		  if ($('.chatting').val() != '') {
-		    return false;
-		  }
-		  $('<div class="message loading new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-		  updateScrollbar();
-
-		  setTimeout(function() {
-		    $('.message.loading').remove();
-		    $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + Fake[i] + '</div>').appendTo($('.mCSB_container')).addClass('new');
-		    setDate();
-		    updateScrollbar();
-		    i++;
-		  }, 1000 + (Math.random() * 20) * 100);
-
-		}
-	
-	
-	
-	
-	
-	
-</script>
 <body>
 <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -387,42 +285,32 @@
 
   </aside><!-- End Sidebar-->
 
-	<main id="main">
-	<div id="container" class="container">
-		<h1>${roomName}의 회의</h1>
-		<input type="hidden" id="sessionId" value="">
-		<input type="hidden" id="roomNumber" value="${roomNumber}">
-		
-		<div id="chating" class="chating">
-		
-		</div>
-		
-		<div id="yourName">
-			 <table class="inputTable">
-				<tr>
-					<th>유저</th>
-					<th><input style="border:none" type="text" name="userName" id="userName" value="${user.MEMBER_NAME}" readonly="readonly"></th>
-					<th><button onclick="chatName()" id="startBtn">시작하기</button></th>
-				</tr>
-			</table> 
-		</div>
-		<div id="yourMsg">
-			<table class="inputTable">
-				<tr>
-					<!-- <th><span class="material-symbols-outlined" style="margin-right: 25px"> add_reaction</span></th> -->
-					<th>메세지</th>
-					<th><input  id="chatting" style="border:none" placeholder=" 보내실 메시지를 입력하세요."></th>
-					<th><button class="button button2" onclick="send()" id="sendBtn" style="margin-right: 20px">보내기</button></th>
-					<th></th>
-				</tr>
-			</table>
-		</div>
-		
-	</div>
-	</main>
-	
-	
-		<!-- Vendor JS Files -->
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Calender</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="http://localhost:9999/main">Home</a></li>
+          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item active">Calender</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+	<!-- Start mail -->
+    <section class="section profile">
+      <div class="meback">
+      	
+      </div>
+      <!-- End calender -->
+    </section>
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.min.js"></script>
@@ -434,8 +322,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
- <script>
- //<div class="mine messages"><p class="message">aaaaa</p><span class="time">16시16분</span></div>
- </script>
+
 </body>
 </html>

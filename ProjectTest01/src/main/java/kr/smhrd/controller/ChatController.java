@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,13 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.smhrd.entity.Room;
-import kr.smhrd.mapper.ChatMapper;
+
+
 
 @Controller
 public class ChatController {
 	
-	@Autowired
-	ChatMapper chatMapper;
 	
 	List<Room> roomList = new ArrayList<Room>();
 	static int roomNumber = 0;
@@ -41,21 +42,6 @@ public class ChatController {
 	}
 	
 	//방 생성하기
-	
-	@PostMapping("/createRooms")
-	public String createRooms(Room room) {
-		System.out.println(room.getRoomName() + "이 만들어졌습니다.");
-//		chatMapper.createRoom(room.getRoomName());
-		return "/chat/room";
-	}
-	
-	@PostMapping("/addChat")
-	@ResponseBody
-	public String addChat(String chat_log) {
-		System.out.println(chat_log);
-		chatMapper.addChat(chat_log);
-		return null;
-	}
 	
 	@RequestMapping("/createRoom")
 	public @ResponseBody List<Room> createRoom(@RequestParam HashMap<Object, Object> params){
