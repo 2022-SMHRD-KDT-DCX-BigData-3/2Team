@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -325,14 +329,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="list" items="${list}">
-                <form action="getview" method="post">
-                <tr>
-                    <td class="td-writer">${list.member_name}</td>
-                    <td class="td-content">${list.b_cnt}</td>
-                    <td class="td-date"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
-                </tr>
-                </form>
+                <c:forEach var="mess" items="${mess}">
+	                <tr>
+	                    <td class="td-writer">${mess.m_sender}</td>
+	                    <td class="td-content">${mess.m_content}</td>
+	                    <td class="td-date"><fmt:formatDate pattern="yyyy-MM-dd" value="${mess.m_date}"/></td>
+	                </tr>
                 </c:forEach>
                 </tbody>
             </table>

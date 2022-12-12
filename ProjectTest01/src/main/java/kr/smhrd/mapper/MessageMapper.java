@@ -18,7 +18,7 @@ import kr.smhrd.entity.ViewApproval;
 public interface MessageMapper {
 
 	// 전체 쪽지 가져오기
-	public List<Message> messlist();
+	public List<Message> message(int member_id);
 	
 }
 

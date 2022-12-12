@@ -2,6 +2,7 @@ package kr.smhrd.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import kr.smhrd.entity.App;
 import kr.smhrd.entity.Approval;
 import kr.smhrd.entity.Approval_auth;
 import kr.smhrd.entity.Member;
+import kr.smhrd.entity.Message;
 import kr.smhrd.entity.UpApproval;
 import kr.smhrd.entity.ViewApproval;
 import kr.smhrd.service.ApprovalService;
@@ -28,8 +30,12 @@ public class MessageController {
 	@Autowired
 	MessageService messageService;
 	
-	@RequestMapping("/message")
-	public String message() {
+	@GetMapping("/message")
+	public String message(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("user");
+		int member_id = member.getMEMBER_id();
+		List<Message> mess = messageService.message(member_id);
+		model.addAttribute("mess", mess);
 		return "smart/message";
 	}
 	

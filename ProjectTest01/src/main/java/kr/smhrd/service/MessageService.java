@@ -21,9 +21,9 @@ public class MessageService {
 	@Autowired
 	private MessageMapper messageMapper;
 	
-	public List<Message> messlist() {
-		List<Message> messlist = messageMapper.messlist();
-		return messlist;
+	public List<Message> message(int member_id) {
+		List<Message> mess = messageMapper.message(member_id);
+		return mess;
 	}
 	
 }
