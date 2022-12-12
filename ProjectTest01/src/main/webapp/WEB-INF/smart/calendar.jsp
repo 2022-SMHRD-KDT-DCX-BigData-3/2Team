@@ -50,7 +50,7 @@
   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -337,7 +337,7 @@
   
 	<style>
 body {
-line-height:14px;
+line-height:20px;
 }
  
  
@@ -371,7 +371,7 @@ line-height:14px;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  border: 3px solid rgba(0,0,0,0);
+  border: 3px solid rgba(233,233,233,1);
 }
  
 .feedback-input:focus{
@@ -429,7 +429,7 @@ input:focus, textarea:focus {
   width: 100%;
   border: #fbfbfb solid 4px;
   cursor:pointer;
-  background-color: #3498db;
+  background-color: #0090CF;
   color:white;
   font-size:24px;
   padding-top:22px;
@@ -462,10 +462,13 @@ input:focus, textarea:focus {
   background-color:white;
 }
 </style>
+<link href="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.css" rel="stylesheet" />
+<script src="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.js"></script>
+<script src="${pageContext.request.contextPath}fullcalendar-5.0.1/lib/locales/ko.js"></script>
+<script src="fullcalendar-5.11.3/lib/locales-all.min.js"></script>
 
+	<link href="jquery-ui-1.13.2/jquery-ui.css" rel="stylesheet">
 
-
-	
 	<script src="fullcalendar-5.11.3/lib/jquery-ui.js"></script>
 	<script type='text/javascript'>
 	
@@ -539,10 +542,10 @@ input:focus, textarea:focus {
 			       var dispStr = xobj.startDisp;
 			       if(xobj.endDisp!=null) dispStr+=" ~ "+xobj.endDisp;
 			       
-			       $("form#diaForm").find("input[name='xdate']").val(dispStr);
-			       $("form#diaForm").find("input[name='start']").val(xobj.start);
-			       $("form#diaForm").find("input[name='end']").val(xobj.end);
-			       $("form#diaForm").find("input[name='actType']").val("C"); //등록
+			       $("form#diaForm").find("input[name='CALENDAR_INDATE']").val(dispStr);
+			       $("form#diaForm").find("input[name='CALENDAR_START']").val(xobj.start);
+			       $("form#diaForm").find("input[name='CALENDAR_END']").val(xobj.end);
+			       //$("form#diaForm").find("input[name='actType']").val("C"); //등록
 			   },
 			   
 			  
@@ -578,15 +581,15 @@ input:focus, textarea:focus {
 			       var dispStr = xobj.startDisp;
 			       if(xobj.endDisp!=null) dispStr+=" ~ "+xobj.endDisp;
 			       
-			       $("form#diaForm").find("input[name='xdate']").val(dispStr);
-			       $("form#diaForm").find("input[name='start']").val(xobj.start);
-			       $("form#diaForm").find("input[name='end']").val(xobj.end);
-			       $("form#diaForm").find("input[name='actType']").val("U"); //수정
+			       $("form#diaForm").find("input[name='CALENDAR_INDATE']").val(dispStr);
+			       $("form#diaForm").find("input[name='CALENDAR_START']").val(xobj.start);
+			       $("form#diaForm").find("input[name='CALENDAR_END']").val(xobj.end);
+			      // $("form#diaForm").find("input[name='actType']").val("U"); //수정
 			       
 			       
 			       $("form#diaForm").find("input[name='id']").val(xobj.id);
-			       $("form#diaForm").find("input[name='title']").val(xobj.title);
-			       $("form#diaForm").find("textarea[name='xcontent']").val(xobj.xcontent);
+			       $("form#diaForm").find("input[name='CALENDAR_TITLE']").val(xobj.title);
+			       $("form#diaForm").find("textarea[name='CALENDAR_CONTENT']").val(xobj.xcontent);
 			   }
 			 };
 			 //calFunc[e]
@@ -597,23 +600,23 @@ input:focus, textarea:focus {
 			 //등록 액션    
 			 function createClnd(cal,xobj){ 
 			   if(!confirm("일정을 등록 하시겠습니까?")) return false; 
-			   var $obj = calFunc.getFormValue();    
-			   
+			   var formData=$("#diaForm").serialize();
 			   $.ajax({ 
-			       url: ctx+"calendar_create", 
+			       url: ctx+"/adms/calendar/management/create_ajx.do", 
 			       type: "POST", 
-			       contentType: "application/json;charset=UTF-8",
-			       data:JSON.stringify($obj) 
+			       //contentType: "application/json;charset=UTF-8",
+			       data:formData
 			  }).done(function(data) { 
 			       var result = jQuery.parseJSON(data); 
 			       console.log(result);
 			       //모든 소스에서 이벤트를 다시 가져와 화면에 다시 렌더링
 			       cal.refetchEvents();
-			  }).fail(function(e) {  
+			  }).fail(function(e) {
 			      alert("실패하였습니다."+e);
+			      
 			  }).always(function() { 
-			      $("#name").val("");
-			      $("#comment").val("");
+			      $("#CALENDAR_TITLE").val("");
+			      $("#CALENDAR_CONTENT").val("");
 			  }); 
 			   
 			 }
@@ -625,42 +628,43 @@ input:focus, textarea:focus {
 			       if(event!=undefined) event.revert();
 			       return false; 
 			   }
-			   var $obj = calFunc.getFormValue();    
-			   
+			  // var $obj = calFunc.getFormValue();    
+			   var formData=$("#diaForm").serialize();
 			   $.ajax({ 
 			       url: ctx+"/adms/calendar/management/update_ajx.do", 
 			       type: "POST", 
-			       contentType: "application/json;charset=UTF-8",
-			       data:JSON.stringify($obj) 
+			       data:formData 
 			  }).done(function(data) { 
 			       var result = jQuery.parseJSON(data);
 			       cal.refetchEvents();
+			       console.log(data)
 			  }).fail(function(e) {  
 			      alert("실패하였습니다."+e);
 			  }).always(function() { 
-			      $("#name").val("");
-			      $("#comment").val("");
+			      $("#CALENDAR_TITLE").val("");
+			      $("#CALENDAR_CONTENT").val("");
 			  }); 
 			 }
 			  
 			 //삭제액션
 			 function deleteClnd(cal,xobj){ 
 			   if(!confirm("해당일정을 정말로 삭제 하시겠습니까?")) return false; 
-			   
-			   var $obj = calFunc.getFormValue();    
+			   var formData=$("#diaForm").serialize();
+			  
+			     
 			   $.ajax({ 
 			       url: ctx+"/adms/calendar/management/delete_ajx.do", 
 			       type: "POST", 
-			       contentType: "application/json;charset=UTF-8",
-			       data:JSON.stringify($obj) 
+			       //contentType: "application/json;charset=UTF-8",
+			       data:formData
 			  }).done(function(data) { 
 			       var result = jQuery.parseJSON(data); 
 			       cal.refetchEvents();
 			  }).fail(function(e) {  
 			      alert("실패하였습니다."+e);
 			  }).always(function() { 
-			      $("#name").val("");
-			      $("#comment").val("");
+			      $("#CALENDAR_TITLE").val("");
+			      $("#CALENDAR_CONTENT").val("");
 			  }); 
 			 }
 			 //=========================================== function =========================================== 
@@ -675,20 +679,18 @@ input:focus, textarea:focus {
 		
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            //initialView: 'dayGridMonth', 
             allDay:false,
             selectable: true,
             navLinks: true,
             timeZone: 'Asia/Seoul',
-            //nowIndicator: true,
-            //dayMaxEvents: true,
             selectMirror: true,
-            theme:true,
-            themeSystem:'bootstrap',
+            dayMaxEvents: true,
             editable: true, // false로 변경 시 draggable 작동 x 
-            //displayEventTime: false, // 시간 표시 x
+			eventLimit:true,
+			theme:true,
+			themeSystem:'bootstrap',
             headerToolbar: {
-                left: 'prev,next today',
+                left: 'prevYear,prev,next,nextYear today',
                 center: 'title',
                 right:'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             	}, 
@@ -735,24 +737,27 @@ input:focus, textarea:focus {
 		  },
              			
 			select: function(arg) { // 캘린더에서 드래그로 이벤트 생성
+				console.log(arg);
 				//$("#calendarModal").modal("show"); // modal 나타내기
 				//if(isAdm==0) return false; 관리자모드
 		        var xObj = calFunc.calcDate(arg,calendar);     //get event data     
-		       
+		        
+
 		        //================ dialog 옵션 추가 ===================
-		        var btnOpt ={                
-		                        "저장":function(){                            
+		        var btnOpt ={      
+		        		
+		                          "저장":function(){                            
 		                            createClnd(calendar,xObj);  //저장클릭시 액션 함수
 		                            $(this).dialog("close");
-		                            
 		                        },"취소":function(){
 		                            $(this).dialog("close");
 		                        }                
 		                    }
+		        
 		        var dOpt =diaLogOpt;
 		        dOpt.buttons = btnOpt;
-		        $("#name").val("");
-		         $("#comment").val("");
+		        $("#CALENDAR_TITLE").val("");
+		         $("#CALENDAR_CONTENT").val("");
 		        
 		       //================ dialog 옵션 추가 ===================
 		      calFunc.formDsbFalse();          //Form data disabeld false
@@ -805,8 +810,8 @@ input:focus, textarea:focus {
                     			start: element.calendar_START,
                     			end: element.calendar_END,
                     			color:element.calendar_COLOR,
-                    			content:element.calendar_CONTENT
-                    			
+                    			content:element.calendar_CONTENT,
+                    			id:element.calendar_ID
                   		 }); 
 							});
 						 successCallback(events);
@@ -867,27 +872,35 @@ input:focus, textarea:focus {
  </script>
   <div id="contents">
 <div id="dialog" title="일정 관리" style="display:none;">
+
     <div id="form-div">
         <form class="diaForm" id="diaForm" >
-              <input type="hidden" name="actType" value="C" /> <!-- C:등록 U:수정 D:삭제 -->
-            <input type="hidden" name="id" value="" />
-            <input type="hidden" name="start" value="" />
-            <input type="hidden" name="end" value="" />
+            <!-- <input type="hidden" name="actType" value="C" /> -->  <!-- C:등록 U:수정 D:삭제 -->
+            <input type="hidden" name="id" value="" /> 
+            <input type="hidden" name="CALENDAR_START" value="" />
+            <input type="hidden" name="CALENDAR_END" value="" />
+            <input type="hidden" name="CAL_SORT_ID" value="2" />
+            <input type="hidden" name="CALENDAR_ALLDAY" value="2" />
+            <input type="hidden" name="CAL_SORT_NAME" value="중요" />
+            <input type="hidden" name="CAL_SORT_COLOR" value="BLUE" />
+            <input type="hidden" name="CALENDAR_CATE_SELF" value="1" />
+            
+            
             
             <p class="name">
-                <input name="title" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="일정타이틀" id="name" />
+                <input name="CALENDAR_TITLE" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="일정타이틀" id="CALENDAR_TITLE" />
             </p>
             
             <p class="email">
-                <input name="xdate" type="text" readonly="readonly" class="validate[required,custom[email]] feedback-input"  placeholder="선택된날짜 및 시간" />
+                <input name="CALENDAR_INDATE" type="text" readonly="readonly" class="validate[required,custom[email]] feedback-input"  placeholder="선택된날짜 및 시간" />
             </p>
             
             <p class="text">
-                <textarea name="xcontent" class="validate[required,length[6,100]] feedback-input" id="comment" placeholder="일정내용"></textarea>
+                <textarea name="CALENDAR_CONTENT" class="validate[required,length[6,100]] feedback-input" id="CALENDAR_CONTENT" placeholder="일정내용"></textarea>
             </p>
             
             <p class="CalCOL">
-                <input name="color" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="배경색" id="col" />
+                <input name="CALENDAR_COLOR" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="배경색" id="CALENDAR_COLOR" />
             </p>
                     
         </form>
@@ -924,10 +937,7 @@ input:focus, textarea:focus {
   <script src="assets/vendor/php-email-form/validate.js"></script>
  <!--  <script src="assets/js/jquery-3.6.1.min.js"></script>
     -->
-<link href="fullcalendar-5.11.3/lib/main.css" rel="stylesheet" />
-<script src="fullcalendar-5.11.3/lib/main.js"></script>
-<script src="fullcalendar-5.11.3/lib/locales/ko.js"></script>
-<script src="fullcalendar-5.11.3/lib/locales-all.min.js"></script>
+
 <!-- <script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/fullcalendar.js"></script>
 <script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/jscolor.min.js"></script> -->
   <!-- Template Main JS File -->

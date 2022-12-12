@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
+
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import aj.org.objectweb.asm.TypeReference;
 import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Calendar;
 import kr.smhrd.entity.Member;
@@ -56,15 +58,88 @@ public class CalendarController {
 	  return list;
 	}
 	
-	@PostMapping("calendar_create")
+	
+	@RequestMapping(value = "/adms/calendar/management/create_ajx.do",method = RequestMethod.POST)
 	@ResponseBody
-	public  List<Calendar> calendar_create(Model model, HttpSession httpsession) {
+	public String createAction(
+			Calendar cal,int id,
+	        HttpServletRequest request,
+	        HttpServletResponse res,
+	        ModelMap model,HttpSession httpsession) throws Exception {
+		
 		Member member=(Member) httpsession.getAttribute("user");
-		List<Calendar> list=calendarService.getList(member.getMEMBER_id());
-		model.addAttribute("list",list);
-		return  list;
-	}
+		
+	    JSONObject obj = new JSONObject();
+	    
+	    res.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = res.getWriter();
+	    System.out.println(cal);
 
+	    cal.setCALENDAR_ID(id);
+	    cal.setMEMBER_ID(member.getMEMBER_id());
+
+	    calendarService.createCalendar(cal);
+
+	    obj.put("success", "ok");
+	    out.print(obj);
+	    return null;
+	}
+	
+	@RequestMapping(value = "/adms/calendar/management/update_ajx.do",method = RequestMethod.POST)
+	@ResponseBody
+	public String updateAction(
+			Calendar cal,int id,
+	        HttpServletRequest request,
+	        HttpServletResponse res,
+	        ModelMap model,HttpSession httpsession) throws Exception {
+		
+		Member member=(Member) httpsession.getAttribute("user");
+		
+	    JSONObject obj = new JSONObject();
+	    
+	    res.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = res.getWriter();
+	    
+
+	    cal.setCALENDAR_ID(id);
+	    cal.setMEMBER_ID(member.getMEMBER_id());
+
+	    System.out.println(cal);
+	    
+	    calendarService.updateCalendar(cal);
+
+	    obj.put("success", "ok");
+	    out.print(obj);
+	    return null;
+	}
+	
+	@RequestMapping(value = "/adms/calendar/management/delete_ajx.do",method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteAction(
+			Calendar cal,int id,
+	        HttpServletRequest request,
+	        HttpServletResponse res,
+	        ModelMap model,HttpSession httpsession) throws Exception {
+		
+		Member member=(Member) httpsession.getAttribute("user");
+		
+	    JSONObject obj = new JSONObject();
+	    
+	    res.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = res.getWriter();
+	    
+
+	    cal.setCALENDAR_ID(id);
+	    cal.setMEMBER_ID(member.getMEMBER_id());
+
+	    System.out.println(cal);
+	    
+	    calendarService.deleteCalendar(cal);
+
+	    obj.put("success", "ok");
+	    out.print(obj);
+	    return null;
+	}
 	
 	
 		

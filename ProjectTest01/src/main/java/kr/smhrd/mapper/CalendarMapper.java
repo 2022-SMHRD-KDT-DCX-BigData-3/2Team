@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import kr.smhrd.entity.Board;
+
 import kr.smhrd.entity.Calendar;
 
 
@@ -14,8 +14,11 @@ import kr.smhrd.entity.Calendar;
 public interface CalendarMapper {
 
 	public List<Calendar> getList(int memeber_id);
+
+	public void searchVO(Calendar searchVO);
 	
-	public void inCal(int member_id);
+	public void CalUP(Calendar searchVO);
 	
+	public void CalDE(Calendar searchVO);
 	
 }
