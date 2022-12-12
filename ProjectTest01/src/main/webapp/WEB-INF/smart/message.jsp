@@ -307,12 +307,12 @@
     <section class="section profile">
       <div class="meback">
       	    <div class="message_con">
-        <div class="first_box">쪽지함</div>
+        <div class="first_box">&nbsp</div>
         <div class="second_box">
             <span class="send">쪽지 보내기</span>
         </div>
         <div class="third_box">
-            <span>총 00 개의 읽지 않은 쪽지가 있습니다.</span>
+            <span>총 <b>00</b> 개의 읽지 않은 쪽지가 있습니다.</span>
         </div>
         <div class="next_box">
             <span class="left">보낸 쪽지함</span>
