@@ -7,12 +7,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Insert title here</title>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Insert title here</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <!-- Favicons -->
 <link href="assets/img/favicon.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -30,6 +29,8 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
+=======
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -158,6 +159,7 @@
   		}
   	}
   </script>
+>>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -165,8 +167,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <img src="assets/img/smh.png" alt="">
+        <span class="d-none d-lg-block">Smart Groupware</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -382,6 +384,16 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+            
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="calender">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+				  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+				</svg>&nbsp;&nbsp;
+                <span>캘린더</span>
+              </a>
+            </li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="boardmain">
@@ -437,6 +449,16 @@
           <span>메일</span>
         </a>
       </li><!-- End mail Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="calender">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+			  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+			  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+			</svg>&nbsp;&nbsp;
+          <span>캘린더</span>
+        </a>
+      </li><!-- End calender Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="boardmain">
@@ -450,15 +472,27 @@
 	  
 	  
       <li class="nav-item">
-        <a class="nav-link collapsed" href="boardmain">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
 			  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 			</svg>&nbsp;&nbsp;
-			<span>전자결제</span>
+			<span>전자결재</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Forms Nav -->
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>일반결재</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvalp">
+              <i class="bi bi-circle"></i><span>지출결재</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
 
       <li class="nav-heading">정보</li>
 
@@ -473,13 +507,25 @@
       </li><!-- End Profile Page Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="member">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
 			  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
 			</svg>&nbsp;&nbsp;
-          <span>직원관리</span>
+			<span>직원관리</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Member Page Nav -->
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원 정보수정</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End member Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-logout">
@@ -520,36 +566,16 @@
 		    </div><!-- End Page Title -->
 		
 		    <section class="section profile">
-		      <div class="memback">
-		    	<div class="panel panel-default">
-					<div class="panel-body" id="msg"></div>
-					<div class="panel-body" id="formDiv" style="display: none;">
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="title">제목:</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="title" placeholder="Enter title">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="content">내용:</label>
-							<div class="col-sm-10">
-								<textarea rows="10" class="form-control" name="content"></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="writer">작성자:</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="writer">
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button id="register" type="button" class="btn btn-primary">등록</button>
-								<button type="reset" class="btn btn-warning">취소</button>
-							</div>
-						</div>
-					</div>
-		  		</div>
+		      <div class="meback" style="text-align: center;">
+		    	<table class="boardtable">
+		    		<tr>
+		    			<td class="board1">말머리</td>
+		    			<td class="title">제목</td>
+		    			<td class="board2">작성자</td>
+		    			<td class="board2">작성일</td>
+		    			<td class="board3">조회수</td>
+		    		</tr>
+		    	</table>
 			</form>
       </div>
     </section>

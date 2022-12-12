@@ -10,6 +10,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean;
 
+import kr.smhrd.handler.MainSocketHandler;
 import kr.smhrd.handler.SocketHandler;
 
 @Configuration
@@ -30,4 +31,5 @@ public class WebSocketConfig implements WebSocketConfigurer{
 	container.setMaxBinaryMessageBufferSize(500000);
 	return container;
 	}
+	
 }

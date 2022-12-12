@@ -29,6 +29,10 @@ public void upd(Member mem) {
 public void pupd(Member mem) {
 	memberMapper.pupd(mem);
 }
+public Member profile(int member_id) {
+	Member prof = memberMapper.profile(member_id);
+	return prof;
+}
 
 
 }

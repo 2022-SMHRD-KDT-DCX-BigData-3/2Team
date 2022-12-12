@@ -55,7 +55,7 @@ public class ApprovalController {
 	@PostMapping("/get")
 	public String inget(UpApproval app) {
 		approvalService.inget(app);
-		return "redirect:/get?appro_id="+app.getAppro_id();
+		return "redirect:/main";
 	}
 	@GetMapping("/approvalp")
 	public String approvalp(HttpSession session ,Model model) {
@@ -78,3 +78,4 @@ public class ApprovalController {
 		return "smart/main";
 	}
 }
+

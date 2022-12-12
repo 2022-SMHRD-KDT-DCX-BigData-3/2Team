@@ -123,19 +123,7 @@
               	<span>사원</span>
               </c:if>
             </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
-				  	<path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-				  	<path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
-				</svg>&nbsp;&nbsp;
-                <span>프로필</span>
-              </a>
-            </li>
+            
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -154,7 +142,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="calender">
+              <a class="dropdown-item d-flex align-items-center" href="calendar">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 				  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
@@ -223,14 +211,14 @@
       </li><!-- End chat Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="calender">
+        <a class="nav-link collapsed" href="calendar">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
 			  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 			</svg>&nbsp;&nbsp;
           <span>캘린더</span>
         </a>
-      </li><!-- End calender Nav -->
+      </li><!-- End calendar Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="list">
@@ -242,7 +230,7 @@
         </a>
       </li><!-- End board Nav -->
 	  
-	   <li class="nav-item">
+	  <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -253,40 +241,28 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="approvalp">
+              <i class="bi bi-circle"></i><span>결재신청</span>
+            </a>
+          </li>
+          <li>
             <a href="approvaln">
               <i class="bi bi-circle"></i><span>결재대기 ${ap.apro_status0}</span>
             </a>
           </li>
           <li>
-            <a href="approvaln">
+            <a href="approvald">
               <i class="bi bi-circle"></i><span>결재진행 ${ap.apro_status1}</span>
             </a>
           </li>
           <li>
-            <a href="approvald">
-              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
-            </a>
-          </li>
-          <li>
             <a href="approvale">
-              <i class="bi bi-circle"></i><span>결재신청</span>
+              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
             </a>
           </li>
         </ul>
       </li><!-- End APPROVAL Nav -->
 
-      <li class="nav-heading">정보</li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="profile">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
-			  <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-			  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
-			</svg>&nbsp;&nbsp;
-          <span>프로필</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      
       <c:if test="${user.MEMBER_id == '1'}">
       <li class="nav-item">
         <a class="nav-link collapsed" href="member">
@@ -312,111 +288,134 @@
     </ul>
 
   </aside><!-- End Sidebar-->
-  
+
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>직원조회/관리</h1>
+      <h1>프로필</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="http://localhost:9999/main">Home</a></li>
           <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Member</li>
+          <li class="breadcrumb-item active">Profile</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-	<!-- Strat member -->
     <section class="section profile">
-		<div class="mebackk">
-			<div class="panel-body" style="text-align: center;">
-			
-				
-				<table class="table table-bordered table-hover">
-					<tr>
-						<td>부서</td>
-						<td>직급</td>
-						<td>이름</td>
-						<td>성별</td>
-						<td>입사일</td>
-						<td>남은연가일</td>
-						<td>삭제</td>
-					</tr>
-					
-					<c:forEach var="sele" items="${sele}">
+      <div class="row">
+        <div class="coxl">
+
+          <div class="card">
+          
+            <div class="card-body pt-3">
+            
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                  <div class="row">
+                    <table class="table table-bordered table-hover" style="text-align: center;">
 						<tr>
-							<form action="del" method="post">
-							<c:if test="${sele.depart_code == '1'}">
-								<td>비서실</td>
-							</c:if>
-							<c:if test="${sele.depart_code == '2'}">
-								<td>인사부</td>
-							</c:if>
-							<c:if test="${sele.depart_code == '3'}">
-								<td>총무부</td>
-							</c:if>
-							<c:if test="${sele.depart_code == '4'}">
-								<td>생산부</td>
-							</c:if>
-							<c:if test="${sele.depart_code == '5'}">
-								<td>홍보부</td>
-							</c:if>
-							<c:if test="${sele.depart_code == '6'}">
-								<td>관리부</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '1'}">
-								<td>사장</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '2'}">
-								<td>부사장</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '3'}">
-								<td>전무</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '4'}">
-								<td>상무</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '5'}">
-								<td>이사</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '6'}">
-								<td>부장</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '7'}">
-								<td>차장</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '8'}">
-								<td>과장</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '9'}">
-								<td>대리</td>
-							</c:if>
-							<c:if test="${sele.rank_code == '10'}">
-								<td>사원</td>
-							</c:if>
-							<td>${sele.member_name}</td>
-							<c:if test="${sele.member_gender == 'M'}">
-								<td>남성</td>
-							</c:if>
-							<c:if test="${sele.member_gender == 'N'}">
-								<td>남성</td>
-							</c:if>
-							<c:if test="${sele.member_gender == 'F'}">
-								<td>여성</td>
-							</c:if>
-							<td><fmt:formatDate pattern="YYYY-MM-dd" value="${sele.member_indate}"/></td>
-							<td>${sele.member_vacation_num}</td>
-							<input type="hidden" name="member_id" value="${sele.member_id}"/>
-							<td><input class="remo" type="submit" value="삭제"/></td>
-							</form>
+							<td>부서</td>
+							<td>직급</td>
+							<td>이름</td>
+							<td>성별</td>
+							<td>입사일</td>
+							<td>남은연가일</td>
+							<td>삭제</td>
+							<td>수정</td>
 						</tr>
-					</c:forEach>
-				</table>
-				
-   			</div>
-   		</div>
+						
+						<c:forEach var="sele" items="${sele}">
+							<tr>
+								<form action="del" method="post">
+								<c:if test="${sele.depart_code == '1'}">
+									<td>비서실</td>
+								</c:if>
+								<c:if test="${sele.depart_code == '2'}">
+									<td>인사부</td>
+								</c:if>
+								<c:if test="${sele.depart_code == '3'}">
+									<td>총무부</td>
+								</c:if>
+								<c:if test="${sele.depart_code == '4'}">
+									<td>생산부</td>
+								</c:if>
+								<c:if test="${sele.depart_code == '5'}">
+									<td>홍보부</td>
+								</c:if>
+								<c:if test="${sele.depart_code == '6'}">
+									<td>관리부</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '1'}">
+									<td>사장</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '2'}">
+									<td>부사장</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '3'}">
+									<td>전무</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '4'}">
+									<td>상무</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '5'}">
+									<td>이사</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '6'}">
+									<td>부장</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '7'}">
+									<td>차장</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '8'}">
+									<td>과장</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '9'}">
+									<td>대리</td>
+								</c:if>
+								<c:if test="${sele.rank_code == '10'}">
+									<td>사원</td>
+								</c:if>
+								<td>${sele.member_name}</td>
+								<c:if test="${sele.member_gender == 'M'}">
+									<td>남성</td>
+								</c:if>
+								<c:if test="${sele.member_gender == 'N'}">
+									<td>남성</td>
+								</c:if>
+								<c:if test="${sele.member_gender == 'F'}">
+									<td>여성</td>
+								</c:if>
+								<td><fmt:formatDate pattern="YYYY-MM-dd" value="${sele.member_indate}"/></td>
+								<td>${sele.member_vacation_num}</td>
+								<input type="hidden" name="member_id" value="${sele.member_id}"/>
+								<td>
+								<button  class="remo" type="submit">삭제</button>
+								</td>
+								</form>
+								<form action="profile" method="post">
+									<td>
+									<input type="hidden" name="member_id" value="${sele.member_id}"/>
+									<button type="submit" class="remo">수정</button>
+									</td>
+								</form>
+							</tr>
+						</c:forEach>
+					</table>
+                  </div>
+
+                </div>
+
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
-	<!-- Strat member -->
 
   </main><!-- End #main -->
 

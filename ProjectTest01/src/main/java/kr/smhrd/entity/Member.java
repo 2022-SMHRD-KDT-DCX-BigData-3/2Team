@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
@@ -55,5 +56,6 @@ private String MEMBER_STRATDATE;
 private String MEMBER_ENDDATE;
 // 직원 휴가일
 private int MEMBER_NUM;
+
 }
 

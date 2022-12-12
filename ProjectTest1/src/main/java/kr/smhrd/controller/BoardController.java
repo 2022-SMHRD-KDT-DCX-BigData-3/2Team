@@ -44,12 +44,6 @@ public class BoardController {
 		// 등록완료 후 ~ 다시 리스트 페이지로 돌아가기
 		return "redirect:/list"; // redirect
 	}
-	@GetMapping("/get") // get?idx=10&aa=aa : (QueryString:질의문자열) 공백 사용X
-	public String get(@RequestParam("idx") int idx, Model model) {
-		Board vo = boardService.get(idx);
-		model.addAttribute("vo", vo);
-		return "board/get"; // get.jsp
-	}
 	@GetMapping("/remove")
 	public String remove(int idx, RedirectAttributes rttr) {
 		rttr.addFlashAttribute("result", boardService.remove(idx));
@@ -100,8 +94,18 @@ public class BoardController {
 	public String boardmain() {
 		return "board/boardmain";
 	}
+<<<<<<< HEAD
+	@RequestMapping("/calender")
+	public String calender() {
+		return "smart/calender";
+	}
+	@RequestMapping("/login")
+	public String login() {
+		return "smart/login";
+=======
 	@RequestMapping("/register2")
 	public String register2() {
 		return "board/register2";
+>>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
 	}
 }

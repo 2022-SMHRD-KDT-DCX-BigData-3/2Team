@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+ <mapper namespace="kr.smhrd.mapper.CalendarMapper">
+
+	<select id="getList" resultType="kr.smhrd.entity.Calendar">
+		select c.*, c.member_id from Calendar c, member m where c.member_id = m.member_id and m.member_id=#{member_id}
+	</select>
+	
+	
+	<update id="inCal" parameterType="kr.smhrd.entity.Calendar">
+		
+		update Calendar set calendar_title = #{calendar_title}, calendar_content = #{calendar_content}, calendar_color = #{calendar_color} where member_id = #{member_id}
+	
+	</update>
+	
+	<!-- <insert id="inCal" parameterType="kr.smhrd.entity.Calendar" >
+		 insert into CALENDAR (MEMBER_id,CALENDAR_TITLE,CALENDAR_COLOR,CALENDAR_CONTENT) values(seq_calendar_id.nextval,#{CALENDAR_TITLE},#{CALENDAR_COLOR},#{CALENDAR_CONTENT})
+	</insert>  -->
+	
+</mapper> 
+
+
+
+
+
+
+
+

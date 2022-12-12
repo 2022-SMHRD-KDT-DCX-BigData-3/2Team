@@ -15,6 +15,7 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	// 전체 리스트를 가져오는 메서드
+
 	public List<Board> listget(){
 		List<Board> list = boardMapper.listget();
 		return list;
@@ -36,5 +37,6 @@ public class BoardService {
 	}
 	public void boardmodify(Board vo) {
 		boardMapper.boardmodify(vo);
+
 	}
 }

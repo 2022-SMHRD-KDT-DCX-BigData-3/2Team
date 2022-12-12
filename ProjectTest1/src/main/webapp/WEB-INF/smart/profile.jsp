@@ -37,8 +37,8 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <img src="assets/img/smh.png" alt="">
+        <span class="d-none d-lg-block">Smart Groupware</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -254,6 +254,19 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+            
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="calender">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+				  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+				  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+				</svg>&nbsp;&nbsp;
+                <span>캘린더</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="boardmain">
@@ -309,6 +322,16 @@
           <span>메일</span>
         </a>
       </li><!-- End mail Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="calender">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+			  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+			  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+			</svg>&nbsp;&nbsp;
+          <span>캘린더</span>
+        </a>
+      </li><!-- End calender Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="boardmain">
@@ -322,15 +345,27 @@
 	  
 	  
       <li class="nav-item">
-        <a class="nav-link collapsed" href="boardmain">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
 			  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
 			  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 			</svg>&nbsp;&nbsp;
-			<span>전자결제</span>
+			<span>전자결재</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Forms Nav -->
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>일반결재</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvalp">
+              <i class="bi bi-circle"></i><span>지출결재</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
 
       <li class="nav-heading">정보</li>
 
@@ -345,13 +380,25 @@
       </li><!-- End Profile Page Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed" href="member">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
 			  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
 			</svg>&nbsp;&nbsp;
-          <span>직원관리</span>
+			<span>직원관리</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Member Page Nav -->
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원조회</span>
+            </a>
+          </li>
+          <li>
+            <a href="member">
+              <i class="bi bi-circle"></i><span>직원 정보수정</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End member Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-logout">
@@ -427,6 +474,11 @@
                     <div class="col-lg-3 col-md-4 label ">이름</div>
                     <div class="col-lg-9 col-md-8">이름</div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">성별</div>
+                    <div class="col-lg-9 col-md-8">성별</div>
+                  </div>
                   
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">부서</div>
@@ -444,6 +496,11 @@
                   </div>
 
                   <div class="row">
+                    <div class="col-lg-3 col-md-4 label">연차</div>
+                    <div class="col-lg-9 col-md-8">연차</div>
+                  </div>
+
+                  <div class="row">
                     <div class="col-lg-3 col-md-4 label">주소</div>
                     <div class="col-lg-9 col-md-8">주소</div>
                   </div>
@@ -451,6 +508,11 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">핸드폰</div>
                     <div class="col-lg-9 col-md-8">핸드폰</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">은행명</div>
+                    <div class="col-lg-9 col-md-8">계좌번호</div>
                   </div>
 
                   <div class="row">
@@ -483,20 +545,6 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">부서</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="부서">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">직급</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company" value="직급">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
                       <label for="Address" class="col-md-4 col-lg-3 col-form-label">주소</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="address" type="text" class="form-control" id="Address" value="주소">
@@ -507,6 +555,20 @@
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">핸드폰</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="phone" type="text" class="form-control" id="Phone" value="핸드폰">
+                      </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">은행명</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phone" type="text" class="form-control" id="Phone" value="은행명">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">계좌번호</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phone" type="text" class="form-control" id="Phone" value="계좌번호">
                       </div>
                     </div>
 

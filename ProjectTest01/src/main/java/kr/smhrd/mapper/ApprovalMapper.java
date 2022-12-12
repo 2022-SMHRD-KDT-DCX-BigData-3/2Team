@@ -52,3 +52,4 @@ public interface ApprovalMapper {
 	// 결재 완료 개수
 	public int main2();
 }
+

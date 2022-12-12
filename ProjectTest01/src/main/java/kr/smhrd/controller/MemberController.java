@@ -28,12 +28,13 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping("/profile")
-	public String profile() {
+	@PostMapping("/profile")
+	public String profile(@RequestParam("member_id") int member_id, Model model) {
+		System.out.println("뭔데" + member_id);
+		Member prof = memberService.profile(member_id);
+		model.addAttribute("prof", prof);
 		return "smart/profile";
 	}
-	@RequestMapping("/calender")
-	public String calender() {
-		return "smart/calender";
-	}
+	
+
 }

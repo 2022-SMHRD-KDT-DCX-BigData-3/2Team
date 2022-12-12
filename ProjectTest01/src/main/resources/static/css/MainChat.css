@@ -1,0 +1,66 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+.container{
+	width: 500px;
+	margin: 0 auto;
+	padding: 25px
+}
+.chating{
+	background-color: white;
+	width: 300px;
+	height: 500px;
+	overflow: auto;
+}
+.messages {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  border-radius: 20px;
+  padding: 4px 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+  background-color: yellow;
+  text-align: right;
+}
+
+.yours {
+  align-items: flex-start;
+}
+
+.yours .message {
+  margin-right: 25%;
+  background-color: #eee;
+  position: relative;
+}
+
+.time{
+	color:#ccd7f0;
+	font-size: small;
+}
+
+.mine {
+  align-items: flex-end;
+}
+
+.mine .message {
+  color: white;
+  margin-left: 25%;
+  background: #5686f5;
+  background-attachment: fixed;
+  position: relative;
+}
+	
+input{
+	width: 150px;
+	height: 25px;
+}
+#yourMsg{
+	display: none;
+}

@@ -1,3 +1,5 @@
+
+
 package kr.smhrd.controller;
 
 import java.util.List;
@@ -49,3 +51,4 @@ public class BoardController {
 		return "board/modify";
 	}
 }
+

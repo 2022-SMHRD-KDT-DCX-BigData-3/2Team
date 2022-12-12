@@ -3,6 +3,7 @@ package kr.smhrd.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
@@ -33,4 +34,5 @@ public interface BoardMapper {
 	
 	// 게시물 수정
 	public void boardmodify(Board vo);
+
 }
