@@ -308,7 +308,7 @@
             <span class="send">쪽지 보내기</span>
         </div>
         <div class="third_box">
-            <span>총 00 개의 받은 쪽지가 있습니다.</span>
+            <span>총 00 개의 읽지 않은 쪽지가 있습니다.</span>
         </div>
         <div class="next_box">
             <span class="left">보낸 쪽지함</span>
@@ -328,9 +328,9 @@
                 <c:forEach var="list" items="${list}">
                 <form action="getview" method="post">
                 <tr>
-                    <td>${list.member_name}</td>
-                    <td>${list.b_cnt}</td>
-                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
+                    <td class="td-writer">${list.member_name}</td>
+                    <td class="td-content">${list.b_cnt}</td>
+                    <td class="td-date"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
                 </tr>
                 </form>
                 </c:forEach>
