@@ -30,7 +30,6 @@ public class MessageController {
 	
 	@RequestMapping("/message")
 	public String message() {
-		
 		return "smart/message";
 	}
 	

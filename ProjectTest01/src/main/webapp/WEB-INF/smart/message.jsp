@@ -25,6 +25,7 @@
 <link href="css/style.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
+<link href="css/message.css" rel="stylesheet">
 <!-- =======================================================
 * Template Name: NiceAdmin - v2.4.1
 * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -301,7 +302,42 @@
 	<!-- Start mail -->
     <section class="section profile">
       <div class="meback">
-      	
+      	    <div class="message_con">
+        <div class="first_box">쪽지함</div>
+        <div class="second_box">
+            <span class="send">쪽지 보내기</span>
+        </div>
+        <div class="third_box">
+            <span>총 00 개의 받은 쪽지가 있습니다.</span>
+        </div>
+        <div class="next_box">
+            <span class="left">보낸 쪽지함</span>
+            <span class="right">받은 쪽지함</span>
+        </div>
+        <hr>
+        <div>
+            <table class="metable" border="1">
+                <thead>
+                <tr>
+                    <th class="th-writer">보낸 사람</th>
+                    <th class="th-content">내용</th>
+                    <th class="th-date">날짜</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="list" items="${list}">
+                <form action="getview" method="post">
+                <tr>
+                    <td>${list.member_name}</td>
+                    <td>${list.b_cnt}</td>
+                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
+                </tr>
+                </form>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
       </div>
     </section>
 
