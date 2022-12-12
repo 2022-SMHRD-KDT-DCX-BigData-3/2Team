@@ -32,6 +32,7 @@ public class BoardService {
 	}
 	public int boardremove(int b_seq) {
 		return boardMapper.boardremove(b_seq);
+//		boardMapper.commentsremove(b_seq);
 	}
 	public void boardmodify(Board vo) {
 		boardMapper.boardmodify(vo);

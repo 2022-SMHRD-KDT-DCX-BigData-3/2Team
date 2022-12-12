@@ -64,5 +64,17 @@
 	<update id="vacation" parameterType="kr.smhrd.entity.Approval_auth">
 		update member set member_vacation = 1, member_vacation_num = (select member_num-#{member_num} from member where member_id = #{member_id}), member_stratdate = #{member_stratdate}, member_enddate = #{member_enddate}, member_num = #{member_num} where member_id = #{member_id}
 	</update>
+	
+	<select id="main0" parameterType="kr.smhrd.entity.App" resultType="int">
+		select count(apro_status) as apro_status0 from approval a where apro_status = 0
+	</select>
+
+	<select id="main1" parameterType="kr.smhrd.entity.App" resultType="int">
+		select count(apro_status) as apro_status1 from approval a where apro_status = 1
+	</select>
+
+	<select id="main2" parameterType="kr.smhrd.entity.App" resultType="int">
+		select count(apro_status) as apro_status2 from approval a where apro_status = 2
+	</select>
 
 </mapper>

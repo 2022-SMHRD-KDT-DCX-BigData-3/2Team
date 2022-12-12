@@ -10,6 +10,9 @@ import kr.smhrd.entity.Member;
 public interface MemberMapper {
 
 	//회원 정보수정 메서드
-	public void memmodify(Member mem);
+	public void upd(Member mem);
+	
+	//비밀번호 수정 메서드
+	public void pupd(Member mem);
 	
 }

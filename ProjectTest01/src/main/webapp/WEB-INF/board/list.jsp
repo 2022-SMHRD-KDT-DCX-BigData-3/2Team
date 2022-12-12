@@ -29,6 +29,7 @@
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
+<link href="css/board.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -205,7 +206,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="assets/img/pro.png" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">${user.MEMBER_NAME}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -336,6 +337,16 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
+    
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="commuting">
+          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+			  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+			</svg>&nbsp;&nbsp;
+          <span>근태관리</span>
+        </a>
+      </li><!-- End Commuting Page Nav -->
 
 	  <li class="nav-item">
         <a class="nav-link collapsed" href="room">
@@ -368,7 +379,7 @@
       </li><!-- End board Nav -->
 	  
 	  
-      <li class="nav-item">
+       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
 			  <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -380,29 +391,29 @@
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="approvaln">
-              <i class="bi bi-circle"></i><span>결재조회</span>
+              <i class="bi bi-circle"></i><span>결재대기 ${ap.apro_status0}</span>
             </a>
           </li>
           <li>
-            <a href="approvalp">
+            <a href="approvaln">
+              <i class="bi bi-circle"></i><span>결재진행 ${ap.apro_status1}</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvald">
+              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
+            </a>
+          </li>
+          <li>
+            <a href="approvale">
               <i class="bi bi-circle"></i><span>결재신청</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Components Nav -->
+      </li><!-- End APPROVAL Nav -->
 
       <li class="nav-heading">정보</li>
       
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="commuting">
-          	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-			  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-			</svg>&nbsp;&nbsp;
-          <span>근태관리</span>
-        </a>
-      </li><!-- End Commuting Page Nav -->
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="profile">
           	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
@@ -451,35 +462,42 @@
       </nav>
     </div><!-- End Page Title -->
 		
-    <section class="section profile">
-    	<div id="wrap">
-
-		<div class="panel-body">
-			<table class="table table-bordered table-hover">
-				<tr>
-					<td>번호</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>작성일</td>
-					<td>조회수</td>
-				</tr>
-				<c:forEach var="list" items="${list}">
+	<section class="notice">
+	   
+	  <!-- board list area -->
+	    <div id="board-list">
+	        <div class="container">
+	            <table class="board-table">
+	                <thead>
+	                <tr>
+	                    <th scope="col" class="th-num">번호</th>
+	                    <th scope="col" class="th-title">제목</th>
+	                    <th scope="col" class="th-writer">작성자</th>
+	                    <th scope="col" class="th-date">작성일</th>
+	                    <th scope="col" class="th-cnt">조회수</th>
+	                </tr>
+	                </thead>
+	                <tbody>
+	                <c:forEach var="list" items="${list}">
 					<form action="getview" method="post">
-					<tr>
-						<td>${list.b_seq}</td>
-						<td><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></td>
-						<td>${list.member_id}</td>
-						<td>날짜</td>
-						<td>${list.b_cnt}</td>
-					</tr>
-					</form>
-				</c:forEach>
-			</table>
-			<button class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register2'">글쓰기</button>
-		</div>
-		
 
-		</div>
+
+	                <tr>
+	                    <td>${list.b_seq}</td>
+	                    <th><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></th>
+	                    <td>${list.member_name}</td>
+	                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
+	                    <td>${list.b_cnt}</td>
+	                </tr>
+	                </form>
+					</c:forEach>
+	                </tbody>
+	            </table>
+	            <br>
+	            <button class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register2'">글쓰기</button>
+	        </div>
+	    </div>
+		
 	</section>
 
   </main><!-- End #main -->
