@@ -29,7 +29,7 @@
 <link href="css/style.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
-<link href="css/message.css" rel="stylesheet">
+<link href="css/Message.css" rel="stylesheet">
 <!-- =======================================================
 * Template Name: NiceAdmin - v2.4.1
 * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
