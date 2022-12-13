@@ -62,7 +62,7 @@ public class ApprovalService {
 		ap.setApro_status0(approvalMapper.main0());
 		ap.setApro_status1(approvalMapper.main1());
 		ap.setApro_status2(approvalMapper.main2());
-		
+		//approvalMapper.alldata(member_id);
 		return ap;
 	}
 }

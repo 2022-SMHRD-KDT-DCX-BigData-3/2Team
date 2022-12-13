@@ -72,8 +72,11 @@ public class ApprovalController {
 	}
 	@RequestMapping("/main")
 	public String main(HttpSession session) {
+		//Member member = (Member) session.getAttribute("user");
+		//int member_id = member.getMEMBER_id();
 		App ap = approvalService.main();
 		session.setAttribute("ap", ap);
+		//model.addAttribute("", );
 		System.out.println(ap.getApro_status0());
 		return "smart/main";
 	}

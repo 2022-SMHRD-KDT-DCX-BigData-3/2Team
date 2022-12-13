@@ -600,13 +600,13 @@
 							<h5 class="card-title">
 								Chat <span>| Today</span>
 							</h5>
-							<div id="container" class="container">
+							<div id="container" class="containerd">
 								
 								<div id="chating" class="chating"></div>
 
 								<div id="yourName">
 									<table class="inputTable">
-										<tr>
+										<tr class="inputtr">
 											<th>사용자명</th>
 											<th><input type="text" name="userName" id="userName"></th>
 											<th><button onclick="chatName()" id="startBtn">이름

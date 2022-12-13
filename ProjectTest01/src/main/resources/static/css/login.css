@@ -210,10 +210,10 @@ body {
   .btn:after {
     content: "";
     position: absolute;
-    left: 0;
+    left: -70;
     top: 0;
     height: 490%;
-    width: 140%;
+    width: 170%;
     background: #3ca0e2;
     -webkit-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
