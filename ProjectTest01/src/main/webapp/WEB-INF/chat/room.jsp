@@ -354,7 +354,7 @@
 				<tr>
 					<th>방 제목</th>
 					<th><input class="input_room" type="text" name="roomName" id="roomName" placeholder="방이름을 입력해주세요" ></th>
-					<th><button id="createRoom">방 만들기</button></th>
+					<th><button id="createRoom" style="font-size: 16px; padding-right: 10px; padding-left: 10px;">방 만들기</button></th>
 				</tr>
 			</table>
 		</div>
