@@ -6,4 +6,8 @@
 		select * from message where member_id = #{member_id}
 	</select>
 
+	<select id="messview" parameterType="int" resultType="kr.smhrd.entity.Message">
+		select * from message where m_seq = #{m_seq}
+	</select>
+
 </mapper>

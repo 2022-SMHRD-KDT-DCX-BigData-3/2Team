@@ -19,6 +19,9 @@ public interface MessageMapper {
 
 	// 전체 쪽지 가져오기
 	public List<Message> message(int member_id);
+
+	// 쪽지 게시물 가져오기
+	public Message messview(int m_seq);
 	
 }
 

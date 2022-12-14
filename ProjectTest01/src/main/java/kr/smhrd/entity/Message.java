@@ -18,4 +18,6 @@ public class Message {
 	private String m_sender;
 	private String m_receiver;
 	private Date m_date;
+	private int m_status;
+	private int m_seq;
 }
