@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.smhrd.entity.AllApproval;
 import kr.smhrd.entity.App;
@@ -79,6 +80,12 @@ public class ApprovalController {
 		model.addAttribute("ap", ap);
 		model.addAttribute("ap2", ap2);
 		return "smart/main";
+	}
+	
+	@PostMapping("/main2")
+	@ResponseBody
+	public List<App> main2() {
+		return approvalService.main2();
 	}
 }
 

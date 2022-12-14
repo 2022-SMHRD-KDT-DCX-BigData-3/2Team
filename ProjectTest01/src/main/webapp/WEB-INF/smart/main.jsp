@@ -507,13 +507,14 @@
 											
 											 events: function(info, successCallback, failureCallback){ // ajax 처리로 데이터를 로딩 시킨다. 
 												$.ajax({
-													  url: "main",
+													  url: "main2",
 													  type: "POST",
 													  dataType: "JSON",
 													  contentType: "application/json; charset=UTF-8",
 													  traditional: true,
 													  async: false, //동기
 													  success : function(data){
+														  console.log(data);
 														  var events = [];	 
 														 $.each(data, function(index, element) {
 								   								events.push({
