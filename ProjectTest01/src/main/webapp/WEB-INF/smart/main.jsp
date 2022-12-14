@@ -70,7 +70,9 @@
 						$("#chating").append("<div class='mine messages'><p class='message'>" + d.msg + "</p><span class='time'>"+hours+"시"+minutes
 								+"분"+"</span></div>");
 					}else{
-						$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+						$("#chating").append("<div class='yours messages'><p class='message'>"+d.userName + ": "+ d.msg + "</p><span class='time'>"+hours+"시"+minutes
+								+"분"+"</span></div>");
+						setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
 					}
 						
 				}else{
@@ -107,6 +109,7 @@
 		}
 		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
+		setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
 	}
 </script>
 <body>
@@ -593,7 +596,7 @@
 								Chat
 							</h5>
 							<div id="container" class="containerd">
-								
+								<input type="hidden" id="sessionId" value="">
 								<div id="chating" class="chatingm"></div>
 
 								<div id="yourName">
@@ -618,8 +621,7 @@
 							</div>
 
 
-							<i
-								class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+							
 
 						</div>
 						<!-- End activity item-->

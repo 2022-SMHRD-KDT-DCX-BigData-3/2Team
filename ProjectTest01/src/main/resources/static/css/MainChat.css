@@ -12,6 +12,9 @@
 	width: 340px;
 	margin: 0 auto;
 }
+#chating::-webkit-scrollbar {
+    display: none;
+}
 .chating{
 	background-color: white;
 	width: 300px;

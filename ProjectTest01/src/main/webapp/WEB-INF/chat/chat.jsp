@@ -401,9 +401,9 @@
 		<div id="yourName">
 			 <table class="inputTable">
 				<tr class="kan">
-					<th style="font-size: 19px">유저</th>
+					<th style="font-size: 19px; font-weight:bold;">유저</th>
 					<th><input style="border:none" type="text" name="userName" id="userName" value="${user.MEMBER_NAME}" readonly="readonly"></th>
-					<th><button onclick="chatName()" >시작하기</button></th>
+					<th><button onclick="chatName()" style="font-size: 18px; font-weight: bold;" >시작하기</button></th>
 				</tr>
 			</table> 
 		</div>
