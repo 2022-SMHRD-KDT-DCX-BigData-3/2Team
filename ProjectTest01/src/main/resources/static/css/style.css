@@ -1,6 +1,10 @@
 @charset "UTF-8";
-.sect {
-	background-color: #ffffff;
+.fc-toolbar-chunk {
+    display: flex;     
+    align-items: center; 
+}
+.calendar1 {
+  margin-bottom: auto ;
 }
 .meback {
 	width: 1150px;

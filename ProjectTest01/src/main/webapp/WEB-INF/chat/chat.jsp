@@ -146,13 +146,6 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
@@ -361,6 +354,15 @@
         </ul>
       </li><!-- End APPROVAL Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="message">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+		  	<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+			</svg>&nbsp;&nbsp;
+			<span>쪽지</span>
+        </a>
+      </li><!-- End member Nav -->
+
       <c:if test="${user.MEMBER_id == '1'}">
       <li class="nav-item">
         <a class="nav-link collapsed" href="member">
@@ -380,7 +382,6 @@
 			</svg>&nbsp;&nbsp;
          <span>로그아웃</span>
         </a>
-        </form>
       </li><!-- End Logout Page Nav -->
 
     </ul>
@@ -399,28 +400,52 @@
 		
 		<div id="yourName">
 			 <table class="inputTable">
-				<tr>
-					<th>유저</th>
+				<tr class="kan">
+					<th style="font-size: 19px">유저</th>
 					<th><input style="border:none" type="text" name="userName" id="userName" value="${user.MEMBER_NAME}" readonly="readonly"></th>
-					<th><button onclick="chatName()" id="startBtn">시작하기</button></th>
+					<th><button onclick="chatName()" >시작하기</button></th>
 				</tr>
 			</table> 
 		</div>
 		<div id="yourMsg">
 			<table class="inputTable">
-				<tr>
+				<tr class="kan">
 					<!-- <th><span class="material-symbols-outlined" style="margin-right: 25px"> add_reaction</span></th> -->
-					<th>메세지</th>
+					<th style="font-size: 19px;">메세지</th>
 					<th><input  id="chatting" style="border:none" placeholder=" 보내실 메시지를 입력하세요."></th>
-					<th><button class="button button2" onclick="send()" id="sendBtn" style="margin-right: 20px">보내기</button></th>
-					<th></th>
+					<th><button onclick="send()"  style="margin-right: 0px">
+						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+						  <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+						</svg>
+					</button>
+					<button id="start">
+						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+						  <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+						  <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+						</svg>
+					</button></th>
 				</tr>
 			</table>
 		</div>
-		
 	</div>
 	</main>
-	
+<script type="text/javascript">
+if (!("webkitSpeechRecognition" in window)){
+	 alert("지원 안됨 크롬으로 가세요.");
+}else{
+	 const speech = new webkitSpeechRecognition;
+	 
+	 document.getElementById("start").addEventListener("click",() =>{
+		 speech.start();
+	 })
+	 
+	 speech.addEventListener("result",(event) =>{
+		 const{transcript} = event["results"][0][0];
+		 $("#chatting").val(transcript);
+		 console.log(transcript);
+	 })
+}
+</script>	
 	
 		<!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
