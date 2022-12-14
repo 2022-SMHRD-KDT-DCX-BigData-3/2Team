@@ -64,11 +64,12 @@ public class CalendarController {
 	  return list;
 	}
 	
+	
 	@PostMapping("calendar_main")
 	@ResponseBody
 	public List<Calendar> calendar_admin(Model model,HttpSession httpsession) {
 	  Member member=(Member) httpsession.getAttribute("user");
-	  List<Calendar> list=calendarService.getList(member.getMEMBER_id());
+	  List<Calendar> list=calendarService.getList2(member.getMEMBER_id());
 	  model.addAttribute("list",list);
 	  return list;
 	}
