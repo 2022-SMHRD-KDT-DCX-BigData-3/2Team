@@ -35,7 +35,6 @@
 <link href="css/MainChat.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
-<link href="css/calendar.css" rel = "stylesheet">
 <link href="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.css" rel="stylesheet" />
 
 </head>
@@ -121,13 +120,6 @@
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -365,7 +357,6 @@
 			</svg>&nbsp;&nbsp;
          <span>로그아웃</span>
         </a>
-        </form>
       </li><!-- End Logout Page Nav -->
 
     </ul>
@@ -413,9 +404,8 @@
 											</svg>
 										</div>
 										<div class="ps-3">
-											
-											<span class="text-success small pt-1 fw-bold">AllDay</span> 
-											<span class="text-muted small pt-2 ps-1">보고서 작성</span> 
+											<span class="text-success small pt-1 fw-bold">1</span>
+											<span class="text-muted small pt-2 ps-1">개의 일정이 있습니다.</span>
 
 										</div>
 									</div>
@@ -446,9 +436,8 @@
 										  	</svg>
 										</div>
 										<div class="ps-3">
-											<h6>$3,264</h6>
-											<span class="text-success small pt-1 fw-bold">8%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
+											<span class="text-success small pt-1 fw-bold">2</span>
+											<span class="text-muted small pt-2 ps-1">건의 결재가 있습니다.</span>
 
 										</div>
 									</div>
@@ -479,9 +468,8 @@
 											</svg>
 										</div>
 										<div class="ps-3">
-											<h6>1244</h6>
-											<span class="text-danger small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">decrease</span>
+											<span class="text-danger small pt-1 fw-bold">1</span>
+											<span class="text-muted small pt-2 ps-1">개의 공지가 있습니다.</span>
 
 										</div>
 									</div>
@@ -493,11 +481,12 @@
 						<!-- End Customers Card -->
 
 						<!-- Reports -->
-						<div class="col-12">
-							<div class="card">
-						<div class="card-body">
-						 <div id="reportsChart">
-								<div id='calendar'></div>
+            <div class="col-12">
+              <div class="card">
+
+                <div class="card-body">
+                  <div id="reportsChart" style="padding-top: 20px;">
+								<div id='calendar' class="calendar1"></div>
 				<script src="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.js"></script>
 				<script src="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/locales/ko.js"></script>
 				<script src="fullcalendar-5.11.3/lib/locales-all.min.js"></script>
@@ -570,12 +559,12 @@
                   					</script>
 									<!-- End Line Chart -->
 
-						</div>		
 						</div>
-						</div>
-							</div>
-						</div>
-						<!-- End Reports -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
 
 					</div>
 				</div>
@@ -601,15 +590,15 @@
 
 						<div class="card-body">
 							<h5 class="card-title">
-								Chat <span>| Today</span>
+								Chat
 							</h5>
-							<div id="container" class="container">
+							<div id="container" class="containerd">
 								
-								<div id="chating" class="chating"></div>
+								<div id="chating" class="chatingm"></div>
 
 								<div id="yourName">
-									<table class="inputTable">
-										<tr>
+									<table class="inputTable" style="width: 100%;">
+										<tr class="inputtr">
 											<th>사용자명</th>
 											<th><input type="text" name="userName" id="userName"></th>
 											<th><button onclick="chatName()" id="startBtn">이름
@@ -618,10 +607,10 @@
 									</table>
 								</div>
 								<div id="yourMsg">
-									<table class="inputTable">
-										<tr>
+									<table class="inputTable" style="width: 100%;">
+										<tr class="inputtr">
 											<th>메시지</th>
-											<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+											<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."  style="width: 100%;"></th>
 											<th><button onclick="send()" id="sendBtn">보내기</button></th>
 										</tr>
 									</table>

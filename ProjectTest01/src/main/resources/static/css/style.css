@@ -1,6 +1,10 @@
 @charset "UTF-8";
-.sect {
-	background-color: #ffffff;
+.fc-toolbar-chunk {
+    display: flex;     
+    align-items: center; 
+}
+.calendar1 {
+  margin-bottom: auto ;
 }
 .meback {
 	width: 1150px;
@@ -121,9 +125,6 @@
 
 #searchBox {
 	margin-bottom: 10px;
-<<<<<<< HEAD
-}
-=======
 }
 .sect {
 	background-color: #ffffff;
@@ -333,9 +334,6 @@
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
-<<<<<<< HEAD
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
-=======
 .remo {
 	border-radius: 10px;
 	border: 0px solid;
@@ -441,4 +439,3 @@
 		font-size: 3px;
 	}
 }
->>>>>>> branch 'main' of https://github.com/2022-SMHRD-KDT-DCX-BigData-3/2Team.git
