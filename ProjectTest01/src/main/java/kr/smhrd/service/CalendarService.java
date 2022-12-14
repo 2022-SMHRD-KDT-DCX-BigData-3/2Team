@@ -38,4 +38,10 @@ public class CalendarService  {
 		calendarMapper.CalDE(searchVO);
 	}
 	
+	/*
+	 * public int getCalCount(int member_id) {
+	 * calendarMapper.selectCalCount(member_id); return member_id; }
+	 */
+	
+	
 }

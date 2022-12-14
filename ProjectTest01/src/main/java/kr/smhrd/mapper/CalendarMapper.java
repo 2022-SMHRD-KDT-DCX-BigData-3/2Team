@@ -21,4 +21,8 @@ public interface CalendarMapper {
 	
 	public void CalDE(Calendar searchVO);
 	
+	public void CalCU(Calendar searchVO);
+	
+	/* public int selectCalCount(int member_id); */
+	
 }

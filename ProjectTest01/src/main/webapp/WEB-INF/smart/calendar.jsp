@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-<%-- <%@page import="kr.smhrd.entity.Calendar.calendar.model.vo.Calendar"%> --%>
 <%@page import="kr.smhrd.entity.Calendar"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
@@ -9,7 +8,6 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<%-- <c:set var="cpath" value="${pageContext.request.contextPath}"/> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,12 +42,7 @@
 * License: https://bootstrapmade.com/license/
 ======================================================== -->
 
-<!--캘린더-->
-
-
-  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -464,12 +457,12 @@ input:focus, textarea:focus {
 </style>
 <link href="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.css" rel="stylesheet" />
 <script src="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.js"></script>
-<script src="${pageContext.request.contextPath}fullcalendar-5.0.1/lib/locales/ko.js"></script>
+<script src="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/locales/ko.js"></script>
 <script src="fullcalendar-5.11.3/lib/locales-all.min.js"></script>
 
 	<link href="jquery-ui-1.13.2/jquery-ui.css" rel="stylesheet">
 
-	<script src="fullcalendar-5.11.3/lib/jquery-ui.js"></script>
+	<script src="fullcalendar-5.0.1/lib/jquery-ui.js"></script>
 	<script type='text/javascript'>
 	
 	
@@ -831,10 +824,6 @@ input:focus, textarea:focus {
 				
 					
 			}, 
-		 	
-            	
-            
-            
             
         });
         
@@ -935,19 +924,7 @@ input:focus, textarea:focus {
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
- <!--  <script src="assets/js/jquery-3.6.1.min.js"></script>
-    -->
 
-<!-- <script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/fullcalendar.js"></script>
-<script src="fullcalendar-5.11.3/skin/board/rumi_fullcalendar/js/jscolor.min.js"></script> -->
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-  
-  
-
-
- 
- 
  
 </body>
 

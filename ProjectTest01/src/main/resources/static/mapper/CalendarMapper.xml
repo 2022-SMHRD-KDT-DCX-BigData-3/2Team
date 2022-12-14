@@ -19,10 +19,13 @@
 	</insert>
 	
 	<delete id="CalDE" parameterType="kr.smhrd.entity.Calendar">
-	
 		delete from CALENDAR where CALENDAR_ID= #{CALENDAR_ID}
-		
 	</delete>
+	
+	<select id="selectCalCount" parameterType="int" resultType="int">
+      select count(*) from calendar where MEMBER_id = #{MEMBER_id} and sysdate between to_date(CALENDAR_START, 'YYYY-MM-DD HH24:MI:SS') and to_date(CALENDAR_END, 'YYYY-MM-DD HH24:MI:SS')
+   </select>
+
 	
 </mapper> 
 

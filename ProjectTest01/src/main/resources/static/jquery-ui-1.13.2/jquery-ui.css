@@ -542,6 +542,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
 	float: right;
+	
 }
 .ui-dialog .ui-dialog-buttonpane button {
 	margin: .5em .4em .5em 0;
@@ -996,6 +997,7 @@ a.ui-button:active,
 	font-weight: normal;
 	color: #ffffff;
 }
+
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
 	border: #003eff;

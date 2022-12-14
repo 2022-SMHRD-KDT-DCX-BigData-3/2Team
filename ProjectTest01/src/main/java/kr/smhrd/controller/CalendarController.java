@@ -47,11 +47,26 @@ public class CalendarController {
 		List<Calendar> list = calendarService.getList(member.getMEMBER_id());
 		return "smart/calendar";
 	}
+	@RequestMapping("main_calendar")
+	public String calendar_main(HttpSession httpsession) {
+		Member member=(Member) httpsession.getAttribute("user");
+		List<Calendar> list = calendarService.getList(member.getMEMBER_id());
+		return "smart/main";
+	}
 	  	
 	
 	@PostMapping("calendar_load")
 	@ResponseBody
 	public List<Calendar> calendar_load(Model model,HttpSession httpsession) {
+	  Member member=(Member) httpsession.getAttribute("user");
+	  List<Calendar> list=calendarService.getList(member.getMEMBER_id());
+	  model.addAttribute("list",list);
+	  return list;
+	}
+	
+	@PostMapping("calendar_main")
+	@ResponseBody
+	public List<Calendar> calendar_admin(Model model,HttpSession httpsession) {
 	  Member member=(Member) httpsession.getAttribute("user");
 	  List<Calendar> list=calendarService.getList(member.getMEMBER_id());
 	  model.addAttribute("list",list);
@@ -141,8 +156,24 @@ public class CalendarController {
 	    return null;
 	}
 	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value="/calendar/calCount", method=RequestMethod.POST,
+	 * produces = "application/text; charset=utf8") public String
+	 * getCalCount(HttpServletRequest req,HttpSession httpsession) {
+	 * 
+	 * HttpSession session = req.getSession(); Member member=(Member)
+	 * httpsession.getAttribute("user");
+	 * 
+	 * int count = calendarService.getCalCount(member.getMEMBER_id());
+	 * 
+	 * System.out.println("getCalCount : "+count);
+	 * 
+	 * return count+""; }
+	 */
 	
-		
+	
 	
 	
 	
