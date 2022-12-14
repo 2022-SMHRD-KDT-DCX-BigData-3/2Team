@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.smhrd.entity.Board;
 import kr.smhrd.entity.Member;
@@ -36,6 +37,5 @@ public class BoardService {
 	}
 	public void boardmodify(Board vo) {
 		boardMapper.boardmodify(vo);
-
 	}
 }

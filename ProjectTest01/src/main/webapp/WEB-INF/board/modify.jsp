@@ -41,13 +41,13 @@
 				var oper=$(this).data("oper");
 				if (oper=='modify') {
 					formObj.attr("method", "post");
-					formObj.attr("action","${cpath}/board/modify"); // idx
+					formObj.attr("action","/boardmodify"); // idx
 				} else if (oper=='reset') {
 					formObj[0].reset();
 					return;
 				} else {
 					formObj.attr("method", "get");
-					formObj.attr("action","${cpath}/board/list");
+					formObj.attr("action","/list");
 				}
 				formObj.submit(); // form 전송
 			});
@@ -324,17 +324,17 @@
     <section class="section profile">
     	<div class="panel-body">
 			<form id="frm" class="form-horizontal">
-			<input type="hidden" name="idx" value="${vo.b_seq}"/>
+			<input type="hidden" name="b_seq" value="${vo.b_seq}"/>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="title">제목:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="title" value="${vo.b_title}">
+						<input type="text" class="form-control" name="b_title" value="${vo.b_title}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="content">내용:</label>
 					<div class="col-sm-10">
-						<textarea rows="10" class="form-control" name="content">${vo.b_content}</textarea>
+						<textarea rows="10" class="form-control" name="b_content">${vo.b_content}</textarea>
 					</div>
 				</div>
 				<div class="form-group">

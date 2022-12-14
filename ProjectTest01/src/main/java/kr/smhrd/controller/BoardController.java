@@ -52,9 +52,16 @@ public class BoardController {
 		return "redirect:/list";
 	}
 	@GetMapping("/boardmodify")
+	public String boardmodify(int b_seq, Model model) {
+		Board vo = boardService.getview(b_seq);
+		model.addAttribute("vo", vo);
+		System.out.println("뭔데" + vo);
+		return "board/modify";
+	}
+	@PostMapping("/boardmodify")
 	public String boardmodify(Board vo) {
 		boardService.boardmodify(vo);
-		return "board/modify";
+		return "redirect:/list";
 	}
 }
 
