@@ -7,6 +7,10 @@
 		select c.*, c.member_id from Calendar c, member m where c.member_id = m.member_id and m.member_id=#{member_id}
 	</select>
 	
+	<select id="getList2" resultType="kr.smhrd.entity.Calendar">
+		select c.*, c.member_id from Calendar c, member m where c.member_id = 1 and m.member_id=1
+	</select>
+	
 	
 	 <update id="CalUP" parameterType="kr.smhrd.entity.Calendar">
 		

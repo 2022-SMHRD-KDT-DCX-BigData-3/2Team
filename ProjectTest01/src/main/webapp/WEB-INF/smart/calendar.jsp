@@ -866,9 +866,9 @@ input:focus, textarea:focus {
     <div id="form-div">
         <form class="diaForm" id="diaForm" >
             <!-- <input type="hidden" name="actType" value="C" /> -->  <!-- C:등록 U:수정 D:삭제 -->
-            <input type="hidden" name="id" value="" /> 
-            <input type="hidden" name="CALENDAR_START" value="" />
-            <input type="hidden" name="CALENDAR_END" value="" />
+            <input type="hidden" name="id" value="1" /> 
+            <input type="hidden" name="CALENDAR_START" />
+            <input type="hidden" name="CALENDAR_END" />
             <input type="hidden" name="CAL_SORT_ID" value="2" />
             <input type="hidden" name="CALENDAR_ALLDAY" value="2" />
             <input type="hidden" name="CAL_SORT_NAME" value="중요" />

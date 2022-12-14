@@ -24,6 +24,11 @@ public class CalendarService  {
 		return list;
 	}
 	
+	public List<Calendar> getList2(int memeber_id){
+		List<Calendar> list = calendarMapper.getList2(memeber_id);
+		return list;
+	}
+	
 	public void createCalendar(Calendar searchVO) {
 		calendarMapper.searchVO(searchVO);
 		

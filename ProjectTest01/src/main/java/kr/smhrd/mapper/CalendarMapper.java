@@ -14,6 +14,8 @@ import kr.smhrd.entity.Calendar;
 public interface CalendarMapper {
 
 	public List<Calendar> getList(int memeber_id);
+	
+	public List<Calendar> getList2(int memeber_id);
 
 	public void searchVO(Calendar searchVO);
 	
