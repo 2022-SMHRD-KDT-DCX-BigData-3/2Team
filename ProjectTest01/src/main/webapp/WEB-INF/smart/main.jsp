@@ -4,6 +4,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="cpath" value="${pageContext.request.contextPath}" />
+<%@page import="kr.smhrd.entity.Calendar"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +35,8 @@
 <link href="css/MainChat.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.css" rel="stylesheet" />
+
 </head>
 <script type="text/javascript">
 	var ws;
@@ -403,6 +406,7 @@
 										<div class="ps-3">
 											<span class="text-success small pt-1 fw-bold">1</span>
 											<span class="text-muted small pt-2 ps-1">개의 일정이 있습니다.</span>
+
 										</div>
 									</div>
 								</div>
@@ -477,90 +481,90 @@
 						<!-- End Customers Card -->
 
 						<!-- Reports -->
-						<div class="col-12">
-							<div class="card">
+            <div class="col-12">
+              <div class="card">
 
-								<div class="filter">
-									<a class="icon" href="#" data-bs-toggle="dropdown"><i
-										class="bi bi-three-dots"></i></a>
-									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-										<li class="dropdown-header text-start">
-											<h6>Filter</h6>
-										</li>
-
-										<li><a class="dropdown-item" href="#">Today</a></li>
-										<li><a class="dropdown-item" href="#">This Month</a></li>
-										<li><a class="dropdown-item" href="#">This Year</a></li>
-									</ul>
-								</div>
-
-								<div class="card-body">
-									<h5 class="card-title">
-										Reports <span>/Today</span>
-									</h5>
-
-									<!-- Line Chart -->
-									<div id="reportsChart"></div>
-
+                <div class="card-body">
+                  <div id="reportsChart" style="padding-top: 20px;">
+								<div id='calendar' class="calendar1"></div>
+				<script src="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/main.js"></script>
+				<script src="${pageContext.request.contextPath}/fullcalendar-5.0.1/lib/locales/ko.js"></script>
+				<script src="fullcalendar-5.11.3/lib/locales-all.min.js"></script>
 									<script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
-                  </script>
+									
+									
+									 document.addEventListener('DOMContentLoaded', function() {
+									      var calendarEl = document.getElementById('calendar');
+									      var calendar = new FullCalendar.Calendar(calendarEl, {
+									        initialView: 'dayGridMonth',
+									        locale : "ko",
+									        editable:true,
+											//editable:edit,
+											dayMaxEvents: true,
+											
+											 events: function(info, successCallback, failureCallback){ // ajax 처리로 데이터를 로딩 시킨다. 
+												$.ajax({
+													  url: "calendar_main",
+													  type: "POST",
+													  dataType: "JSON",
+													  contentType: "application/json; charset=UTF-8",
+													  traditional: true,
+													  async: false, //동기
+													  success : function(data){
+														  var events = [];	 
+														 $.each(data, function(index, element) {
+								   								events.push({
+								                   		 		title: element.calendar_TITLE,
+								                    			start: element.calendar_START,
+								                    			end: element.calendar_END,
+								                    			color:element.calendar_COLOR,
+								                    			content:element.calendar_CONTENT,
+								                    			id:element.calendar_ID
+								                  		 }); 
+															});
+														 successCallback(events);
+														 
+														
+														console.log(events);
+														
+														
+													  },
+													  error : function(request,status,error){
+														alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+														console.log("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+													 
+													  }
+													  
+												}); // load calendar ajax 끝 
+												
+													
+											}, //load calendar 끝
+			        
+									      }); // fullcalendar 
+									      
+									      
+									      
+									      calendar.render();
+									    }); //document끝 
+									    /* $.ajax({
+								               type: 'POST',
+								               url: "${pageContext.request.contextPath}/calendar/calCount",
+								               success: function(data) {    
+								                  
+								                  $('#calCount3').text(data);
+								                      
+								                   }
+								          })//ajax end */
+									
+                  					</script>
 									<!-- End Line Chart -->
 
-								</div>
-
-							</div>
 						</div>
-						<!-- End Reports -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
 
 					</div>
 				</div>
@@ -590,7 +594,7 @@
 							</h5>
 							<div id="container" class="containerd">
 								
-								<div id="chating" class="chating"></div>
+								<div id="chating" class="chatingm"></div>
 
 								<div id="yourName">
 									<table class="inputTable" style="width: 100%;">

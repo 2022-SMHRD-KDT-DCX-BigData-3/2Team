@@ -8,15 +8,24 @@
 	</select>
 	
 	
-	<update id="inCal" parameterType="kr.smhrd.entity.Calendar">
+	 <update id="CalUP" parameterType="kr.smhrd.entity.Calendar">
 		
-		update Calendar set calendar_title = #{calendar_title}, calendar_content = #{calendar_content}, calendar_color = #{calendar_color} where member_id = #{member_id}
+		update Calendar set calendar_title = #{CALENDAR_TITLE}, calendar_content = #{CALENDAR_CONTENT}, calendar_color = #{CALENDAR_COLOR} where CALENDAR_ID = #{CALENDAR_ID}
 	
-	</update>
+	 </update> 
 	
-	<!-- <insert id="inCal" parameterType="kr.smhrd.entity.Calendar" >
-		 insert into CALENDAR (MEMBER_id,CALENDAR_TITLE,CALENDAR_COLOR,CALENDAR_CONTENT) values(seq_calendar_id.nextval,#{CALENDAR_TITLE},#{CALENDAR_COLOR},#{CALENDAR_CONTENT})
-	</insert>  -->
+    <insert id="searchVO" parameterType="kr.smhrd.entity.Calendar" >
+		 insert into CALENDAR (CALENDAR_ID,MEMBER_id,CALENDAR_TITLE,CALENDAR_COLOR,CALENDAR_CONTENT,CALENDAR_CATE_SELF,CALENDAR_INDATE,CALENDAR_START,CALENDAR_END) values(CAL_SEQ.nextval,#{MEMBER_ID},#{CALENDAR_TITLE},#{CALENDAR_COLOR},#{CALENDAR_CONTENT},'중요',sysdate,to_date(#{CALENDAR_START},'YY/MM/DD'),to_date(#{CALENDAR_END},'YY/MM/DD'))
+	</insert>
+	
+	<delete id="CalDE" parameterType="kr.smhrd.entity.Calendar">
+		delete from CALENDAR where CALENDAR_ID= #{CALENDAR_ID}
+	</delete>
+	
+	<select id="selectCalCount" parameterType="int" resultType="int">
+      select count(*) from calendar where MEMBER_id = #{MEMBER_id} and sysdate between to_date(CALENDAR_START, 'YYYY-MM-DD HH24:MI:SS') and to_date(CALENDAR_END, 'YYYY-MM-DD HH24:MI:SS')
+   </select>
+
 	
 </mapper> 
 

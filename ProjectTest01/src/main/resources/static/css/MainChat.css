@@ -18,6 +18,12 @@
 	height: 500px;
 	overflow: auto;
 }
+.chatingm{
+	background-color: white;
+	width: 300px;
+	height: 520px;
+	overflow: auto;
+}
 .messages {
   margin-top: 30px;
   display: flex;

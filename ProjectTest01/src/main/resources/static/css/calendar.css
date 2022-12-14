@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+#calendar {
+  max-width: 500px;
+  margin-bottom: auto ;
+}
+.fc-toolbar-chunk {
+    display: flex;     
+    align-items: center; 
+}

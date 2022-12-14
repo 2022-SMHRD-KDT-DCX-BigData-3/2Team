@@ -24,11 +24,24 @@ public class CalendarService  {
 		return list;
 	}
 	
-	public void inCal(int member_id) {
-		calendarMapper.inCal(member_id);
-					
-		}
+	public void createCalendar(Calendar searchVO) {
+		calendarMapper.searchVO(searchVO);
+		
+	}
 	
+	public void updateCalendar(Calendar searchVO) {
+		calendarMapper.CalUP(searchVO);
+		
+	}
+	
+	public void deleteCalendar(Calendar searchVO) {
+		calendarMapper.CalDE(searchVO);
+	}
+	
+	/*
+	 * public int getCalCount(int member_id) {
+	 * calendarMapper.selectCalCount(member_id); return member_id; }
+	 */
 	
 	
 }

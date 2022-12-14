@@ -18,10 +18,10 @@ public class Calendar {
     private int MEMBER_ID;
 
     // 일정 시작일 
-    private Date CALENDAR_START;
+    private String CALENDAR_START;
 
     // 일정 마감일 
-    private Date CALENDAR_END;
+    private String CALENDAR_END;
 
     // 일정 제목 
     private String CALENDAR_TITLE;
@@ -36,7 +36,7 @@ public class Calendar {
     private String CALENDAR_ALLDAY;
     
     // 일정 입력일 
-    private Date CALENDAR_INDATE;
+    private String CALENDAR_INDATE;
 
     // 일정 종류 구분 
     private String CAL_SORT_NAME;
