@@ -40,6 +40,12 @@ public class BoardController {
 	public String register2() {
 		return "board/register2";
 	}
+	@RequestMapping("/register")
+	public String register(Board vo) {
+		System.out.println(vo);
+		boardService.register(vo);
+		return "redirect:/list";
+	}
 	@GetMapping("/boardremove")
 	public String boardremove(int b_seq, RedirectAttributes rttr) {
 		rttr.addFlashAttribute("result", boardService.boardremove(b_seq));

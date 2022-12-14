@@ -323,7 +323,7 @@
 	                <tr>
 	                    <td>${list.b_seq}</td>
 	                    <th><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></th>
-	                    <td>${list.member_name}</td>
+	                    <td>${list.member_id}</td>
 	                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
 	                    <td>${list.b_cnt}</td>
 	                </tr>
@@ -332,7 +332,7 @@
 	                </tbody>
 	            </table>
 	            <br>
-	            <button class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register2'">글쓰기</button>
+	            <button type="button" class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register2'">글쓰기</button>
 	        </div>
 	    </div>
 		
