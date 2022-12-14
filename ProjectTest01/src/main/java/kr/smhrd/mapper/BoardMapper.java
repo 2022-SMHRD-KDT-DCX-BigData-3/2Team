@@ -31,8 +31,8 @@ public interface BoardMapper {
 	// 게시물 삭제
 	public int insert(Board vo);
 
-//	// 댓글 삭제
-//	public int commentsremove(int b_seq);
+	// 댓글 삭제
+	// public int commentsremove(int b_seq);
 	
 	// 게시물 수정
 	public void boardmodify(Board vo);

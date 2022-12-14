@@ -1,5 +1,3 @@
-
-
 package kr.smhrd.controller;
 
 import java.util.List;
@@ -36,6 +34,11 @@ public class BoardController {
 		model.addAttribute("vo", vo);
 		return "board/getview";
 	}
+	@GetMapping("/boardremove")
+	public String boardremove(int b_seq, RedirectAttributes rttr) {
+		rttr.addFlashAttribute("result", boardService.boardremove(b_seq));
+		return "redirect:/list";
+	}
 	@RequestMapping("/register2")
 	public String register2() {
 		return "board/register2";
@@ -44,11 +47,6 @@ public class BoardController {
 	public String register(Board vo) {
 		System.out.println(vo);
 		boardService.register(vo);
-		return "redirect:/list";
-	}
-	@GetMapping("/boardremove")
-	public String boardremove(int b_seq, RedirectAttributes rttr) {
-		rttr.addFlashAttribute("result", boardService.boardremove(b_seq));
 		return "redirect:/list";
 	}
 	@GetMapping("/boardmodify")
