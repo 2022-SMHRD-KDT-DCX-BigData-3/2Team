@@ -310,6 +310,7 @@
 	                <thead>
 	                <tr>
 	                    <th scope="col" class="th-num">번호</th>
+	                    <th scope="col" class="th-num">분류</th>
 	                    <th scope="col" class="th-title">제목</th>
 	                    <th scope="col" class="th-writer">작성자</th>
 	                    <th scope="col" class="th-date">작성일</th>
@@ -323,6 +324,14 @@
 
 	                <tr>
 	                    <td>${list.b_seq}</td>
+	                    <td>
+	                    	<c:if test="${list.b_status == '0'}">
+	                    		일반글
+	                    	</c:if>
+	                    	<c:if test="${list.b_status == '1'}">
+	                    		공지사항
+	                    	</c:if>
+	                    </td>
 	                    <th><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></th>
 	                    <td>${list.member_id}</td>
 	                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
@@ -333,7 +342,7 @@
 	                </tbody>
 	            </table>
 	            <br>
-	            <button type="button" class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register2'">글쓰기</button>
+	    <button type="button" class="btn btn-sm btn-primary" onclick="location.href='${cpath}/register2'">글쓰기</button>
 	        </div>
 	    </div>
 		
