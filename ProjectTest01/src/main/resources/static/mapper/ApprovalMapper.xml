@@ -6,8 +6,6 @@
 		select * from APPROVAL
 	</select>
 
-
-
 	<select id="read" resultType="kr.smhrd.entity.AllApproval" parameterType="int">
 		select DISTINCT a.*, q.apv_auth_id, q.apv_auth_name, q.apv_time, q.apv_num, md.depart_code,
 		md.depart_name as depart_name1, d1.depart_name as depart_name2, d2.depart_name as depart_name3, d3.depart_name as depart_name4
@@ -77,6 +75,25 @@
 
 	<select id="main2" parameterType="kr.smhrd.entity.App" resultType="int">
 		select count(apro_status) as apro_status2 from approval a where apro_status = 3
+	</select>
+
+	<select id="main3" parameterType="kr.smhrd.entity.App" resultType="int">
+		select count(apro_status) as apro_statusmy from approval a where apro_status = 0 and appro_member_id = (select member_name from member where member_id = #{member_id})
+	</select>
+
+	<select id="main4" parameterType="kr.smhrd.entity.App" resultType="int">
+		select count(apro_status) as apro_statusm from approval a where apro_status > 3 
+		and appro_mem1 = (select member_name from member where member_id = #{member_id}) 
+		or appro_mem2 = (select member_name from member where member_id = #{member_id}) 
+		or appro_mem3 = (select member_name from member where member_id = #{member_id})
+	</select>
+
+	<select id="main5" parameterType="kr.smhrd.entity.App" resultType="int">
+		select count(*) as myc_count from calendar where member_id = #{member_id} and sysdate between to_date(CALENDAR_START, 'YY-MM-DD') and to_date(CALENDAR_END, 'YY-MM-DD')
+	</select>
+
+	<select id="main6" resultType="kr.smhrd.entity.App">
+		select * from calendar where member_id = 1
 	</select>
 
 </mapper>

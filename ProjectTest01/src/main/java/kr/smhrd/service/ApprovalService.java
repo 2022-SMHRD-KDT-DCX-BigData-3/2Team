@@ -57,12 +57,19 @@ public class ApprovalService {
 		}
 	}
 	
-	public App main() {
+	public App main(int member_id) {
 		App ap = new App();
 		ap.setApro_status0(approvalMapper.main0());
 		ap.setApro_status1(approvalMapper.main1());
 		ap.setApro_status2(approvalMapper.main2());
-		//approvalMapper.alldata(member_id);
+		ap.setApro_statusmy(approvalMapper.main3(member_id));
+		ap.setApro_statusm(approvalMapper.main4(member_id));
+		ap.setMyc_count(approvalMapper.main5(member_id));
+		return ap;
+	}
+	
+	public List<App> main2() {
+		List<App> ap = approvalMapper.main6();
 		return ap;
 	}
 }

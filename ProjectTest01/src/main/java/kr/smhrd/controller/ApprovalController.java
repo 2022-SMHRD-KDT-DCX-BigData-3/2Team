@@ -71,13 +71,13 @@ public class ApprovalController {
 		return "redirect:/approvaln";
 	}
 	@RequestMapping("/main")
-	public String main(HttpSession session) {
-		//Member member = (Member) session.getAttribute("user");
-		//int member_id = member.getMEMBER_id();
-		App ap = approvalService.main();
-		session.setAttribute("ap", ap);
-		//model.addAttribute("", );
-		System.out.println(ap.getApro_status0());
+	public String main(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("user");
+		int member_id = member.getMEMBER_id();
+		App ap = approvalService.main(member_id);
+		List<App> ap2 = approvalService.main2();
+		model.addAttribute("ap", ap);
+		model.addAttribute("ap2", ap2);
 		return "smart/main";
 	}
 }

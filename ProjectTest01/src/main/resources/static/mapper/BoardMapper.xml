@@ -19,7 +19,7 @@
 	</update>
 	
 	<insert id="insert" parameterType="kr.smhrd.entity.Board">
-	   insert into board values(board_seq.nextval, #{b_title},#{b_content},sysdate,#{member_id},0)
+	   insert into board values(board_seq.nextval, #{b_title},#{b_content},sysdate,#{member_id},0,#{b_status})
 	</insert>
 
 </mapper>

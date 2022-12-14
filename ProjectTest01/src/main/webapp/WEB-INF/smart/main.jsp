@@ -507,7 +507,7 @@
 											
 											 events: function(info, successCallback, failureCallback){ // ajax 처리로 데이터를 로딩 시킨다. 
 												$.ajax({
-													  url: "calendar_main",
+													  url: "main",
 													  type: "POST",
 													  dataType: "JSON",
 													  contentType: "application/json; charset=UTF-8",

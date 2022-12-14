@@ -51,5 +51,17 @@ public interface ApprovalMapper {
 	
 	// 결재 완료 개수
 	public int main2();
+
+	// 본인 결재 대기 개수
+	public int main3(int member_id);
+	
+	// 본인 결재 확인 개수
+	public int main4(int member_id);
+
+	// 본인 일정 개수
+	public int main5(int member_id);
+
+	// 회사 일정
+	public List<App> main6();
 }
 

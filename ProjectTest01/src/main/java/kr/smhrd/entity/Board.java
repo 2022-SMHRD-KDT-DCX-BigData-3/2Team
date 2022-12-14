@@ -16,5 +16,6 @@ public class Board {
 	private int member_id; // 회원 아이디
 	private int b_cnt;
 	private String member_name;
+	private int b_status;
 }
 

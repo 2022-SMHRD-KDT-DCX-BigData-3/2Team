@@ -42,7 +42,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		
 	});
 	function loadList() {
 		$.ajax({
@@ -437,11 +437,8 @@
 					<tr>
 						<td colspan="2"><h1>게시판</h1></td>
 						<td style="text-align: right;">
-						<div style="margin-left:30px; text-align: center;"
-					class="col-sm-offset-11 col-sm-10">
-					<button type="button"
-								class="btn btn-sm btn-primary"
-								onclick="location.href='${cpath}/list'">목록</button></div></td>
+						<div style="margin-left:30px; text-align: center;" class="col-sm-offset-11 col-sm-10">
+					<button type="button" class="btn btn-sm btn-primary" onclick="location.href='${cpath}/list'">목록</button></div></td>
 
 					</tr>
 					<tr>
@@ -471,6 +468,13 @@
 								placeholder="Enter title">
 						</div>
 
+					</div>
+					<div class="form-group">
+						<label style="text-align:left;" class="control-label col-sm-3" for="status">종류:</label>
+						<div class="col-sm-10">
+							<input type="radio" value="0" name="b_status">일반글
+							<input type="radio" value="1" name="b_status">공지사항
+						</div>
 					</div>
 					<div class="form-group">
 						<label style="text-align:left;" class="control-label col-sm-3" for="content">내용:</label>
