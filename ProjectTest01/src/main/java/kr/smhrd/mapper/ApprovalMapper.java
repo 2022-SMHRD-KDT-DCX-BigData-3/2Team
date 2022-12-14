@@ -63,5 +63,8 @@ public interface ApprovalMapper {
 
 	// 회사 일정
 	public List<App> main6();
+
+	// 본인 일정 개수
+	public int main7();
 }
 

@@ -65,6 +65,7 @@ public class ApprovalService {
 		ap.setApro_statusmy(approvalMapper.main3(member_id));
 		ap.setApro_statusm(approvalMapper.main4(member_id));
 		ap.setMyc_count(approvalMapper.main5(member_id));
+		ap.setB_statusc(approvalMapper.main7());
 		return ap;
 	}
 	
