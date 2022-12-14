@@ -76,4 +76,12 @@ input{
 	color: white;
 	background-color: #0090CF;
 	padding: 5px;
+	border-radius: 5px;
+}
+#sendBtn {
+	border: 0px solid;
+	color: white;
+	background-color: #0090CF;
+	padding: 5px;
+	border-radius: 5px;
 }

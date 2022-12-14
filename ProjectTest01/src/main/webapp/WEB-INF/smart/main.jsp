@@ -409,10 +409,8 @@
 											</svg>
 										</div>
 										<div class="ps-3">
-											<h6>145</h6>
-											<span class="text-success small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
-
+											<span class="text-success small pt-1 fw-bold">1</span>
+											<span class="text-muted small pt-2 ps-1">개의 일정이 있습니다.</span>
 										</div>
 									</div>
 								</div>
@@ -442,9 +440,8 @@
 										  	</svg>
 										</div>
 										<div class="ps-3">
-											<h6>$3,264</h6>
-											<span class="text-success small pt-1 fw-bold">8%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
+											<span class="text-success small pt-1 fw-bold">2</span>
+											<span class="text-muted small pt-2 ps-1">건의 결재가 있습니다.</span>
 
 										</div>
 									</div>
@@ -475,9 +472,8 @@
 											</svg>
 										</div>
 										<div class="ps-3">
-											<h6>1244</h6>
-											<span class="text-danger small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">decrease</span>
+											<span class="text-danger small pt-1 fw-bold">1</span>
+											<span class="text-muted small pt-2 ps-1">개의 공지가 있습니다.</span>
 
 										</div>
 									</div>
@@ -598,14 +594,14 @@
 
 						<div class="card-body">
 							<h5 class="card-title">
-								Chat <span>| Today</span>
+								Chat
 							</h5>
 							<div id="container" class="containerd">
 								
 								<div id="chating" class="chating"></div>
 
 								<div id="yourName">
-									<table class="inputTable">
+									<table class="inputTable" style="width: 100%;">
 										<tr class="inputtr">
 											<th>사용자명</th>
 											<th><input type="text" name="userName" id="userName"></th>
@@ -615,10 +611,10 @@
 									</table>
 								</div>
 								<div id="yourMsg">
-									<table class="inputTable">
-										<tr>
+									<table class="inputTable" style="width: 100%;">
+										<tr class="inputtr">
 											<th>메시지</th>
-											<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
+											<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."  style="width: 100%;"></th>
 											<th><button onclick="send()" id="sendBtn">보내기</button></th>
 										</tr>
 									</table>
