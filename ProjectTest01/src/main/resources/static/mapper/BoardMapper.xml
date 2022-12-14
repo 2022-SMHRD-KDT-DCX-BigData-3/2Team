@@ -3,7 +3,7 @@
 <mapper namespace="kr.smhrd.mapper.BoardMapper">
 
 	<select id="listget" resultType="kr.smhrd.entity.Board">
-		select b.*, m.member_name from Board b, member m where b.member_id = m.member_id
+		select * from Board order by b_seq desc
 	</select>
 
 	<select id="getview" resultType="kr.smhrd.entity.Board">
@@ -13,9 +13,13 @@
 	<delete id="boardremove">
 		delete from Board where b_seq=#{b_seq}
 	</delete>
-	
+
 	<update id="boardmodify" parameterType="kr.smhrd.entity.Board">
 		update Board set b_title=#{b_title}, b_content=#{b_content} where b_seq=#{b_seq}
 	</update>
+	
+	<insert id="insert" parameterType="kr.smhrd.entity.Board">
+	   insert into board values(board_seq.nextval, #{b_title},#{b_content},sysdate,#{member_id},0)
+	</insert>
 
 </mapper>

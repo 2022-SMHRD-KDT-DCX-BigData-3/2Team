@@ -333,7 +333,16 @@
                 <c:forEach var="mess" items="${mess}">
 	                <tr>
 	                    <td class="td-writer">${mess.m_sender}</td>
-	                    <td class="td-content">${mess.m_content}</td>
+	                    <td class="td-content">
+	                    	<a href="${cpath}/messageRead?m_seq=${mess.m_seq}">
+		                    	<c:if test="${mess.m_status == '0'}">
+		                    		읽지않음
+		                    	</c:if>
+		                    	<c:if test="${mess.m_status == '1'}">
+		                    		읽음
+		                    	</c:if>
+	                    	</a>
+	                    </td>
 	                    <td class="td-date"><fmt:formatDate pattern="yyyy-MM-dd" value="${mess.m_date}"/></td>
 	                </tr>
                 </c:forEach>

@@ -26,5 +26,10 @@ public class MessageService {
 		return mess;
 	}
 	
+	public Message messview(int m_seq) {
+		Message mess = messageMapper.messview(m_seq);
+		return mess;
+	}
+	
 }
 

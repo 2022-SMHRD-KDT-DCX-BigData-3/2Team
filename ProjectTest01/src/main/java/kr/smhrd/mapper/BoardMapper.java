@@ -26,8 +26,10 @@ public interface BoardMapper {
 	@Update("update Board set b_cnt=b_cnt+1 where b_seq=#{b_seq}")
 	public void countUpdate(int b_seq);
 	
-	// 게시물 삭제
 	public int boardremove(int b_seq);
+	
+	// 게시물 삭제
+	public int insert(Board vo);
 
 //	// 댓글 삭제
 //	public int commentsremove(int b_seq);

@@ -21,10 +21,9 @@ public class BoardService {
 		return list;
 	}
 //	// 글 저장 메서드 만들기
-//	public void register(Board vo) {
-//		//추가로직처리~
-//		boardMapper.insert(vo);
-//	}
+    public void register(Board vo) {
+		boardMapper.insert(vo);
+	}
 	public Board getview(int b_seq) {
 		// 조회수를 1증가 ~~
 		boardMapper.countUpdate(b_seq);

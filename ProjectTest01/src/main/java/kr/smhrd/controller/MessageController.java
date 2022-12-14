@@ -38,6 +38,12 @@ public class MessageController {
 		model.addAttribute("mess", mess);
 		return "smart/message";
 	}
+	@RequestMapping("/messageRead")
+	public String messageRead(@RequestParam("m_seq") int m_seq, Model model) {
+		Message mess = messageService.messview(m_seq);
+		model.addAttribute("mess", mess);
+		return "smart/messageRead";
+	}
 	
 }
 

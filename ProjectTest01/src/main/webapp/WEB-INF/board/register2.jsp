@@ -42,30 +42,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		loadList();
-		$("#regBtn").click(function() {
-			$("#msg").css("display", "none");
-			$("#formDiv").css("display", "block");
-		});
-		$("#register").click(function() {
-			// title, content, writer,,,,
-			// var title = $("title").val();
-			var fData = $("#frm").serialize(); // serialize --> title=XXX&content=XXX&writer=XXX
-			$.ajax({
-				url : "${cpath}/api/boards",
-				type : "POST",
-				data : fData,
-				success : loadList,
-				error : function() {
-					alert("error");
-				}
-			});
-			// form 초기화
-			// $("#frm")[0].reset();
 
-			// reset버튼 강제로 누르게 하기
-			$("button[type=reset]").trigger("click");
-		});
 	});
 	function loadList() {
 		$.ajax({
@@ -455,13 +432,16 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<form id="frm" class="form-horizontal" method="post">
+			
 				<table style="width: 100%">
 					<tr>
 						<td colspan="2"><h1>게시판</h1></td>
-						<td style="text-align: right;"><button type="button"
+						<td style="text-align: right;">
+						<div style="margin-left:30px; text-align: center;"
+					class="col-sm-offset-11 col-sm-10">
+					<button type="button"
 								class="btn btn-sm btn-primary"
-								onclick="location.href='${cpath}/boardmain'">목록</button></td>
+								onclick="location.href='${cpath}/list'">목록</button></div></td>
 
 					</tr>
 					<tr>
@@ -483,25 +463,27 @@
 			<div class="panel-body">
 				<form class="form-horizontal" action="${cpath}/register"
 					method="post">
-					<input type="hidden" name="memId" value="${mvo.memId}">
+					<input type="hidden" name="member_id" value="${user.MEMBER_id}">
 					<div class="form-group">
-						<label class="control-label col-sm-3" for="title">제목:</label>
+						<label style="text-align:left;" class="control-label col-sm-3" for="title">제목:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="title"
+							<input type="text" class="form-control" name="b_title"
 								placeholder="Enter title">
 						</div>
 
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3" for="content">내용:</label>
+						<label style="text-align:left;" class="control-label col-sm-3" for="content">내용:</label>
 						<div class="col-sm-10">
-							<textarea rows="20" class="form-control" name="content"></textarea>
+							<textarea rows="20" class="form-control" name="b_content"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-3" for="writer">작성자:</label> 
-							<input type="text" class="form-control" name="writer"
-							value="${mvo.memName}" readonly="readonly">
+						<label style="text-align:left;" class="control-label col-sm-3" for="writer">작성자:</label> 
+							<div class="col-sm-10">
+							<input type="text" class="form-control" name="member_name"
+							value="${user.MEMBER_NAME}" readonly="readonly">
+							</div>
 					</div>
 			</div>
 			<div class="form-group">
