@@ -3,11 +3,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link href="css/chat.css" rel="stylesheet">
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Insert title here</title>
@@ -19,7 +18,6 @@
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
 <!-- Vendor CSS Files -->
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -28,112 +26,17 @@
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <!-- Template Main CSS File -->
 <link href="assets/css/style.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- icons -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link href="css/MessageRead.css" rel="stylesheet">
+<!-- =======================================================
+* Template Name: NiceAdmin - v2.4.1
+* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+======================================================== -->
 </head>
-<script type="text/javascript">
-	var ws;
-	var now = new Date();
-	var minutes = now.getMinutes();
-	var hours = now.getHours();
-
-	function wsOpen(){
-		//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-		ws = new WebSocket("ws://" + location.host + "/chating/"+$("#roomNumber").val());
-		wsEvt();
-	}
-		
-	function wsEvt() {
-		ws.onopen = function(data){
-			//소켓이 열리면 동작
-		}
-		
-		ws.onmessage = function(data) {
-			//메시지를 받으면 동작
-			var msg = data.data;
-			if(msg != null && msg.trim() != ''){
-				var d = JSON.parse(msg);
-				if(d.type == "getId"){
-					var si = d.sessionId != null ? d.sessionId : "";
-					if(si != ''){
-						$("#sessionId").val(si); 
-					}
-				}else if(d.type == "message"){
-					if(d.sessionId == $("#sessionId").val()){
-						$("#chating").append("<div class='mine messages'><p class='message'>" + d.msg + "</p><span class='time'>"+hours+"시"+minutes
-								+"분"+"</span></div>");	
-					}else{
-						$("#chating").append("<div class='yours messages'><p class='message'>"+d.userName + ": "+ d.msg + "</p><span class='time'>"+hours+"시"+minutes
-								+"분"+"</span></div>");
-						setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
-					}
-						
-				}else{
-					console.warn("unknown type!")
-				}
-			}
-		}
-
-		document.addEventListener("keypress", function(e){
-			if(e.keyCode == 13){ //enter press
-				send();
-			}
-		});
-	}
-
-	function chatName(){
-		var userName = $("#userName").val();
-		if(userName == null || userName.trim() == ""){
-			alert("사용자 이름을 입력해주세요.");
-			$("#userName").focus();
-		}else{
-			wsOpen();
-			$("#yourName").hide();
-			$("#yourMsg").show();
-		}
-	}
-
-	function send() {
-		var option ={
-			type: "message",
-			roomNumber: $("#roomNumber").val(),
-			sessionId : $("#sessionId").val(),
-			userName : $("#userName").val(),
-			msg : $("#chatting").val()
-		}
-		ws.send(JSON.stringify(option))
-		$('#chatting').val("");
-		setTimeout(()=>document.querySelector('#chating').scrollTo(0,99999), 100)
-	}
-	
-	function fakeMessage() {
-		  if ($('.chatting').val() != '') {
-		    return false;
-		  }
-		  $('<div class="message loading new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-		  updateScrollbar();
-
-		  setTimeout(function() {
-		    $('.message.loading').remove();
-		    $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + Fake[i] + '</div>').appendTo($('.mCSB_container')).addClass('new');
-		    setDate();
-		    updateScrollbar();
-		    i++;
-		  }, 1000 + (Math.random() * 20) * 100);
-
-		}
-	
-	
-	
-	
-	
-	
-</script>
 <body>
 <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -387,66 +290,77 @@
 
   </aside><!-- End Sidebar-->
 
-	<main id="main">
-	<div id="container" class="container">
-		<h1>${roomName}의 회의</h1>
-		<input type="hidden" id="sessionId" value="">
-		<input type="hidden" id="roomNumber" value="${roomNumber}">
-		
-		<div id="chating" class="chating">
-		
-		</div>
-		
-		<div id="yourName">
-			 <table class="inputTable">
-				<tr class="kan">
-					<th style="font-size: 19px">유저</th>
-					<th><input style="border:none" type="text" name="userName" id="userName" value="${user.MEMBER_NAME}" readonly="readonly"></th>
-					<th><button onclick="chatName()" >시작하기</button></th>
-				</tr>
-			</table> 
-		</div>
-		<div id="yourMsg">
-			<table class="inputTable">
-				<tr class="kan">
-					<!-- <th><span class="material-symbols-outlined" style="margin-right: 25px"> add_reaction</span></th> -->
-					<th style="font-size: 19px;">메세지</th>
-					<th><input  id="chatting" style="border:none" placeholder=" 보내실 메시지를 입력하세요."></th>
-					<th><button onclick="send()"  style="margin-right: 0px">
-						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-						  <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-						</svg>
-					</button>
-					<button id="start">
-						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
-						  <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
-						  <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
-						</svg>
-					</button></th>
-				</tr>
-			</table>
-		</div>
-	</div>
-	</main>
-<script type="text/javascript">
-if (!("webkitSpeechRecognition" in window)){
-	 alert("지원 안됨 크롬으로 가세요.");
-}else{
-	 const speech = new webkitSpeechRecognition;
-	 
-	 document.getElementById("start").addEventListener("click",() =>{
-		 speech.start();
-	 })
-	 
-	 speech.addEventListener("result",(event) =>{
-		 const{transcript} = event["results"][0][0];
-		 $("#chatting").val(transcript);
-		 console.log(transcript);
-	 })
-}
-</script>	
-	
-		<!-- Vendor JS Files -->
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Message</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="main">Home</a></li>
+          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item active">Message</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+	<!-- Start mail -->
+    <section class="section profile">
+      <div class="meback">
+      	        <div class="message_con">
+        <div class="first_box">&nbsp</div>
+        <div class="second_box">
+            <span class="send">쪽지 보내기</span>
+        </div>
+        <div class="third_box">
+            <span>총 <b>00</b> 개의 읽지 않은 쪽지가 있습니다.</span>
+        </div>
+        <div class="next_box">
+            <span class="left">보낸 쪽지함</span>
+            <span class="right">받은 쪽지함</span>
+        </div>
+        <hr>
+        <div class="read_name">보낸 사람</div>
+        <div>
+            <span>${mess.m_sender}</span>
+            <span>${mess.m_date}</span>
+        </div>
+        <hr>
+        <div class="read_content">
+            <span>${mess.m_content}</span>
+        </div>
+        <hr>
+        <div class="btn_box">
+            <span>
+                <button>답장</button>
+                <button>삭제</button>
+            </span>
+            <span class="btn_right">
+                <button>목록</button>
+            </span>
+        </div>
+    </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.min.js"></script>
@@ -458,8 +372,6 @@ if (!("webkitSpeechRecognition" in window)){
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
- <script>
- //<div class="mine messages"><p class="message">aaaaa</p><span class="time">16시16분</span></div>
- </script>
+
 </body>
 </html>
