@@ -333,7 +333,7 @@
 	                    	</c:if>
 	                    </td>
 	                    <th><a href="${cpath}/getview?b_seq=${list.b_seq}">${list.b_title}</a></th>
-	                    <td>${list.member_id}</td>
+	                    <td>${list.b_member_name}</td>
 	                    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.b_date}"/></td>
 	                    <td>${list.b_cnt}</td>
 	                </tr>

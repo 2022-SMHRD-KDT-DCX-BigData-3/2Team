@@ -17,5 +17,6 @@ public class Board {
 	private int b_cnt;
 	private String member_name;
 	private int b_status;
+	private String b_member_name;
 }
 
