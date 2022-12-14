@@ -324,25 +324,25 @@
 				<form id="frm" class="form-horizontal">
 				<input type="hidden" name="b_seq" value="${vo.b_seq}"/>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="title">제목:</label>
+						<label class="control-label col-sm-2" style="width: 77px;" for="title">제목:</label>
 						<div class="col-sm-10">
 							<input type="text" name="b_title" class="form-control" value="${vo.b_title}" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="content">내용:</label>
+						<label class="control-label col-sm-2" style="width: 77px;" for="content">내용:</label>
 						<div class="col-sm-10">
 							<textarea rows="10" name="b_content" class="form-control" readonly="readonly" style="resize: none;">${vo.b_content}</textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-2" for="writer">작성자:</label>
+						<label class="control-label col-sm-2" style="width: 77px;" for="writer">작성자:</label>
 						<div class="col-sm-10">
-							<input type="text" name="member_id" class="form-control" value="${vo.member_id}" readonly="readonly">
+							<input type="text" name="member_id" class="form-control" value="${vo.member_name}" readonly="readonly">
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
+						<div class="col-sm-offset-2 col-sm-10" style="margin-left: 7%;">
 							<c:if test="${user.MEMBER_id eq vo.member_id}">
 								<button type="button" data-oper="modify" class="btn btn-primary">수정</button>
 								<button type="button" data-oper="remove" class="btn btn-warning">삭제</button>

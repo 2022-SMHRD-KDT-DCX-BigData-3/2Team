@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.tlswldn {
+	padding-top: 7px;
+	width: 100px;
+}
 .fc-toolbar-chunk {
     display: flex;     
     align-items: center; 
