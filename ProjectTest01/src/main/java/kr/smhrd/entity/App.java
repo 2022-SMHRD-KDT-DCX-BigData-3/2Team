@@ -17,6 +17,7 @@ public class App {
 	private int apro_statusmy;
 	private int apro_statusm;
 	private int myc_count;
+	private int b_statusc;
 	
 	// 일정 번호 
     private int CALENDAR_ID;

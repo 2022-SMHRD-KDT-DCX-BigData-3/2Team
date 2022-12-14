@@ -96,4 +96,8 @@
 		select * from calendar where member_id = 1
 	</select>
 
+	<select id="main7" parameterType="kr.smhrd.entity.App" resultType="int">
+		select count(*) as b_statusc from board where b_status = 1
+	</select>
+
 </mapper>

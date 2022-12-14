@@ -407,7 +407,7 @@
 											</svg>
 										</div>
 										<div class="ps-3">
-											<span class="text-success small pt-1 fw-bold">1</span>
+											<span class="text-success small pt-1 fw-bold">${ap.myc_count}</span>
 											<span class="text-muted small pt-2 ps-1">개의 일정이 있습니다.</span>
 
 										</div>
@@ -439,7 +439,14 @@
 										  	</svg>
 										</div>
 										<div class="ps-3">
-											<span class="text-success small pt-1 fw-bold">2</span>
+											<span class="text-success small pt-1 fw-bold">
+												<c:if test="${user.RANK_CODE <= '3'}">
+													${ap.apro_statusm}
+												</c:if>
+												<c:if test="${user.RANK_CODE >= '4'}">
+													${ap.apro_statusmy}
+												</c:if>
+											</span>
 											<span class="text-muted small pt-2 ps-1">건의 결재가 있습니다.</span>
 
 										</div>
@@ -471,7 +478,7 @@
 											</svg>
 										</div>
 										<div class="ps-3">
-											<span class="text-danger small pt-1 fw-bold">1</span>
+											<span class="text-danger small pt-1 fw-bold">${ap.b_statusc}</span>
 											<span class="text-muted small pt-2 ps-1">개의 공지가 있습니다.</span>
 
 										</div>
