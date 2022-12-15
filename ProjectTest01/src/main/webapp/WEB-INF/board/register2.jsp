@@ -437,8 +437,8 @@
 					<tr>
 						<td colspan="2"><h1>게시판</h1></td>
 						<td style="text-align: right;">
-						<div style="margin-left:30px; text-align: center;" class="col-sm-offset-11 col-sm-10">
-					<button type="button" class="btn btn-sm btn-primary" onclick="location.href='${cpath}/list'">목록</button></div></td>
+						<div style="margin-left:20px; text-align: center;" class="col-sm-offset-11 col-sm-10">
+					<button type="button" style="font-size:14px;" class="btn btn-sm btn-primary" onclick="location.href='${cpath}/list'">목록</button></div></td>
 
 					</tr>
 					<tr>
@@ -493,8 +493,8 @@
 			<div class="form-group">
 				<div style="margin-left: 0px; text-align: right;"
 					class="col-sm-offset-11 col-sm-10">
-					<button type="submit" class="btn btn-primary">등록</button>
-					<button type="reset" class="btn btn-warning">취소</button>
+					<button type="submit" style="font-size:14px;" class="btn btn-primary">등록</button>
+					<button type="reset" style="font-size:14px;" class="btn btn-warning">취소</button>
 				</div>
 			</div>
 			</form>

@@ -51,7 +51,7 @@
 		});
 </script>
 </head>
-<body>
+<body style="background-color:#f6f9ff;">
 <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
