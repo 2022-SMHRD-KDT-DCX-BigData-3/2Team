@@ -238,17 +238,17 @@
           </li>
           <li>
             <a href="approvaln">
-              <i class="bi bi-circle"></i><span>결재대기 ${ap.apro_status0}</span>
+              <i class="bi bi-circle"></i><span>결재대기</span>&nbsp;<span style="color: red;">${ap.apro_status0}</span>
             </a>
           </li>
           <li>
             <a href="approvald">
-              <i class="bi bi-circle"></i><span>결재진행 ${ap.apro_status1}</span>
+              <i class="bi bi-circle"></i><span>결재진행</span>&nbsp;<span style="color: red;">${ap.apro_status1}</span>
             </a>
           </li>
           <li>
             <a href="approvale">
-              <i class="bi bi-circle"></i><span>결재완료 ${ap.apro_status2}</span>
+              <i class="bi bi-circle"></i><span>결재완료</span>&nbsp;<span style="color: red;">${ap.apro_status2}</span>
             </a>
           </li>
         </ul>
