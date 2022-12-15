@@ -68,6 +68,7 @@ public class ApprovalController {
 	}
 	@PostMapping("/approvalp")
 	public String inser(Approval_auth app) {
+		System.out.println(app.getAppro_sort());
 		approvalService.inser(app);
 		return "redirect:/approvaln";
 	}

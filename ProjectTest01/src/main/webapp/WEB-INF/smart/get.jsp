@@ -415,101 +415,292 @@
   			</c:if>
   		</div>
   		
-  		<div class="bord">
-  		<div style="text-align: center;">
-  			<h2 style="margin-top: 20px;">
-				<c:if test="${vo.appro_sort == '0'}">
-					일반결재
-				</c:if>
-				<c:if test="${vo.appro_sort == '1'}">
-					지출결재
-				</c:if>
-				<c:if test="${vo.appro_sort == '2'}">
-					휴가결재
-				</c:if>
-  			</h2>
-  		</div>
+  		<c:if test="${vo.appro_sort == '0'}">
+  			<div class="bord">
+  				<div style="text-align: center;">
+		  			<h2 style="margin-top: 20px;">
+						일반결재
+		  			</h2>
+  				</div>
   		
-  			<table class="gettable1">
-  				<tr class="gra">
-  					<td rowspan='2' class="gratd1">결재</td>
-  					<td class="gratd2">1차 결재자</td>
-  					<td class="gratd2">2차 결재자</td>
-  					<td class="gratd3">3차 결재자</td>
-  				</tr>
-  				<tr class="gar">
-  					<td class="votd1">
-  					${vo.appro_mem1}<br>
-  					<c:if test="${vo.appro_auth1 == '0'}">
-  						진행중
-  					</c:if>
-  					<c:if test="${vo.appro_auth1 == '1'}">
-  						승인
-  					</c:if>
-  					<c:if test="${vo.appro_auth1 == '2'}">
-  						반려
-  					</c:if>
-  					<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date1}"/>
-  					</td>
-  					<td class="votd1">
-  					${vo.appro_mem2}<br>
-  					<c:if test="${vo.appro_auth2 == '0'}">
-  						진행중
-  					</c:if>
-  					<c:if test="${vo.appro_auth2 == '1'}">
-  						승인
-  					</c:if>
-  					<c:if test="${vo.appro_auth2 == '2'}">
-  						반려
-  					</c:if>
-  					<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date2}"/>
-  					</td>
-  					<td class="votd2">
-  					${vo.appro_mem3}<br>
-  					<c:if test="${vo.appro_auth3 == '0'}">
-  						진행중
-  					</c:if>
-  					<c:if test="${vo.appro_auth3 == '1'}">
-  						승인
-  					</c:if>
-  					<c:if test="${vo.appro_auth3 == '2'}">
-  						반려
-  					</c:if>
-  					<br>
-  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date3}"/>
-  					</td>
-  				</tr>
-  			</table>
+  				<table class="gettable1">
+	  				<tr class="gra">
+	  					<td rowspan='2' class="gratd1">결재</td>
+	  					<td class="gratd2">1차 결재자</td>
+	  					<td class="gratd2">2차 결재자</td>
+	  					<td class="gratd3">3차 결재자</td>
+	  				</tr>
+	  				<tr class="gar">
+	  					<td class="votd1">
+	  					${vo.appro_mem1}<br>
+	  					<c:if test="${vo.appro_auth1 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth1 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth1 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date1}"/>
+	  					</td>
+	  					<td class="votd1">
+	  					${vo.appro_mem2}<br>
+	  					<c:if test="${vo.appro_auth2 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth2 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth2 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date2}"/>
+	  					</td>
+	  					<td class="votd2">
+	  					${vo.appro_mem3}<br>
+	  					<c:if test="${vo.appro_auth3 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth3 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth3 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date3}"/>
+	  					</td>
+	  				</tr>
+	  			</table>
   		
-  			<table class="gettable4">
-  				<tr class="gettr">
-  					<td class="tdnum">문서번호</td>
-  					<td class="tdnum1">${vo.apv_num}</td>
-  					<td class="tdnum">기안일자</td>
-  					<td class="tdnum1"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_indate}"/></td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum">기안자</td>
-  					<td class="tdnum1">${vo.appro_member_id}</td>
-  					<td class="tdnum">기안부서</td>
-  					<td class="tdnum1">${vo.depart_name1}</td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum2">문서제목</td>
-  					<td colspan='3' class="tdfile">${vo.appro_title}</td>
-  				</tr>
-  				<tr class="gettr">
-  					<td class="tdnum2">첨부파일</td>
-  					<td colspan='3' class="tdfile">${vo.appro_filename}</td>
-  				</tr>
-  				<tr class="gettr1">
-  					<td class="tdnum2">제출사유</td>
-  					<td colspan='3' class="tdnum3">${vo.appro_content}</td>
-  				</tr>
-  			</table>
+	  			<table class="gettable4">
+	  				<tr class="gettr">
+	  					<td class="tdnum">문서번호</td>
+	  					<td class="tdnum1">${vo.appro_id}</td>
+	  					<td class="tdnum">기안일자</td>
+	  					<td class="tdnum1"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_indate}"/></td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum">기안자</td>
+	  					<td class="tdnum1">${vo.appro_member_id}</td>
+	  					<td class="tdnum">기안부서</td>
+	  					<td class="tdnum1">${vo.depart_name1}</td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">문서제목</td>
+	  					<td colspan='3' class="tdfile">${vo.appro_title}</td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">첨부파일</td>
+	  					<td colspan='3' class="tdfile">${vo.appro_filename}</td>
+	  				</tr>
+	  				<tr class="gettr1">
+	  					<td class="tdnum2">제출사유</td>
+	  					<td colspan='3' class="tdnum3">${vo.appro_content}</td>
+	  				</tr>
+	  			</table>
   			</div>
+  		</c:if>
+
+  		<c:if test="${vo.appro_sort == '1'}">
+  			<div class="bord">
+  				<div style="text-align: center;">
+		  			<h2 style="margin-top: 20px;">
+						지출결재
+		  			</h2>
+  				</div>
+  		
+  				<table class="gettable1">
+	  				<tr class="gra">
+	  					<td rowspan='2' class="gratd1">결재</td>
+	  					<td class="gratd2">1차 결재자</td>
+	  					<td class="gratd2">2차 결재자</td>
+	  					<td class="gratd3">3차 결재자</td>
+	  				</tr>
+	  				<tr class="gar">
+	  					<td class="votd1">
+	  					${vo.appro_mem1}<br>
+	  					<c:if test="${vo.appro_auth1 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth1 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth1 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date1}"/>
+	  					</td>
+	  					<td class="votd1">
+	  					${vo.appro_mem2}<br>
+	  					<c:if test="${vo.appro_auth2 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth2 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth2 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date2}"/>
+	  					</td>
+	  					<td class="votd2">
+	  					${vo.appro_mem3}<br>
+	  					<c:if test="${vo.appro_auth3 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth3 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth3 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date3}"/>
+	  					</td>
+	  				</tr>
+	  			</table>
+  		
+	  			<table class="gettable4">
+	  				<tr class="gettr">
+	  					<td class="tdnum">문서번호</td>
+	  					<td class="tdnum1">${vo.appro_id}</td>
+	  					<td class="tdnum">기안일자</td>
+	  					<td class="tdnum1"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_indate}"/></td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum">기안자</td>
+	  					<td class="tdnum1">${vo.appro_member_id}</td>
+	  					<td class="tdnum">기안부서</td>
+	  					<td class="tdnum1">${vo.depart_name1}</td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">문서제목</td>
+	  					<td colspan='3' class="tdfile">${vo.pay_title}</td>
+	  				</tr>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">지출일</td>
+	  					<td colspan='3' class="tdfile">
+	  						<fmt:formatDate pattern="YYYY-MM-dd" value="${vo.pay_date}"/>
+	  					</td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">지출금액</td>
+	  					<td colspan='3' class="tdfile">${vo.pay_cash}</td>
+	  				</tr>
+	  				<tr class="gettr1">
+	  					<td class="tdnum2">제출사유</td>
+	  					<td colspan='3' class="tdnum3">${vo.appro_content}</td>
+	  				</tr>
+	  				<tr class="gettr2">
+	  					<td colspan='4' class="payz">영수증</td>
+	  				</tr>
+	  				<tr class="gettr2">
+	  					<td colspan='4' class="payc"></td>
+	  				</tr>
+	  			</table>
+  			</div>
+  		</c:if>
+
+  		<c:if test="${vo.appro_sort == '2'}">
+  			<div class="bord">
+  				<div style="text-align: center;">
+		  			<h2 style="margin-top: 20px;">
+						휴가결재
+		  			</h2>
+  				</div>
+  		
+  				<table class="gettable1">
+	  				<tr class="gra">
+	  					<td rowspan='2' class="gratd1">결재</td>
+	  					<td class="gratd2">1차 결재자</td>
+	  					<td class="gratd2">2차 결재자</td>
+	  					<td class="gratd3">3차 결재자</td>
+	  				</tr>
+	  				<tr class="gar">
+	  					<td class="votd1">
+	  					${vo.appro_mem1}<br>
+	  					<c:if test="${vo.appro_auth1 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth1 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth1 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date1}"/>
+	  					</td>
+	  					<td class="votd1">
+	  					${vo.appro_mem2}<br>
+	  					<c:if test="${vo.appro_auth2 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth2 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth2 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date2}"/>
+	  					</td>
+	  					<td class="votd2">
+	  					${vo.appro_mem3}<br>
+	  					<c:if test="${vo.appro_auth3 == '0'}">
+	  						진행중
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth3 == '1'}">
+	  						승인
+	  					</c:if>
+	  					<c:if test="${vo.appro_auth3 == '2'}">
+	  						반려
+	  					</c:if>
+	  					<br>
+	  					<fmt:formatDate pattern="MM-dd HH:MM" value="${vo.appro_auth_date3}"/>
+	  					</td>
+	  				</tr>
+	  			</table>
+  		
+	  			<table class="gettable4">
+	  				<tr class="gettr">
+	  					<td class="tdnum">문서번호</td>
+	  					<td class="tdnum1">${vo.appro_id}</td>
+	  					<td class="tdnum">기안일자</td>
+	  					<td class="tdnum1"><fmt:formatDate pattern="YYYY-MM-dd" value="${vo.appro_indate}"/></td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum">기안자</td>
+	  					<td class="tdnum1">${vo.appro_member_id}</td>
+	  					<td class="tdnum">기안부서</td>
+	  					<td class="tdnum1">${vo.depart_name1}</td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">문서제목</td>
+	  					<td colspan='3' class="tdfile">${vo.appro_title}</td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">휴가시작일</td>
+	  					<td colspan='3' class="tdfile">${vo.member_stratdate}</td>
+	  				</tr>
+	  				<tr class="gettr">
+	  					<td class="tdnum2">휴가종료일</td>
+	  					<td colspan='3' class="tdfile">${vo.member_enddate}</td>
+	  				</tr>
+	  				<tr class="gettr1">
+	  					<td class="tdnum2">제출사유</td>
+	  					<td colspan='3' class="tdnum3">${vo.appro_content}</td>
+	  				</tr>
+	  			</table>
+  			</div>
+  		</c:if>
   			
   			<h5 class="dih">1차 결재자 결재의견</h5>
   			<div>

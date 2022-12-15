@@ -54,6 +54,7 @@
 	  				</tr>
 	  				<tr class="gar">
 	  					<td class="votd1">
+	  					<input type="hidden" name="appro_sort" value="0">
 	  					<input type="hidden" name="appro_mem1" value="${view.m3_member_name}">
 	  					${view.m3_member_name}<br>
 	  					${view.rank_name_r3}<br>
@@ -158,6 +159,7 @@
 	  				</tr>
 	  				<tr class="gar">
 	  					<td class="votd1">
+	  					<input type="hidden" name="appro_sort" value="1">
 	  					<input type="hidden" name="appro_mem1" value="${view.m3_member_name}">
 	  					${view.m3_member_name}<br>
 	  					${view.rank_name_r3}<br>
@@ -258,6 +260,7 @@
 	  				</tr>
 	  				<tr class="gar">
 	  					<td class="votd1">
+	  					<input type="hidden" name="appro_sort" value="2">
 	  					<input type="hidden" name="appro_mem1" value="${view.m3_member_name}">
 	  					${view.m3_member_name}<br>
 	  					${view.rank_name_r3}<br>
@@ -645,9 +648,9 @@
   		</div>
   		
   		<div class="radi">
-  			<button type="button" name="appro_sort" class="radi1" value="0">일반결재</button>
-  			<button type="button" name="appro_sort" class="radi1" value="1">지출결재</button>
-  			<button type="button" name="appro_sort" class="radi1" value="2">휴가결재</button>
+  			<button type="button" class="radi1" value="0">일반결재</button>
+  			<button type="button" class="radi1" value="1">지출결재</button>
+  			<button type="button" class="radi1" value="2">휴가결재</button>
 			<!-- <input type="radio"  name="appro_sort" class="radi1" value="0"/>일반결재
 			<input type="radio"  name="appro_sort" class="radi1" value="1"/>지출결재
 			<input type="radio"  name="appro_sort" class="radi1" value="2"/>휴가결재 -->

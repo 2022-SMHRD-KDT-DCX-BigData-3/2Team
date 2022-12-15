@@ -34,6 +34,16 @@ public class AllApproval {
 	private String appro_cmt;
 	private String apro_status;
 	
+	// 지출결재
+	private int pay_id;
+	private Date pay_date;
+	private String pay_title;
+	private String pay_cash;
+	
+	// 휴가결재
+	private String member_stratdate;
+	private String member_enddate;
+	
 	// 승인반려여부
 	private String apv_auth_id;
 	private String apv_auth_name;
@@ -46,4 +56,5 @@ public class AllApproval {
 	private String depart_name3;
 	private String depart_name4;
 	private String depart_code;
+	
 }
