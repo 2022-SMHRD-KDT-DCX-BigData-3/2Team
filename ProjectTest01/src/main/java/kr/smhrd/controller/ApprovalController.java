@@ -72,16 +72,13 @@ public class ApprovalController {
 		return "redirect:/approvaln";
 	}
 	@RequestMapping("/main")
-	public String main(HttpSession session, Model model) {
+	public String main(HttpSession session) {
 		Member member = (Member) session.getAttribute("user");
 		int member_id = member.getMEMBER_id();
 		App ap = approvalService.main(member_id);
-		List<App> ap2 = approvalService.main2();
-		model.addAttribute("ap", ap);
-		model.addAttribute("ap2", ap2);
+		session.setAttribute("ap", ap);
 		return "smart/main";
 	}
-	
 	@PostMapping("/main2")
 	@ResponseBody
 	public List<App> main2() {
