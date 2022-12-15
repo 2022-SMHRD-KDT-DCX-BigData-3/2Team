@@ -319,7 +319,6 @@
     </div><!-- End Page Title -->
 		
     <section class="section profile">
-    	<div class="container">
 			<div class="panel-body">
 				<form id="frm" class="form-horizontal">
 				<input type="hidden" name="b_seq" value="${vo.b_seq}"/>
@@ -342,7 +341,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10" style="margin-left: 7%;">
+						<div class="col-sm-offset-2 col-sm-10" style="margin-left: 6%;">
 							<c:if test="${user.MEMBER_id eq vo.member_id}">
 								<button type="button" data-oper="modify" class="btn btn-primary">수정</button>
 								<button type="button" data-oper="remove" class="btn btn-warning">삭제</button>
@@ -356,7 +355,6 @@
 					</div>
 				</form>
 			</div>
-		</div>
 	</section>
 
   </main><!-- End #main -->

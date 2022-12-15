@@ -326,25 +326,25 @@
 			<form id="frm" class="form-horizontal">
 			<input type="hidden" name="b_seq" value="${vo.b_seq}"/>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="title">제목:</label>
+					<label class="control-label col-sm-2" style="width: 77px;" for="title">제목:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="b_title" value="${vo.b_title}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="content">내용:</label>
+					<label class="control-label col-sm-2" style="width: 77px;" for="content">내용:</label>
 					<div class="col-sm-10">
-						<textarea rows="10" class="form-control" name="b_content">${vo.b_content}</textarea>
+						<textarea rows="10" class="form-control" name="b_content" style="resize: none;">${vo.b_content}</textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="writer">작성자:</label>
+					<label class="control-label col-sm-2" style="width: 77px;" for="writer">작성자:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" value="${vo.member_name}" readonly="readonly">
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-sm-offset-2 col-sm-10" style="margin-left: 6%;">
 						<button type="button" data-oper="modify" class="btn btn-primary">수정</button>
 						<button type="button" data-oper="reset" class="btn btn-warning">취소</button>
 						<button type="button" data-oper="list" class="btn btn-success">목록</button>
