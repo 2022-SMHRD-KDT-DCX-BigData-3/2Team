@@ -427,7 +427,7 @@
 								<td>-</td>
 							</c:if>
 							<c:if test="${comm.g_arrive != Null}">
-								<td><fmt:formatDate pattern="YYYY-MM-dd HH:MM" value="${comm.g_arrive}"/></td>
+								<td><fmt:formatDate pattern="YYYY-MM-dd HH:MM" value="${now}"/></td>
 							</c:if>
 							<!-- 퇴근시간 -->
 							<c:if test="${comm.g_arrive == Null}">
@@ -442,7 +442,7 @@
 							</c:if>
 							<c:if test="${comm.g_arrive != Null}">
 								<c:if test="${comm.g_leave != Null}">
-									<td><fmt:formatDate pattern="YYYY-MM-dd HH:MM" value="${comm.g_leave}"/></td>
+									<td><fmt:formatDate pattern="YYYY-MM-dd HH:MM" value="${now}"/></td>
 								</c:if>
 							</c:if>
 							<!-- 출근여부 -->
