@@ -390,7 +390,7 @@
 
 	<main id="main">
 	<div id="container" class="container">
-		<h1>${roomName}의 회의</h1>
+		<h1>${roomName}</h1>
 		<input type="hidden" id="sessionId" value="">
 		<input type="hidden" id="roomNumber" value="${roomNumber}">
 		
