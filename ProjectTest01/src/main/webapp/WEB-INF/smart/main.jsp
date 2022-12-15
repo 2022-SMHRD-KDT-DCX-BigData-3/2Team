@@ -392,7 +392,7 @@
 							<div class="card info-card sales-card">
 
 								<div class="filter">
-									<a class="icon" href="calendar" data-bs-toggle="dropdown">more</a>
+									<a class="icon" href="calendar">more</a>
 								</div>
 
 								<div class="card-body">
@@ -423,7 +423,7 @@
 							<div class="card info-card revenue-card">
 
 								<div class="filter">
-									<a class="icon" href="approvaln" data-bs-toggle="dropdown">more</a>
+									<a class="icon" href="approvaln">more</a>
 								</div>
 
 								<div class="card-body">
@@ -463,7 +463,7 @@
 							<div class="card info-card customers-card">
 
 								<div class="filter">
-									<a class="icon" href="list" data-bs-toggle="dropdown">more</a>
+									<a class="icon" href="list">more</a>
 								</div>
 
 								<div class="card-body">
