@@ -457,7 +457,9 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">입사일</div>
-                    <div class="col-lg-9 col-md-8">${prof.MEMBER_INDATE}</div>
+                    <div class="col-lg-9 col-md-8">
+                    	<fmt:formatDate pattern="YYYY-MM-dd" value="${prof.MEMBER_INDATE}"/>
+                    </div>
                   </div>
 
                   <div class="row">

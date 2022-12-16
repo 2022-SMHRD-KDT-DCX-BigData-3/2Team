@@ -80,7 +80,7 @@
 	</select>
 
 	<select id="main3" parameterType="kr.smhrd.entity.App" resultType="int">
-		select count(apro_status) as apro_statusmy from approval a where apro_status = 0 and appro_member_id = (select member_name from member where member_id = #{member_id})
+		select count(apro_status) as apro_statusmy from approval a where 3 > apro_status and appro_member_id = (select member_name from member where member_id = #{member_id})
 	</select>
 
 	<select id="main4" parameterType="kr.smhrd.entity.App" resultType="int">

@@ -293,7 +293,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>프로필</h1>
+      <h1>직원정보</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="http://localhost:9999/main">Home</a></li>
